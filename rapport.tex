@@ -1,0 +1,92 @@
+\input{config/preample.tex}
+
+\begin{document}
+\input{config/frontpage.tex}
+\newpage
+
+\renewcommand{\abstractnamefont}{\normalfont\bfseries}
+\renewcommand{\abstracttextfont}{\normalfont}
+
+\begin{abstract}
+\input{section/resume}	
+\end{abstract}
+
+\thispagestyle{empty}
+
+%---------- Indholdsfortegnelse  ---
+\newpage
+\thispagestyle{empty}
+\null
+\vfill
+\begin{center}
+\emph{Thanks for all the fish...}
+\end{center}
+\newpage
+\thispagestyle{empty}
+\null
+\input{section/underskrift}	
+\newpage
+\thispagestyle{empty}
+\null
+\vfill
+\newpage
+\tableofcontents*												
+\newpage
+
+\DoubleSpacing
+%---------- Kalibrerings side --------
+%\input{config/kalib}
+%\newpage
+
+%---------- Indledning -------------
+\input{section/forord}
+\input{section/indledning}							
+
+\listoftodos
+%\input{config/howto}
+
+%---------- Chapter ----------------
+\input{section/chap1}
+
+%---------- Parts ----------------
+\input{section/sec1}
+
+%---------- Chapter ----------------
+
+%---------- Parts ----------------
+
+%---------- Chapter ----------------
+
+%---------- Parts ----------------
+
+%---------- Chapter ----------------
+
+%---------- Parts ----------------
+
+
+%---------- Chapter ----------------
+\input{section/diskussion}							
+
+%---------- Chapter ----------------
+\input{section/konklusion}							
+
+
+\SingleSpacing
+
+\nocite{*}
+\bibliography{rapport}\label{bilag:litteratur}
+%\listoffigures
+%\listoftables
+
+%--------- Bilag -------------------
+\appendix
+%\input{section/ord}
+\chapter{Bilag}
+%\input{section/symbol}
+%\input{section/stykliste}
+%\input{section/tidsplan}
+%\input{section/diagrammer}
+%\input{section/cd_indhold}
+
+
+\end{document}
