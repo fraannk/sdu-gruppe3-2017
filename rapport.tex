@@ -1,19 +1,19 @@
 \input{config/preample.tex}
 
 \begin{document}
+% --------- Frontpage ------------------
 \input{config/frontpage.tex}
-\newpage
 
+% --------- Abstract -------------------
+\newpage
+\thispagestyle{empty}
 \renewcommand{\abstractnamefont}{\normalfont\bfseries}
 \renewcommand{\abstracttextfont}{\normalfont}
-
 \begin{abstract}
 \input{section/resume}	
 \end{abstract}
 
-\thispagestyle{empty}
-
-%---------- Indholdsfortegnelse  ---
+% --------- Thanks ---------------------
 \newpage
 \thispagestyle{empty}
 \null
@@ -21,25 +21,38 @@
 \begin{center}
 \emph{Thanks for all the fish...}
 \end{center}
+
+%---------- Underskrift
 \newpage
 \thispagestyle{empty}
 \null
 \input{section/underskrift}	
+
 \newpage
 \thispagestyle{empty}
 \null
 \vfill
+
+%---------- Forord
+\newpage
+\thispagestyle{empty}
+\input{section/forord}
+\newpage
+\thispagestyle{empty}
+\null
+\vfill
+
+%---------- Indholdsfortegnelse  ---
 \newpage
 \tableofcontents*												
 \newpage
 
-\DoubleSpacing
+\DoubleSpacing	
 %---------- Kalibrerings side --------
 %\input{config/kalib}
 %\newpage
 
 %---------- Indledning -------------
-\input{section/forord}
 \input{section/indledning}							
 
 \listoftodos
