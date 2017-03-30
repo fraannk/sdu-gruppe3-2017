@@ -1,2 +1,17 @@
 \section{FIR - Finite Impulse Response}\label{sec:fir}
-ddd
+Et FIR filter består ligesom det tidligere beskrevet IIR filter af 
+
+Input og output signalet er givet ved foldning og er opskrevet i ligning \ref{fir_ligning},
+\begin {equation} 
+\sum\limits_{i=0}^{N-1} h(k)x(n-k) \label{fir_ligning}
+\end {equation}
+hvor $h(k)$ er impulsresponset medsat IIR filterne har en endelig længde, $N$, antal værdier. FIR filterets impulsrespons er et set af filter koeffecienter. Sendes en impuls ind i filteret bestående af et $"1"$ efterfulgt af mange $"0"er$, bliver filterets output sættet af koeffecienter $"1"$-samplen kører igennem. 
+
+
+\begin{itemize}
+	\item Frekvenssampling beskrevet i dybden
+	\item Windowsmetoden
+	\item Equiriple
+\end{itemize}
+
+
