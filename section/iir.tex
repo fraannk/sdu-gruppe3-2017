@@ -1,0 +1,94 @@
+\section{IIR - Infinte Impulse Response}\label{sec:iir} 
+
+    \subsection{Opbygning af Parametrisk Equalizer}
+
+    Et bånd på en parametrisk equalizer består af et båndpas $H_{BP}$ og et båndstop $H_{BS}$ filter. Hvis
+    $H_{band}$ repræsenterer det enkelte bånds overføringsfunktion.
+
+    \begin{equation}
+    H_{band} =  H_{BS} +  H_{BP}
+    \label{eq:band}
+    \end{equation}
+
+    I ligning \ref{eq:band} summeres båndstop- og båndpasfilteret for kun
+    at forstærke/dæmpe signalet ved center frekvensen.
+
+    \subsection{Design af filter}
+    Parametre som brugeren skal kunne justerer: $\omega_0$ centerfrekvensen, $G$ forstærkning ved centerfrekvensen, $Q$ filterets godhed som bla. beskriver
+    båndbredden på pasbåndet.\\
+    Øvrige parametre:
+    $G_0$ reference forstærkning (sættes til 1 for at kunne kaskadekoble flere bånd), $G_B$ forstærkning ved knækfrekvenserne (typisk 3dB over/under fra analog filterteori).
+    
+    Til at designe et IIR-filter bruges Bilinear transformations metoden (BLT).\\
+    BLT består af følgende 3 trin:
+    \begin{enumerate}
+        \item Definer digital specifikationer og prewarp/frekvenswarp dem til analog specifikationer.
+        \item Udfør prototype transformering vha. LP filter.
+        \item Substituer BLT for at få det digitale filter.
+    \end{enumerate}
+    
+    Samplingsfrekvensen $f_s = \dfrac{1}{T_s}$
+
+    \begin{align*}
+    \omega_0 = \dfrac{2 \pi f_0}{f_s}
+    \end{align*}
+$\quad BW_\omega = \dfrac{2 \pi BW }{f_s}$
+    \subsection{Frekvenpreswarp}
+    Da center frekvensen af filteret vil blive forskudt når der udføres en Bilinear
+    transformation er det nødvendigt at prewarp'e (kompensere mod forvrængning), således at center frekvensen passer i det digitale filter.\\
+    $\omega_a$ er den ønsket analog centerfrekvens, $\omega_d$ er den prewarpe'de centerfrekvens, $T_s$ er samplingstiden. 
+    Forholdet mellem $\omega_a$ og $\omega_d$:
+
+
+
+    \begin{align}
+    \omega_a = \dfrac{2}{T_s} \cdot \tan\left( \omega_d \cdot \dfrac{T_s}{2} \right) 
+    \end{align}
+
+
+    \subsection{Analog filter}
+    Som filter bruges 2. orden da der i typisk ikke vil være brug for højere orden
+     inde for audio. Da parametriske equalizer består af et båndpas- og båndstopfilter
+     vil prototypen i S-planet summere de to filtre og blive til ligning \ref{eq:H_a_iir}. \\
+     $G_0$ er $H_{BS}$ forstærkning i pasbåndet, $G $ er $H_{BP}$ forstærkningen ved centerfrekvensen.
+
+    
+    \begin{equation}
+    H_{BP}(S) = \dfrac{G \dfrac{\omega_0}{Q} S}{S^2 + \dfrac{\omega_0}{Q} S + \omega_0^2}
+    \end{equation}
+
+    \begin{equation}
+    H_{BS}(S) = \dfrac{G_0 \left(S^2 + \omega_0^2 \right) }{S^2 + \dfrac{\omega_0}{Q} S + \omega_0^2}
+    \end{equation}
+
+    \begin{align}
+    H_a(s) = H_{BS}(s) +H_{BP}(s) = \dfrac{G_0 \left(S^2 + \omega_0^2 \right) +G \dfrac{\omega_0}{Q} S  }{S^2 + \dfrac{\omega_0}{Q} S + \omega_0^2}
+    \label{eq:H_a_iir}
+    \end{align}
+
+    \subsection{Bilinear Transformation}
+
+
+    \begin{align}
+    s =  \dfrac{2}{T_s} \cdot \dfrac{z - 1}{z + 1}
+    \end{align}
+
+    \begin{equation}
+    H_d(z) = H_a(S)\bigg|_{S = \frac{2}{T_s}\frac{z -1 }{z + 1}}
+    \end{equation}
+
+    %\begin{align}
+    %\beta = \sqrt{\dfrac{G_B^2 - G_0^2}{G^2 - G_B^2}}\cdot tan \left( \dfrac{BW}{2} \right)
+    %\end{align}
+    %\begin{align}
+   % H(z) = H_a(s)\bigg|_{s = \frac{z -1 }{z + 1}} = 
+    %\dfrac{\left(\dfrac{G_0 + G \beta}{1 + \beta} \right)- 2 \left(\dfrac{G_0 cos( \omega_0)}{1 +\beta} \right)z^{-1} + \left(\dfrac{ G_0 - G \beta}{1 + \beta }\right) z^{-2}}{1 - 2 \left(\dfrac{cos(\omega_0)}{1 + \beta}\right)z^{-1} + \left( \dfrac{1 - \beta}{1 + \beta} \right) z^{-2}}
+    %\end{align}
+
+
+    \subsection{Realisering af IIR-filter}
+
+    Differensligning
+    \begin{align}
+    y(n) = \sum\limits_{i=0}^{M} b_i x(n-i) + \sum\limits_{i=1}^N a_i y(n-i)
+    \end{align}
