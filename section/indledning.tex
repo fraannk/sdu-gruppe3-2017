@@ -1,6 +1,7 @@
 \chapter{Indledning}
-Musik er en naturlig del af vores liv og fylder en stor del af vores hverdag. Om det er baggrundsmusikken nede i Brugsen, til Grøn koncert eller i høretelefonerne i bussen, så er den altid med os.
-Alle mennesker er forskellige og har derfor også forskellige præferencer når det gælder deres musikoplevelse. Det er derfor n
+Musik er en naturlig del af hverdagen. Om det er baggrundsmusikken nede i Brugsen, til Grøn koncert eller i høretelefonerne i bussen, så er den altid til stede. At musikken er en så veæsentlig størrelse giver anledning til at undersøge hvilke optimeringsmåder man kan foretage sig, for at få den bedst mulige oplevelse ud af det - hver især. En equalizers egenskab er at udforme en musikafspillers lydsignal, så musikken lyder som brugeren finder bedst.
+Der vil i denne rapport vil læseren blive guidet gennem processen bag ved udvikling af en digital equalizer - fra musikafspillerens udgangssignal til det ønskede lydsignal.
+
 
 \section{Forord}
 \note{Hvem har skrevet (og evt. udgivet) rapporten - og hvornår?
@@ -8,6 +9,12 @@ Alle mennesker er forskellige og har derfor også forskellige præferencer når 
 	Hvordan er den blevet til? (Yderst kort: arbejdsmetodik, afgrænsning, evt. projektperiode)
 	Hvad er formålet med rapporten? Hvem er den skrevet til gavn for, og hvad skal de kunne bruge den til?
 	Eventuel tak til vejledere, faglige hjælpere, økonomiske bidragydere osv.}
+\husk{Kenneth}{Skal indledning og forord smækkes sammen?}
+
+Dette projekt er udarbejdet af studenrede på 4. semester elektronik og datateknik, ved Syddansk Universitet, Teknisk Fakultet, foråret 2017. Projektet er en sammenfatning af de opnåede fagligheder fra semesterets undervisning. Afleveringen af rapporten er dertil et krav for, at kunne gå til eksamen.
+
+\husk{Kenneth}{Noget med arbejdsfordelingen}
+
 
 
 \section{Formål}
@@ -16,41 +23,33 @@ Alle mennesker er forskellige og har derfor også forskellige præferencer når 
 	* Hvilket overordnet emne tager rapporten udgangspunkt i? \\
 	* Hvilket specifikt problem vil man derfor tage fat i og kigge nærmere på? }
 
+Formålet med projektet er, forene der opnåede fagligheder fra undervisningen i Indlejrede Systemer og Signalbehandling, på 4. semester Elektronik og Datateknik. Fagene fra semesteret der indgår i projektet er Embedded programmering, Analoge filtre og signaler og Operativsystemer. Ledningsteori som er et mindre fag under Analoge filtre, er ikke med i rapporten, da undervisningen er så sent i semesteret, at der er tid til at se på implementation af faget i rapporten.
+
+
 Formålet med projektet er at fremstille en parametrisk equalizer, der kan efterbehandle et lydsignal.
-Projektet indeholder elementer af fagligheder fra 4. semester for Indlejrede systemer og signalbehandling på Elektronik og Datateknik med elementer af Digital signalbehandling, Embedded programmering, Analoge filtre og signaler og Operativsystemer.
-
-
-
 
 \section{Problemformulering}
 \note{Problemformulering: Hvilket spørgsmål vil denne rapport helt præcist stille skarpt på, og hvilke delspørgsmål vil det måske være nødvendigt at besvare for at kunne besvare hovedspørgsmålet?}
 
-
-Det spørgsmål der vil blive besvaret i denne rappor
-Hovedspørgsmål
-\begin{itemize}
-	\item Hvordan kan en parametrisk equalizer realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller?
-\end{itemize}
-Delspørgsmål
-\begin{itemize}
-	\item Skal der gøres brug af analoge filtre?
-	\item Hvilken filtertype skal i microprocessoren anvendes for at opnå kravspecifikationerne?
-\end{itemize}
-
-
+Hovedformålet med projektet er at designe en parametrisk equalizer der kan efterbehandle et lydsignal. Den skal realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller som er splatformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd fri, som brugeren frit skal kunne bestemme.
 
 \section{Proces- og arbejdsmetode}
 \note{Metodebeskrivelse: Hvordan vil det blive gjort? (Opgaven bygger på den-og-den litteratur samt interviews med dem og dem. Først undersøger vi dét, og så undersøger vi dét. Derefter …)}
 
-Projektet vil
+Gennemarbejdningen med denne rapport vil tage udgangspunkt i undervisningen med dertilhørende litteratur. Ekspertviden vil blive hentet fra underviserne, med henblik på bedre forståelse af stoffet.
+
+\husk{Kenneth}{Tage udgangspunkt i signalvejen - men bedre ord for det}
+
 
 \section{Projektafgrænsning}
 \note{Hvilke emner / delemner kommer rapporten ikke ind på? Hvorfor?\\
 	Det er meget almindeligt, at problemformulering og metoderedegørelse simpelthen er en del af indledningen, men så bør de normalt være markeret med underrubrikker (under-overskrifter) for overskuelighedens skyld. Hvis du er uddannelsessøgende, så tjek, om skolen eller institutionen (eller din vejleder) har særlige krav på det punkt.}
 
-
+\husk{Kenneth}{Mangler en liste til at skrive ud fra,}
 
 \section{Kravspecifikation} \label{afs:kravspecifikation}
+I dette afsnit fremstår de opsatte krav for projektet, der er fastsat dels ud fra kravet til selve projektbeskrivelsen, men også ud fra de studerende selv med henblik på at efterligne den virkelige ingeniørverden.
+
 \begin{itemize}
 	\item Prototypen udvikles på Tiva™ C Series TM4C123G LaunchPad Evaluation Kit.
 	\item Tiva™ TM4C123GH6PM Microcontroller anvendes.
@@ -65,6 +64,9 @@ Projektet vil
 \end{itemize}
 
 \section{Løsningsmodel}
+I dette afsnit kan løsningsmodellen for projektet ses.
+\husk{Kenneth}{Et blokdiagram eller lignende. Skriv at der er blevet taget udganspunkt i den}
 
 \section{Læsevejledning}
-Denne rapport er opbygget trinvis 
+Denne rapport er opbygget...
+\husk{Kenneth}{Noget med signalvejen og opbygningen af rapporten}
