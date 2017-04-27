@@ -9,10 +9,19 @@
 Formålet med projektet er at fremstille en parametrisk equalizer, der kan efterbehandle et lydsignal.
 Projektet indeholder elementer af fagligheder fra 4. semester for Indlejrede systemer og signalbehandling på Elektronik og Datateknik med elementer af Digital signalbehandling, Embedded programmering, Analoge filtre og signaler og Operativsystemer.
 
-
-
-
 \section{Problemformulering}
+\note{Generel fortælling om hvordan man kan finde frem til en projekt der kan blive dækket af de fagligheder de skal omhandle}
+
+\note{Specefike problemer der kan være ved at lave en equalzier som et embedded system}
+
+\note{Hvilke spørgsmål kan der stilles om man ønsker at få besvaret ?}
+
+
+\begin{enumerate}
+	\item Hvilken digital signalbehandling kan give den ønskede signal filtrering.  
+\end{enumerate}
+
+
 \note{Problemformulering: Hvilket spørgsmål vil denne rapport helt præcist stille skarpt på, og hvilke delspørgsmål vil det måske være nødvendigt at besvare for at kunne besvare hovedspørgsmålet?}
 
 
@@ -24,19 +33,18 @@ Projektet indeholder elementer af fagligheder fra 4. semester for Indlejrede sys
 \note{Hvilke emner / delemner kommer rapporten ikke ind på? Hvorfor?\\
 	Det er meget almindeligt, at problemformulering og metoderedegørelse simpelthen er en del af indledningen, men så bør de normalt være markeret med underrubrikker (under-overskrifter) for overskuelighedens skyld. Hvis du er uddannelsessøgende, så tjek, om skolen eller institutionen (eller din vejleder) har særlige krav på det punkt.}
 
-
-
 \section{Kravspecifikation} \label{afs:kravspecifikation}
+Følgende kravspecifikation er opstillet af projektgruppen selv, og har til hensigt at emulere betingelserne der ville være til stede uden for de akademiske rammer.
+Specifikationen er således ikke verificeret af andre end projektgruppen selv, men er fremkommet ud fra en række velovervejede tanker om det resulterende produkt. 
 \begin{itemize}
 	\item Prototypen udvikles på Tiva™ C Series TM4C123G LaunchPad Evaluation Kit.
-	\item Tiva™ TM4C123GH6PM Microcontroller anvendes.
+	\item Tiva™ TM4C123G serie Microcontroller anvendes.
 	\item Kildekoden er en del af produktet og skal overholder EMP-C standarden.
-	\item Equalizeren skal være en parametrisk equalizer.
-	\item Det skal være muligt at uploade frekvensprofiler til equalizeren.
+	\item Equalizeren skal virke som parametrisk equalizer.
+	\item Det skal være muligt rette frekvensprofiler på equalizeren.
 	\item Indgangs- og udgangssignaler skal overholde line-level standard på, nominal $-10 dBV$, $0,894 V_{pp}$ (Forbruger elektronik line-signal).
 	\item Tilgængelige filtertyper i frekvensprofiler - Højpass, Lavpass, Båndpass og Båndstop.
 	\item Equalizerparametre skal omfatte - Frekvens, båndbredde og gain.
-	\item Der kan anvendes maksimalt 6 bånd i frekvensprofilerne (mono) og 3 bånd (stereo)\footnote{Angivet krav er et groft estimat}.   
 	\item Equalizerens funktionalitet og effektivitet efterprøves med et velbeskrevet test-signal.
 \end{itemize}
 
