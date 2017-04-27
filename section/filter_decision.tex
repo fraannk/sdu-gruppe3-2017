@@ -1,1 +1,25 @@
 \section{Valg af filter}\label{sec:dec_filter}
+For at finde det rigtige filter at realisere, vil der i dette afsnit blive set på begge filtertypers fordele og ulemper, hvoraf en vurdering vil blive lavet, som danner grundlag for valg af filtertype til realisering.
+
+\begin{itemize}
+	\item FIR filtre bruger nuværende og tidligere input samples til at opnå nuværende sample output værdi. Det bruger ikke tidligere output signaler, hvorimod IIR filre har brug for både tidligere indput og output sample værdier.
+	\item 
+	\item IIR filtre har både poler og nulpunkter i overføringsfunktionen, hvilket resulterer i mindre hukommelse end FIR filtre som kun har nulpunkter.
+	\item Idet at FIR filtre ingen poler har, vil de altid være stabile, hvorimod IIR filtres poler gør de kan blive ustabile.
+\end{itemize}
+
+
+
+
+\begin{table}[]
+	\centering
+	\caption{Fordele og ulemper side om side}
+	\label{iir_fir_vurdering}
+	\begin{tabular}{lllll}
+		\cline{1-2}
+		\multicolumn{1}{|l|}{\centering FIR filter} & \multicolumn{1}{l|}{\centering IIR filter} &  &  &  \\ \cline{1-2}
+		\multicolumn{1}{|l|}{Tekster under fir}		& \multicolumn{1}{l|}{Tekst under IIR}		 &  &  &  \\ \cline{1-2}
+		&                       &  &  &  \\
+		&                       &  &  & 
+	\end{tabular}
+\end{table}
