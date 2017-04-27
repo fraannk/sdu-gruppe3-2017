@@ -1,5 +1,8 @@
 \section{FIR - Finite Impulse Response}\label{sec:fir}
-FIR filter - forklaring.
+Formålet med FIR filteret er at udregne filter koefficienterne, $b_{i}$, der bruges til at approksimere størrelsen af frekvens responset af FIR filteret $H(z)$.
+
+\husk{Kenneth}{Omskriv!}
+
 
 Forholdet mellem input og output i er FIR filter er givet ved ligning \ref{fir_ligning},
 \begin {equation} 
@@ -26,7 +29,8 @@ FIR filterets overføringsfunktion er givet ved ligning \ref{FIR_transfer}
 H(z)=\sum\limits_{k=0}^{N-1}h(k)z^{-1} \label{FIR_transfer}
 \end {equation}
 \section{Design metoder} \label{sec:fir_design}
-Herunder vil tre forskellige design metoder blive beskrevet. Frekvenssamplingsmetoden vil være mere dybdegående end de to andre, da det er den metode der vil blive implementeret.
+Herunder redegøres der for 3 forskellíge design metoder, til beregning af filter koefficienter.
+Frekvenssamplingsmetoden vil være mere dybdegående end de to andre, da det er den metode der vil blive implementeret.
 \subsection{Frekvenssampling}
 Ved frekvenssampling approksimeres det ønskede frekvensrespons ved, at sample det $N$ antal gange, med samme interval imellem samplingspunkterne. Der kan derved opnås et interpolateret frekvens respons.
 Pointen med frekvenssampling er at filterkoefficienter kan beregnes udfra specificerede størrelser i forhold det ønskede filter respons uniformt i frekvensdomænet.
@@ -34,11 +38,11 @@ Pointen med frekvenssampling er at filterkoefficienter kan beregnes udfra specif
 Filterkoefficienterne kan beregnes udfra definitionen af den inverse DFT (IDFT):
 
 \begin {equation}
-h(n)=\frac{1}{N}\sum_{k=0}^{N-1}H(k)W_{N}^{-kn} ,\hspace{1cm}\text{for}\hspace{1cm} n = 0, 1,\text{ ... }, N-1 \label{fir_filterkoefficienter}
+h(n)=\frac{1}{N}\sum_{k=0}^{N-1}H_{d}(k)W_{N}^{-kn} ,\hspace{1cm}\text{for}\hspace{1cm} n = 0, 1,\text{ ... }, N-1 \label{fir_filterkoefficienter}
 \end {equation}
 hvor
 \begin {equation}
-W_{N}=e^{j\frac{2\pi}{N}} \hspace{1cm}\text{og} \hspace{1cm} h(k)=h(e^{j\Omega_{k}}) \nonumber
+W_{N}=e^{j\frac{2\pi}{N}} \hspace{1cm}\text{og} \hspace{1cm} H_{d}(k)=h(e^{j\Omega_{k}}) \nonumber
 \end {equation}
 Det antages lineær fase og at antallet af samplingspunkt er $N=2M+1$.
 
