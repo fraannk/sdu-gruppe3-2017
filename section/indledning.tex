@@ -1,6 +1,6 @@
 \chapter{Indledning}
-Musik er en naturlig del af hverdagen. Om det er baggrundsmusikken nede i Brugsen, til Grøn koncert eller i høretelefonerne i bussen, så er den altid til stede. At musikken er en så veæsentlig størrelse giver anledning til at undersøge hvilke optimeringsmåder man kan foretage sig, for at få den bedst mulige oplevelse ud af det - hver især. En equalizers egenskab er at udforme en musikafspillers lydsignal, så musikken lyder som brugeren finder bedst.
-Der vil i denne rapport vil læseren blive guidet gennem processen bag ved udvikling af en digital equalizer - fra musikafspillerens udgangssignal til det ønskede lydsignal.
+Musik er en naturlig del af hverdagen. Om det er baggrundsmusikken nede i Brugsen, til Grøn koncert eller i høretelefonerne i bussen, så er den altid til stede. At musikken er en så væsentlig størrelse giver anledning til at undersøge hvilke optimeringsmåder man kan foretage sig, for at få den bedst mulige oplevelse ud af det - hver især. En equalizers egenskab er at udforme en musikafspillers lydsignal, så musikken lyder som brugeren finder bedst.
+I denne rapport vil læseren blive guidet gennem processen bag ved udvikling af en digital equalizer - fra musikafspillerens udgangssignal til det ønskede lydsignal.
 
 
 \section{Forord}
@@ -11,7 +11,7 @@ Der vil i denne rapport vil læseren blive guidet gennem processen bag ved udvik
 	Eventuel tak til vejledere, faglige hjælpere, økonomiske bidragydere osv.}
 \husk{Kenneth}{Skal indledning og forord smækkes sammen?}
 
-Dette projekt er udarbejdet af studenrede på 4. semester elektronik og datateknik, ved Syddansk Universitet, Teknisk Fakultet, foråret 2017. Projektet er en sammenfatning af de opnåede fagligheder fra semesterets undervisning. Afleveringen af rapporten er dertil et krav for, at kunne gå til eksamen.
+Dette projekt er udarbejdet af studerende på 4. semester elektronik og datateknik, ved Syddansk Universitet, Teknisk Fakultet, foråret 2017. Projektet er en sammenfatning af de opnåede fagligheder fra semesterets undervisning. Afleveringen af rapporten er dertil et krav for at kunne gå til eksamen.
 
 \husk{Kenneth}{Noget med arbejdsfordelingen}
 
@@ -23,7 +23,7 @@ Dette projekt er udarbejdet af studenrede på 4. semester elektronik og datatekn
 	* Hvilket overordnet emne tager rapporten udgangspunkt i? \\
 	* Hvilket specifikt problem vil man derfor tage fat i og kigge nærmere på? }
 
-Formålet med projektet er, forene der opnåede fagligheder fra undervisningen i Indlejrede Systemer og Signalbehandling, på 4. semester Elektronik og Datateknik. Fagene fra semesteret der indgår i projektet er Embedded programmering, Analoge filtre og signaler og Operativsystemer. Ledningsteori som er et mindre fag under Analoge filtre, er ikke med i rapporten, da undervisningen er så sent i semesteret, at der er tid til at se på implementation af faget i rapporten.
+Formålet med projektet er, at forene de opnåede fagligheder fra undervisningen i Indlejrede Systemer og Signalbehandling, på 4. semester Elektronik og Datateknik. Fagene fra semesteret der indgår i projektet er Embedded programmering, Analoge filtre og signaler og Operativsystemer. Ledningsteori som er et mindre fag under Analoge filtre, er ikke med i rapporten, da undervisningen ligger så sent i semesteret, at der ikke er tid til at se på implementation af faget i rapporten.
 
 
 Formålet med projektet er at fremstille en parametrisk equalizer, der kan efterbehandle et lydsignal.
@@ -43,7 +43,7 @@ Formålet med projektet er at fremstille en parametrisk equalizer, der kan efter
 
 \note{Problemformulering: Hvilket spørgsmål vil denne rapport helt præcist stille skarpt på, og hvilke delspørgsmål vil det måske være nødvendigt at besvare for at kunne besvare hovedspørgsmålet?}
 
-Hovedformålet med projektet er at designe en parametrisk equalizer der kan efterbehandle et lydsignal. Den skal realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller som er splatformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd fri, som brugeren frit skal kunne bestemme.
+Hovedformålet med projektet er at designe en parametrisk equalizer, der kan efterbehandle et lydsignal. Den skal realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller som er platformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd som brugeren frit kan modulere.
 
 \section{Proces- og arbejdsmetode}
 \note{Metodebeskrivelse: Hvordan vil det blive gjort? (Opgaven bygger på den-og-den litteratur samt interviews med dem og dem. Først undersøger vi dét, og så undersøger vi dét. Derefter …)}
