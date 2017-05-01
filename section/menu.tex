@@ -8,3 +8,8 @@ For at kunne ændre på equalizerens parametre og indstillinger, skal der være 
 \end{figure}
 
 Menusystemet sørger for at "lytte" efter eventuelt indkommende data, og skal, når der er data tilgængeligt, behandle den derefter. I denne buffer kan der være tre forskellige ting som har indflydelse på hvad der skal ske. Der er på "EMP-board"'et en numpad, dedikerede knapper, og en encoder. LCD'en er det hovedsagelige i UI'et, da det er her brugeren kan se hvor i menuen man er, samt se hvad indstillingerne er og hvad de eventuelt skal ændres til.
+
+\section{I$^2$C}\label{sec:i2c}
+For at implementere et kommunikationssystem til at styre equalizeren, bruges I$^2$C. På den måde kan en anden microcontroller kommunikere og ændre indstillinger og profiler. Da EMP-boardet ikke bruges, og der derfor ikke er noget LCD display, er dette umiddelbart den bedste løsning. På den måde tager vi også en del load af selve EQ-mikrokontrolleren, da User Interfacet foregår på en ekstern mikrokontroller.
+
+Dette gør det også nemmere at senere tilføje moduler til User Interfacet, da I$^2$C protokollen allerede er trådt i kraft, og man kun behøver at ændre kode på den eksterne mikrokontroller.
