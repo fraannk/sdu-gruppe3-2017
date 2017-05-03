@@ -63,7 +63,21 @@ hvor $h(k)$ for $k=0,1,\text{ ... },2M$, repræsenterer filterkoefficienternes s
 
 
 \subsection{Windowsmetoden}
+Den grundlæggende tilgang til windowsmetoden er baseret på at det ideelle lavpas- (ligning \ref{windows_lp}), højpas- (ligning \ref{windows_hp}), båndpas- (ligning \ref{windows_bp}), og båndstop filter (ligning \ref{windows_bs}), bestående af den følgende ikke-kausale impulsrespons på $-\infty < n < \infty$.
 
 
+\begin{equation}
+h_{d,LP}[n] = \frac{sin(\omega_c n)}{\pi n} \label{windows_lp}
+\end{equation}
+\begin{equation}
+h_{d,HP}[n] = \delta(n) - \frac{sin(\omega_c n)}{\pi n} \label{windows_hp}
+\end{equation}
+\begin{equation}
+h_{d,BP}[n] = \frac{sin(\omega_b n) - sin(\omega_a n)}{\pi n} \label{windows_bp}
+\end{equation}
+\begin{equation}
+h_{d,BS}[n] = \delta(n) - \frac{sin(\omega_b n) - sin(\omega_a n)}{\pi n} \label{windows_bs}
+\end{equation}
 
-\subsection{Equiriple}
+\section{Opsummering}
+
