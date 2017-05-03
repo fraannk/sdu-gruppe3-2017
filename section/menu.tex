@@ -17,4 +17,10 @@ Dette gør det også nemmere at senere tilføje moduler til User Interfacet, da 
 \section{LCD Display}\label{sec:lcd}
 LCD displayet viser equalizerens status informationer. Man kan se den igangværende eq-profil - altså hvilken lydindstilling der aktuelt kører. Derudover er der et VU-meter, som bliver brugt til at se om der er signal igennem, samt hvor højt det er. På den måde kan man se om den overstyrer. Til sidst er der en CPU-load indikator. Med denne indikator kan der afgøres om der er plads til at indsætte endnu et bånd på equalizeren. Problemet med sådan et LCD display, er at det tager for mange CPU-cycles at skrive til, så derfor er der implementeret en metode til at håndtere dette. \\
 
-Da der som tidligere nævnt kun er 1814 CPU-cycles mellem hver interrupt/sample, kan hele LCD'en ikke opdateres på en gang, da dette ville tage mere end 1814 cycles. Derfor er der implementeret en buffer, hvor den skriver til ét felt på LCD'en, ved hver interrupt. Det tager ingen tid at skrive til denne buffer, så derfor spares der på CPU-cycles, så de kan bruges til noget der er vigtigere (f.eks. DSP). Da LCD'en så har sin egen task, kan den skrive bufferen når der er tid til det. 
+Da der som tidligere nævnt kun er $1814$ CPU-cycles mellem hver interrupt/sample, kan hele LCD'en ikke opdateres på en gang, da dette ville tage mere end $1814$ cycles. Derfor er der implementeret en buffer, hvor den skriver til ét felt på LCD'en, ved hver interrupt. Det tager ingen tid at skrive til denne buffer, så derfor spares der på CPU-cycles, så de kan bruges til noget der er vigtigere (f.eks. DSP). Da LCD'en så har sin egen task, kan den skrive bufferen når der er tid til det. \\
+
+\subsection{VU-meter}
+Da LCD-displayet normalt kun kan modtage ASCII\footnote{https://en.wikipedia.org/wiki/ASCII} tegn, er der opsat en custom "font", som gør at man kan udfylde alle pixels i et felt. På den måde kan der laves linjer/kasser, så man kan visualisere et VU-meter. 
+
+\subsection{Initialisation}
+LCD'et kræver en speciel rutine for at starte korrekt. For at
