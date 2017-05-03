@@ -130,11 +130,13 @@
    \end{align}
 
    Hvor parametrende er $Q$, $G$, $f_0$. Heraf beregnes $w_0$ udfra ligning (),$\Delta \omega$ udfra ligning (), $\beta$ fra ligning (\ref{eq:beta}), $G_B$ beregnes fra ligning (\ref{eq:gain_b}).
-   På figur (\ref{fig:iir_peak}) betragtes indflydelsen fra $Q$ når den varierer.
+   På figur (
+       %\ref{fig:iir_peak}
+       ) betragtes indflydelsen fra $Q$ når den varierer.
 
- \begin{figure}[H]
+ \begin{figure}[h]
     \centering
-            \input{figure/iir_peak}
+         \includegraphics{figure/iir_peak.pdf}
         \caption{Peak/notch filtre med centerfrekvens $f_0 = 2kHz$ og $f_0 = 4kHz$, varierende $Q$ og gain $G=5dB$}
         \label{fig:iir_peak}
     \end{figure} 
@@ -167,9 +169,9 @@
       H_{LS}(z) =   \dfrac{\left(\dfrac{G_0 + G \beta}{1 + \beta} \right)+ \left(\dfrac{ G_0 - G \beta}{1 + \beta }\right) z^{-1}}{1 + \left( \dfrac{1 - \beta}{1 + \beta} \right) z^{-1}}
      \end{align}
 
-    \begin{figure}[H]
+    \begin{figure}[h]
     \centering
-        \input{figure/iir_ls}
+        \includegraphics{figure/iir_ls.pdf}
         \caption{Low shelf filter med knækfrekvens $f_c = 4kHz$, varierende gain $G$ i intervallet: $[-7.5 ; 7.5]$}
     \end{figure} 
    
@@ -201,11 +203,11 @@
      \end{align}
 
 
-  \begin{figure}[H]
-    \centering
-        \input{figure/iir_hs}
+  \begin{figure}[h]
+      \centering
+        \includegraphics[]{figure/iir_hs.pdf}
         \caption{High shelf filter med knækfrekvens $f_c = 4kHz$, varierende gain $G$ i intervallet: $[-7.5 ; 7.5]$}
-    \end{figure}  
+   \end{figure}  
 
 
  
@@ -222,13 +224,13 @@
     y(n) = \sum\limits_{i=0}^{M} b_i x(n-i) - \sum\limits_{i=1}^N a_i y(n-i)
     \end{align}
 
-    \begin{figure}[h]
-        \centering
-        \input{figure/iir_sos}
-        \caption{Realiserings diagram af 2. ordens iir filter. }    
-    \end{figure}
+   %\begin{figure}[h]
+        %\centering
+        %\input{figure/iir_sos}
+    %    \caption{Realiserings diagram af 2. ordens iir filter. }    
+    %\end{figure}
 
-  
+   
 
 Kaskade form:\\
 
