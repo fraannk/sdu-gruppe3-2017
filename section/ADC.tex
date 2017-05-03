@@ -9,8 +9,16 @@ Da det ikke er alle porte, der kan anvendes på microcontrolleren til A/D konver
  \end {equation}
 
 Hver gang PWM'en har kørt i det beregnede antal cycles, bliver et interrupt initialiseret, og samplingen starter samt gemmer værdien. Ved næste interrupt, starter processen for A/D konverteringen igen.
-Da A/D konverterne er opløst i 12 bit, og den maksimale spænding der bliver registreret er $3,3\si\volt$ - vil maksimalværdien for konverteringen være $4096$. 
+Da A/D konverterne har en opløsning i 12 bit, og den maksimale spænding der bliver registreret er $3,3\si\volt$ - vil maksimalværdien for konverteringen være $4096$. Flowchartet af dette forløb, kan ses på figur \ref{fig:ADC}.
+\begin{figure}[h]
+	\centering
 
+		\includegraphics[width=.6\textwidth]{billeder/ADC.jpg}
+			
+	
+	\caption{Flowchart der beskriver forløbet af A/D konverteringen.}
+	\label{fig:ADC}
+\end{figure}
 
 
 
