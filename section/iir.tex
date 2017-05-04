@@ -14,7 +14,7 @@ y(n) = \sum\limits_{i=0}^{M} b_i x(n-i) - \sum\limits_{i=1}^{N} a_i y(n-i)
     i at finde koefficienterne for denne funktion.
     
     \begin{align}
-        H(z) = \dfrac{y(n)}{x(n)} = \dfrac{\sum\limits_{i=0}^M b_i z^{-i}}{1 + \sum\limits_{i=1}^N a_i z^{-i}}
+        H(z) = \dfrac{Y(z)}{X(z)} = \dfrac{\sum\limits_{i=0}^M b_i z^{-i}}{1 + \sum\limits_{i=1}^N a_i z^{-i}}
         \label{eq:dig_tf}
     \end{align}
 
@@ -82,9 +82,15 @@ består af følgende trin.
     
    \subsection{Equalizer}
 
-   En equalizers kan opdeles i 2. ordens filtre  
+   En equalizers kan opdeles i en række bånd hvori hvert bånd repræsenterer et 
+   2. ordens filter (biquad). Ved at sætte $G_0 = 1$ ($0 dB$) kan filtrene kaskadekobles hvilket giver 
+   et resulterende filter $H_{res}$ som er produktet af de individuelle filtre $H_i$. \\
+   Dette kan ses i ligning (\ref{eq:kaskade_iir}) hvor $K$ er antal bånd af equalizeren.  
 
-
+   \begin{align}
+    H_{res}(z) = \prod_{i=1}^{K} H_i(z)
+    \label{eq:kaskade_iir}
+   \end{align} 
 
 
 
