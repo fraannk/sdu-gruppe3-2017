@@ -3,9 +3,16 @@ For at finde det rigtige filter at realisere, vil der i dette afsnit blive set p
 
 \begin{itemize}
 	\item FIR filtre bruger nuværende og tidligere input samples til at opnå nuværende sample output værdi. Det bruger ikke tidligere output signaler, hvorimod IIR filtre har brug for både tidligere indput og output sample værdier.
-	\item IIR filtre har både poler og nulpunkter i overføringsfunktionen, hvilket resulterer i mindre hukommelse end FIR filtre som kun har nulpunkter.
-	\item Idet at FIR filtre ingen poler har, vil de altid være stabile, hvorimod IIR filtres poler gør de kan blive ustabile.
-	\item FIR filtre skal have højere orden end IIR filtre for at opnå samme ydeevne.
+	\item FIR er mere beregningstung på grund af højere filterorden.
+	\item Da FIR filtre ingen poler har, er de altid stabile.
+	\item FIR filterets differensligning er længere end IIR'ets, hvilket resulterer i, at en designbestemt forsinkelse er nødvendig, for at beregningerne kan nå, at blive foretaget før næste beregning blok fremkommer.
+	\item Længden af FIR filterets blokke er designmæssigt vigtigt for kausaliteten i filteret.
+	\item FIR filtre har generelt højere orden end orden end IIR, og heraf højere beregningskompleksitet. FIR filteret er derfor også mere præcis.	
+	\item FIR har lineær faserespons, hvilket gør gruppeløbetiden konstant.
+	\item IIR dimensioneres efter analoge filtre, hvilket har den konsekvens, at faseresponset er ulineær.
+	\item IIR filteret er altid kausalt.
+	\item IIR filtre har både poler og nulpunkter i overføringsfunktionen, hvilket muliggør at systemet kan blive ustabilt.
+	\item På grund af BLT, vil der være fejl med amplituderesponset.
 \end{itemize}
 
-
+\husk{Kenneth}{Færdig løsningsmodel for FIR påkrævet før afsnittet kan færdiggøres.}
