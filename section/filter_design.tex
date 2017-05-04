@@ -11,20 +11,16 @@
 
     \subsection{Analog filter}
 
-    Som filter til equalizeren bruges high-shelf, low-shelf, peak/notch.
-    Som filter bruges 2. orden da der i typisk ikke vil være brug for højere orden
-     inde for audio. 
+	Som filter til equalizeren bruges high-shelf, low-shelf og  peak/notch.
+    Der blive kun anvendt 2. ordens filtre, da der ikke er brug for højere orden inde for audio. 
 
 
 
      \subsubsection{Peak/notch filter}
 
 
-     Et peak/notch filter i en parametrisk equalizer består af et båndpas $H_{BP}$ og et båndstop $H_{BS}$ filter. Hvis
-    $H_{band}$ repræsenterer det enkelte bånds overføringsfunktion.
-
-    I ligning \ref{eq:band} summeres båndstop- og båndpasfilteret for kun
-    at forstærke/dæmpe signalet omkring center frekvensen.\\
+     Et peak/notch filter i en parametrisk equalizer består af et båndpas $H_{BP}$ og et båndstop $H_{BS}$ filter. 
+    I ligning \ref{eq:band} summeres båndstop- og båndpasfilteret for at kunne forstærke eller dæmpe signalet omkring center frekvensen.\\
     Et analogt båndpas filter kan beskrives med ligning \ref{eq:bp_proto} 
     hvor $\alpha$ er en konstant der er afhængig af frekvensspecifikationer, $\Omega_0$ er centerfrekvensen.\\
     I ligning \ref{eq:bs_proto} er en overføringsfunktion for et båndstopfilter.
@@ -40,7 +36,7 @@
 
      \begin{align}
      H_a (s) = G_0 H_{NOTCH} (s) + G H_{PEAK} (s) = \dfrac{G_0 (s^2 + \Omega_0^2) + G \alpha s}{s^2 + \alpha s + \Omega_0^2}
-     \label{eq:hp_proto}
+     \label{eq:band}
     \end{align}
 
     \begin{align}
