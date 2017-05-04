@@ -5,42 +5,55 @@ I denne rapport vil læseren blive guidet gennem processen bag ved udvikling af 
 }
 \husk{Kenneth}{Kan være denne rubrik bare skal stå som et chapter med dertilhørende underemner}
 \section{Formål}
-\note{Indledningen skal ikke handle om rapporten, men om rapportens emne. Man kan sige, at den kridter banen op ved at præsentere emneområdet.
-	\\
-	* Hvilket overordnet emne tager rapporten udgangspunkt i? \\
-	* Hvilket specifikt problem vil man derfor tage fat i og kigge nærmere på? }
+%\note{Indledningen skal ikke handle om rapporten, men om rapportens emne. Man kan sige, at den kridter banen op ved at præsentere emneområdet.
+%	\\
+%	* Hvilket overordnet emne tager rapporten udgangspunkt i? \\
+%	* Hvilket specifikt problem vil man derfor tage fat i og kigge nærmere på? }
 %
 %Formålet med projektet er, at forene de opnåede fagligheder fra undervisningen, samt at træne den studerende i, at kunne forstå og forklare afgrænsede systemer med funktionalitet der relaterer til faglighederne i Indlejrede Systemer og Signalbehandling, på 4. semester Elektronik og Datateknik. Fagene fra semesteret der indgår i projektet er Embedded programmering, Analoge filtre og signaler og Operativsystemer. Ledningsteori som er et mindre fag under Analoge filtre, er ikke med i rapporten, da undervisningen ligger så sent i semesteret, at der ikke er tid til at se på implementation af faget i rapporten.
 %
 %Semesterets fagbeskrivelse vil blive brugt som tjekliste, for at komme igennem så meget af stoffet som muligt.
-Formålet med dette projekt, er at formidle de opnåede fagligheder fra 4. semesters undervisning på uddannelsen diplomingeniør i elektronik og datateknik. Semesteret hovedemne omhandler Indlejrede systemer og signalbehandling, hvor fagene Analoge filter og signaler, Digital signalbehandling, Embedded programmering og Operativsystemer inkludere. Der skal på et grundlæggende niveau, kunne relateres til faglighederne i ét samlet produkt ud fra disse. For at kunne håndtere dette, vil semesterets fagbeskrivelse blive anvendt til at opnå det ønskede formål.
-\husk{Simon}{jeg har udkommenteret tidligere skrevet formål, og skrevet noget nyt.}
+Formålet med dette projekt, er at formidle de opnåede fagligheder fra 4. semesters undervisning på uddannelsen diplomingeniør i elektronik og datateknik. Semesterets hovedemne omhandler Indlejrede systemer og signalbehandling, hvor fagene Analoge filter og signaler, Digital signalbehandling, Embedded programmering og Operativsystemer inkludere. Der skal på et grundlæggende niveau, kunne relateres til faglighederne i ét samlet produkt ud fra disse. For at kunne håndtere dette, vil semesterets fagbeskrivelse blive anvendt til at opnå det ønskede formål.
 
 
 \section{Problemformulering}
-\note{Generel fortælling om hvordan man kan finde frem til en projekt der kan blive dækket af de fagligheder de skal omhandle}
+%\note{Generel fortælling om hvordan man kan finde frem til en projekt der kan blive dækket af de fagligheder de skal omhandle}
+%
+%\note{Specefike problemer der kan være ved at lave en equalzier som et embedded system}
+%
+%\note{Hvilke spørgsmål kan der stilles om man ønsker at få besvaret ?}
 
-\note{Specefike problemer der kan være ved at lave en equalzier som et embedded system}
+%Ud fra formålet med projektet, er der blevet valgt, at udvikle en digital equalizer, da den dækker centrale punkter af fagbeskrivelsen. De væsentligste punkter som projektet dækker er analog og digital filterteori, signalbehandling og strukturelle opbygning af et operativ system.
 
-\note{Hvilke spørgsmål kan der stilles om man ønsker at få besvaret ?}
+%\note{Problemformulering: Hvilket spørgsmål vil denne rapport helt præcist stille skarpt på, og hvilke delspørgsmål vil det måske være nødvendigt at besvare for at kunne besvare hovedspørgsmålet?}
+%
+%Hovedspørgsmålet som der vil blive fokuseret på er:
+%\begin{enumerate}
+%	\item Hvilken digital signalbehandling kan give den ønskede signal filtrering?
+%\end{enumerate}
+%Herunder ses underspørgsmålene som vil blive brugt til at besvare hovedspørgsmålet:
+%\begin{enumerate}
+%	\item Kan en digital equalizer realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller?
+%	\item Kan EMP boarded fra Embedded Programmering anvendes i projektet?
+%	\item 
+%\end{enumerate}
+%\note{
+%Projektet går ud på at designe en parametrisk equalizer, der kan efterbehandle et lydsignal. Den skal realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller som er platformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd som brugeren frit kan modulere.
+%}
+Ud fra formålet med projektet, er der blevet valgt at fremstille et produkt, hvoraf alle fagligheder kan anvendes. Produktet der ønskes realiseret, er at konstruere en digital equalizer. Denne digitale equalizer, skal realiseres vha. en Tiva™ TM4C123GH6PM Microcontroller, som er platformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd som brugeren frit kan modulere. Ud fra fagbeskrivelsen, kan dette relateres i et så bredt omfang, at formålet opfyldes. Problemformuleringen forlyder sig derfor som følgende: \\
 
-Ud fra formålet med projektet, er der blevet valgt, at udvikle en digital equalizer, da den dækker centrale punkter af fagbeskrivelsen. De væsentligste punkter som projektet dækker er analog og digital filterteori, signalbehandling og strukturelle opbygning af et operativ system.
+Hvordan realiseres en digital equalizer vha. en Tiva™ TM4C123GH6PM microcontroller, samt digital signalbehandling og analog filterteori?\\
 
-\note{Problemformulering: Hvilket spørgsmål vil denne rapport helt præcist stille skarpt på, og hvilke delspørgsmål vil det måske være nødvendigt at besvare for at kunne besvare hovedspørgsmålet?}
+Der ønskes herudover svar på følgende problemstillinger:
+\begin{itemize}
+	\item Hvilke digitale signalbehandlingsmetoder er bedst til fremstilling af en digital equalizer?
+	\item Hvordan kan et analogt filter anvendes på en digital equalizer?
+	\item Hvad er fordelen ved en digital equalizer fremfor en analog?
+	\item Kan en hvilken som helst microcontroller anvendes til fremstilling af en digital equalizer?
+	\item Hvordan anvendes digital signalbehandling, til at give de ønskede båndspecifikationer?
+	\item Hvordan anvendes EMP boarded fra Embedded programmering til en digital equalizer?
+\end{itemize}
 
-Hovedspørgsmålet som der vil blive fokuseret på er:
-\begin{enumerate}
-	\item Hvilken digital signalbehandling kan give den ønskede signal filtrering?
-\end{enumerate}
-Herunder ses underspørgsmålene som vil blive brugt til at besvare hovedspørgsmålet:
-\begin{enumerate}
-	\item Kan en digital equalizer realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller?
-	\item Kan EMP boarded fra Embedded Programmering anvendes i projektet?
-	\item 
-\end{enumerate}
-\note{
-Projektet går ud på at designe en parametrisk equalizer, der kan efterbehandle et lydsignal. Den skal realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller som er platformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd som brugeren frit kan modulere.
-}
 
 \section{Proces- og arbejdsmetode}
 \note{Metodebeskrivelse: Hvordan vil det blive gjort? (Opgaven bygger på den-og-den litteratur samt interviews med dem og dem. Først undersøger vi dét, og så undersøger vi dét. Derefter …)}
@@ -75,13 +88,13 @@ I dette afsnit fremstår de opsatte krav for projektet, der er fastsat dels ud f
 \end{itemize}
 
 \section{Løsningsmodel}
-\husk{Kenneth}{Figur reference driller}
-Løsningsmodellen som ses på figur \ref{fig:blokdiagram}, er den overordnede arbejdsproces faget digital signalbehandling, hvoraf meget af stoffet bliver hentet fra. Modellen gør det nemmere at dele arbejdet op, da det er et blokdiagram.
+Løsningsmodellen som ses på figur \ref{fig:losningsmodel}, er den overordnede arbejdsproces faget digital signalbehandling, hvoraf meget af stoffet bliver hentet fra. Modellen gør det nemmere at dele arbejdet op, da det er et blokdiagram.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=15cm]{billeder/DSP_blokdiagram}\label{fig:blokdiagram}
+	\includegraphics[width=15cm]{billeder/flow_losn}
 	\caption{Blokdiagram over signalvejen}
+	\label{fig:losningsmodel}
 \end{figure}
 
 \section{Læsevejledning}
