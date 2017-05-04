@@ -1,38 +1,29 @@
-\section{Equalizers}\label{sec:equalizer}
+\section{Om equalizers}\label{sec:equalizer}
 
-En equalizer er et form for filter der har til formål at 
-udglatte et givent signal. I modsætning til filtre der normalt designes til et specifikt formål
- er equalizeren justerbar og kan tilpasses alt afhængig af det signal der påtrykkes og hvilket formål
- der ønskes.\\
-Der er to hovedgrupper af equalizers: Grafisk Equalizers og Parametriske Equalizers.\\
-Der er uenighed i definitionerne af de to typer, hvilket medfører forvirring omkring specifikationer af filter.
-I denne rapport vælges følgende definitioner:
+En equalizer er et form for filter der har til formål at udglatte eller ændre et givent signal. I modsætning til filtre der normalt designes til et specifikt formål er equalizeren justerbar og kan tilpasses alt afhængig af det signal der påtrykkes og hvilket formål der ønskes.\\
+
+Der er to hovedgrupper af equalizers: Grafiske equalizere og parametriske equalizere.\\
+Der er uenighed i definitionerne af de to typer, hvilket medfører forvirring omkring specifikationer af filter. I denne rapport vælges følgende definitioner:
+
 \begin{itemize}
-\item Grafisk Equalizer: Her splittes equalizeren op i forskellige bånd der dækker sine respektive
-frekvens områder. Som bruger har man forstærkning som parameter at ændre på. 
-Båndbredde og center frekvens er fastlagt.
-\item Parametrisk Equalizer: Her er båndende vilkårlige således at brugeren selv kan
-tilføje og fjerne dem efter behov. I hvert enkelt bånd kan man justere båndbredde, center frekvens
-og forstærkning ved center frekvensen. 
+	\item Grafisk equalizer: Her splittes equalizeren op i forskellige bånd der dækker sine respektive frekvens områder. Som bruger har man forstærkning af det respektive bånd som parameter at ændre på. Båndbredde og center frekvens er fastlagt.
+	\item Parametrisk equalizer: Her er båndende vilkårlige således at brugeren selv kan tilføje og fjerne dem efter behov. I hvert enkelt bånd kan man justere båndbredde, center frekvens og forstærkning ved center frekvensen. Alt efter computer/microkontroller er der dog et maks antal bånd da equalizerens ellers ville kræve meget CPU kraft. 
 \end{itemize}  
 
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\subbottom[]{%
-  		\includegraphics[width=.39\textwidth]{billeder/grafisk_eq_ill.png}
-	  	\label{fig:graf_eq_ill}}
+	\includegraphics[width=7cm]{billeder/graphic_eq}
+	\label{fig:graphic_eq}}
 	\subbottom[]{%
-		\includegraphics[width=.45\textwidth]{billeder/param_eq_ill.png}
-		\label{fig:param_eq_ill}}
-  	\caption{\ref{fig:graf_eq_ill} viser en grafisk equalizer, \ref{fig:param_eq_ill} viser en parametrisk equalizer.}
-	\label{fig:eq_ill}
+	\includegraphics[width=7cm]{billeder/parametric_eq}
+	\label{fig:parametric_eq}}
+  	\caption{\ref{fig:graphic_eq} viser en grafisk equalizer, \ref{fig:parametric_eq} viser en parametrisk equalizer.}
+	\label{fig:om_eq}
 \end{figure}
 \FloatBlock
 
-Af de to typer er den parametriske klart den mest fleksible men
-også mere beregningstung. På figur \ref{fig:eq_ill}
-kan der tydeligt ses forskel f.eks. har filteret \ref{fig:param_eq_ill}
-nogle frekvens specifikationer som den grafiske equalizer ikke kan realiserer.\\
+Af de to typer er den parametriske klart den mest fleksible men også mere beregningstung. På figur \ref{fig:om_eq} kan der tydeligt ses forskel. F.eks. har den parametriske equalizer (figur \ref{fig:parametric_eq}) nogle frekvens specifikationer som den grafiske equalizer ikke kan realisere.\\
 
-Equalizers bruges i studio teknik, radio teknik, telefoni, forbruger-audioforstærkerer. 
+Equalizers bruges mange steder hvor lydens "kvalitet" er vigtig. De bruges f.eks. i studio teknik, radio teknik, telefoni, forbruger-audioforstærkerer og til koncerter. Til de forskellige applikationer er der forskellige ind- og udgangsniveauer som skal overholdes. Jo højere dette niveau er, jo højere er "opløsningen" og derfor er kvaliteten bedre. 
