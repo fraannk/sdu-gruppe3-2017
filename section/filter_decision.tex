@@ -22,15 +22,10 @@ For at finde det rigtige filter at realisere, vil der i dette afsnit blive set p
 	På grund af BLT, vil der være fejl med amplituderesponset. & - & Længere differensligning end IIR, hvilket resulterer i, at en designbestemt forsinkelse er nødvendig, for at beregningerne kan nå, at blive foretaget før næste beregning blok fremkommer. & - \\
 	& & Længden af FIR filterets blokke er designmæssigt vigtigt for kausaliteten i filteret. & ? \\
 	& & Lineær faserespons, hvilket gør gruppeløbetiden konstant. & + \\
-
-	\husk{Kenneth}{Hvad hulen sker der med tabellen?}
-	
-	
-	
 	\bottomrule
 \end{tabular}
 \end{table}
-
+\husk{Kenneth}{Hvad hulen sker der med tabellen?}	
 \begin{itemize}
 	\item FIR filtre bruger nuværende og tidligere input samples til at opnå nuværende sample output værdi. Det bruger ikke tidligere output signaler, hvorimod IIR filtre har brug for både tidligere indput og output sample værdier.
 	\item FIR er mere beregningstung på grund af højere filterorden.

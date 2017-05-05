@@ -4,11 +4,11 @@ Formålet med FIR filteret er at udregne filter koefficienterne, $b_{i}$, der br
 \husk{Kenneth}{FIR generelt her}
 
 
-Forholdet mellem input og output i er FIR filter er givet ved ligning \ref{fir_ligning},
+Forholdet mellem input og output (også kaldet differensligning) i kaulsalt FIR filter er givet ved ligning \ref{fir_ligning},
 \begin {equation} 
 y(n)=\sum\limits_{i=0}^{K}b_{i}x(n-i) \label{fir_ligning}
 \end {equation}
-hvor $b_{i}$ repræsenterer filterets koefficienter og $K+1$ er filterets længde.
+hvor $b_{i}$ repræsenterer filterets koefficienter og $K+1$ er filterets længde. Nuværende og tidligere sampleværdier bliver brugt til at beregne den næste output sample, og det har den fordel, at filtreringen kan ske i real-tid.
 \\
 Derefter z-transformeres ligning \ref{fir_ligning}. For at opskrive FIR filterets overføringsfunktion, faktoriseres $X(z)$ ud på højre side af den z-transformerede ligning \ref{fir_ligning} og derefter dividere igennem med $X(z)$ fås ligning \ref{fir_transfer}.
 
@@ -64,6 +64,8 @@ h(n)=\frac{1}{2M+1}\left[ H_{0}+2\sum_{k=1}^{M} \left( \frac{2\pi k(n-M)}{2M+1} 
 
 hvor $h(k)$ for $k=0,1,\text{ ... },2M$, repræsenterer filterkoefficienternes størrelser, der bruges til at specificere det ønskede filterrespons med samplingslængden $\Omega_{k}=\frac{2\pi k}{(2M+1)}$.
 
+Fremgangsmetoden for frekvenssamplingsmetoden er som følgende:
+
 
 
 \subsection{Windowsmetoden}
@@ -76,9 +78,9 @@ Den grundlæggende tilgang til windowsmetoden er baseret på at det ideelle lavp
 \end{equation}
 hvor $w(n)$ angiver det valgte vindue.
 
-For at beregne koefficienterne for $h_w$ forsinket impuls sekvensen med M samples som ses i ligning \ref{b_n-window}
+For at beregne koefficienterne for $h_w$, forsinkes impuls sekvensen med M samples som ses i ligning \ref{b_n-window}
 \begin{equation}
-	b_n = h_w (n-M), \hspace{1cm} \text{for} \hspace{1cm} n = 0,1, \text{ ... , }M \label{b_n-window}
+	b_n = h_w (n-M), \hspace{1cm} \text{for} \hspace{1cm} n = 0,1, \text{ ... , }M \label{b_n-window} 
 \end{equation}
 
 Grundlaget for valg af vindue baseres blandt andet på overgangsbåndet $\Delta f$.
@@ -99,9 +101,6 @@ Filterets knækfrekvens, $f_c$, bestemmes ud fra midten af overgangsbåndet. En 
 	f_c =\frac{f_{pas}-f_{stop}}{2} \label{fir_cutoff}
 \end{equation}
 
-
-
-
 \begin{equation}
 h_{d,LP}[n] = \frac{sin(\omega_c n)}{\pi n} \label{windows_lp}
 \end{equation}
@@ -116,6 +115,15 @@ h_{d,BS}[n] = \delta(n) - \frac{sin(\omega_b n) - sin(\omega_a n)}{\pi n} \label
 \end{equation}
 
 Ligningerne \ref{windows_lp}, \ref{windows_hp}, \ref{windows_bp} og \ref{windows_bs} er de generelle filterfunktioner. Efter valget af hvilken filtertype der skal anvendes, findes det nødvendige vindue, at påtrykke filteret med.
+
+Fremgangsmetoden for windowsmetoden ses i de følgende 5 trin:
+\begin{enumerate}
+	\item Ud fra de ønskede filterspecifikationer, bestemmes filterordenen og knækfrekvensen. Der vælges en vinduesfunktion og ligning \ref{fir_cutoff} anvendes.
+	\item Beregn impulssekvensen $h(n)$ ved hjælp af Fourier transformations metoden.
+	\item Multiplicer det genererede filter koefficienter $h(n)$ i trin 2 med det valgte vindue, for at at opnå impulssekvensen for vinduet $h_w(n)$.
+	\item Forsink vinduesimpulsen $h_w(n)$ med M samples for at få det kausale filters koefficienterne $b_n = h_w(n-M)$ med ligning \ref{b_n-window}.
+	\item Overføringsfunktionen plottets, og hvis frekvensspecifikationer ikke er opfyldt, øges filterets orden og proceduren gentages.
+\end{enumerate}
 
 
 \section{Opsummering}
