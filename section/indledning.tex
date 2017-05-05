@@ -10,7 +10,7 @@
 %Formålet med projektet er, at forene de opnåede fagligheder fra undervisningen, samt at træne den studerende i, at kunne forstå og forklare afgrænsede systemer med funktionalitet der relaterer til faglighederne i Indlejrede Systemer og Signalbehandling, på 4. semester Elektronik og Datateknik. Fagene fra semesteret der indgår i projektet er Embedded programmering, Analoge filtre og signaler og Operativsystemer. Ledningsteori som er et mindre fag under Analoge filtre, er ikke med i rapporten, da undervisningen ligger så sent i semesteret, at der ikke er tid til at se på implementation af faget i rapporten.
 %
 %Semesterets fagbeskrivelse vil blive brugt som tjekliste, for at komme igennem så meget af stoffet som muligt.
-Formålet med dette projekt, er at formidle de opnåede fagligheder fra 4. semesters undervisning på uddannelsen diplomingeniør i elektronik og datateknik. Semesterets hovedemne omhandler Indlejrede systemer og signalbehandling, hvor fagene Analoge filter og signaler, Digital signalbehandling, Embedded programmering og Operativsystemer inkludere. Der skal på et grundlæggende niveau, kunne relateres til faglighederne i ét samlet produkt ud fra disse. For at kunne håndtere dette, vil semesterets fagbeskrivelse blive anvendt til at opnå det ønskede formål.
+Formålet med dette projekt, er at formidle de opnåede fagligheder fra 4. semesters undervisning på uddannelsen diplomingeniør i elektronik og datateknik. Semesterets hovedemne omhandler "Indlejrede systemer og signalbehandling", hvor fagene "Analoge filtre og signaler", "Digital signalbehandling", "Embedded programmering" og "Operativsystemer" er inkluderet. Der skal på et grundlæggende niveau, kunne relateres til faglighederne i ét samlet produkt ud fra disse. For at kunne håndtere dette, vil semesterets fagbeskrivelse blive anvendt til at opnå det ønskede formål.
 
 
 \section{Problemformulering}
@@ -37,7 +37,7 @@ Formålet med dette projekt, er at formidle de opnåede fagligheder fra 4. semes
 %\note{
 %Projektet går ud på at designe en parametrisk equalizer, der kan efterbehandle et lydsignal. Den skal realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller som er platformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd som brugeren frit kan modulere.
 %}
-Ud fra formålet med projektet, er der blevet valgt at fremstille et produkt, hvoraf alle fagligheder kan anvendes. Produktet der ønskes realiseret, er at konstruere en digital parametrisk equalizer. Denne digitale equalizer, skal realiseres vha. en Tiva™ TM4C123GH6PM Microcontroller, som er platformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd som brugeren frit kan modulere. Ud fra fagbeskrivelsen, kan dette relateres i et så bredt omfang, at formålet opfyldes. Problemformuleringen forlyder sig derfor som følgende: \\
+Ud fra formålet med projektet, er der blevet valgt at fremstille et produkt, hvoraf alle fagligheder kan anvendes. Produktet der ønskes realiseret, er at konstruere en digital parametrisk equalizer. Denne digitale equalizer, skal realiseres vha. en Tiva™ TM4C123GH6PM Microcontroller, som er platformen i faget Embedded programmering. Equalizeren skal have nogle såkaldte "bånd", som brugeren frit kan modulere. Ud fra fagbeskrivelsen, kan dette relateres i et så bredt omfang, at formålet opfyldes. Problemformuleringen forlyder sig derfor som følgende: \\
 
 En digital parametrisk equalizer ønskes realiseret vha. en Tiva™ TM4C123GH6PM microcontroller, samt digital signalbehandling og analog filterteori. Herunder ønskes en konfigurerbar brugerflade, som interagerer med systemet. Denne brugerflade skal kunne håndtere equalizerserens båndprofiler.\\
 
@@ -48,14 +48,14 @@ Der ønskes herudover svar på følgende problemstillinger:
 	\item Hvad er fordelen ved en digital equalizer fremfor en analog?
 	\item Kan en hvilken som helst microcontroller anvendes til fremstilling af en digital equalizer?
 	\item Hvordan anvendes digital signalbehandling, til at give de ønskede båndspecifikationer?
-	\item Hvordan anvendes EMP boarded fra Embedded programmering til en digital equalizer?
+	\item Hvordan anvendes EMP-boardet fra Embedded programmering til en digital equalizer?
 \end{itemize}
 
 \section{Projektafgrænsning}
 %\note{Hvilke emner / delemner kommer rapporten ikke ind på? Hvorfor?\\
 	%Det er meget almindeligt, at problemformulering og metoderedegørelse simpelthen er en del af indledningen, men så bør de normalt være markeret med underrubrikker (under-overskrifter) for overskuelighedens skyld. Hvis du er uddannelsessøgende, så tjek, om skolen eller institutionen (eller din vejleder) har særlige krav på det punkt.}
 
-En equalizer kan realiseres på analogt og digitalt. I dette projektet vil den blive realiseret digitalt, da faget Embedded Programmering skal indgå. Der træffes endvidere valget om at gøre den parametrisk, for bedre fleksibilitet. Følgende medtages ikke i rapporten og afgrænser projektet:
+En equalizer kan realiseres på analogt og digitalt. I dette projekt vil den blive realiseret digitalt, da faget Embedded programmering skal indgå. Der træffes endvidere valget om at gøre den parametrisk, for bedre fleksibilitet. Følgende medtages ikke i rapporten og afgrænser projektet:
 \begin{itemize}
 	\item Equalizeren bliver udviklet som prototype og ikke et produktionsklart produkt.
 	\item Der tages ikke højde for ledningsteori, da dette pensum blev fremlagt for sent i projektforløbet.
