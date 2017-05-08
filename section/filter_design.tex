@@ -1,52 +1,37 @@
 \section{Design af filter}\label{sec:design_filter}
-
-
-    Parametre som brugeren skal kunne justerer: $\omega_0$ centerfrekvensen, $G$ forstærkning ved centerfrekvensen, $Q$ filterets godhed som bla. beskriver
-    båndbredden på pasbåndet.\\
+    Parametre som brugeren skal kunne justere: Centerfrekvensen $\omega_0$,  forstærkning $G$,  filterets godhed $Q$ som bla. beskriver båndbredden på pasbåndet.\\
     Øvrige parametre:
-    $G_0$ reference forstærkning (sættes til 1 for at kunne kaskadekoble flere bånd), $G_B$ forstærkning ved knækfrekvenserne (typisk 3dB over/under fra analog filterteori).
-    
-    
-
+    $G_0$ er reference forstærkning (sættes til 1 for at kunne kaskadekoble flere bånd) og $G_B$ som er forstærkning ved knækfrekvenserne (typisk 3dB over/under fra analog filterteori).s
 
     \subsection{Analog filter}
 
-	Som filter til equalizeren bruges high-shelf, low-shelf og  peak/notch.
-    Der blive kun anvendt 2. ordens filtre, da der ikke er brug for højere orden inde for audio. 
+	Som filter til equalizeren anvendes high-shelf, low-shelf og  peak/notch.
+    Der bliver kun anvendt 2. ordens filtre, da der ikke er brug for højere orden inde for audio. 
 
+     \subsection{Peak/notch filter}
 
-
-     \subsubsection{Peak/notch filter}
-
-
-     Et peak/notch filter i en parametrisk equalizer består af et båndpas $H_{BP}$ og et båndstop $H_{BS}$ filter. 
-    I ligning \ref{eq:band} summeres båndstop- og båndpasfilteret for at kunne forstærke eller dæmpe signalet omkring center frekvensen.\\
-    Et analogt båndpas filter kan beskrives med ligning \ref{eq:bp_proto} 
+    Et peak/notch filter i en parametrisk equalizer består af et båndpas- $H_{BP}$ og et båndstop $H_{BS}$ filter. 
+    Et analogt båndpas filter kan beskrives med ligning \ref{eq:iir_bandpas} 
     hvor $\alpha$ er en konstant der er afhængig af frekvensspecifikationer, $\Omega_0$ er centerfrekvensen.\\
-    I ligning \ref{eq:bs_proto} er en overføringsfunktion for et båndstopfilter.
-
-
-     \begin{align}
-     H_{NOTCH}(s) = \dfrac{s^2 + \Omega_0^2}{s^2 + \alpha s + \Omega_0^2}
-     \label{eq:lp_proto}
-    \end{align}
-    \begin{align}
-      H_{PEAK} (s) = \dfrac{\alpha s}{s^2 + \alpha s + \Omega_0^2}  
-    \end{align}
-
-     \begin{align}
-     H_a (s) = G_0 H_{NOTCH} (s) + G H_{PEAK} (s) = \dfrac{G_0 (s^2 + \Omega_0^2) + G \alpha s}{s^2 + \alpha s + \Omega_0^2}
-     \label{eq:band}
-    \end{align}
-
-    \begin{align}
-        G_B = \dfrac{G_0^2 + G^2}{2} \label{eq:gain_b}
-    \end{align}
-
-    Ved at sætte $s = j \Omega$ i ligning \ref{eq:lp_proto}, \ref{eq:hp_proto}
-    og sætte $\big| H(j\omega)\big|^2 = G_B^2$, hvor $G_B^2$ er den ønsket forstærkning
-    ved ønskede centerfrekvens $\Omega_0$, kan parameteren $\alpha$ findes for de givne specifikationer.. 
+    I ligning \ref{eq:iir_bandstop} er en overføringsfunktion for et båndstopfilter.
+    I ligning \ref{eq:iir_peaknotch} summeres båndstop- og båndpasfilteret for at kunne forstærke eller dæmpe signalet omkring center frekvensen.
     
+     \begin{align}
+     H_{NOTCH}(s) &= \dfrac{s^2 + \Omega_0^2}{s^2 + \alpha s + \Omega_0^2}
+     \label{eq:iir_bandpas} \\
+     H_{PEAK} (s) &= \dfrac{\alpha s}{s^2 + \alpha s + \Omega_0^2}  
+     \label{eq:iir_bandstop} \\
+     H_a (s) &= G_0 H_{NOTCH} (s) + G H_{PEAK} (s) = \dfrac{G_0 (s^2 + \Omega_0^2) + G \alpha s}{s^2 + \alpha s + \Omega_0^2}
+     \label{eq:iir_peaknotch}
+    \end{align}
+    Filterets gain kan bestemmes ud fra ligning \ref{eq:iir_gain}.
+    \begin{align}
+        G_B = \dfrac{G_0^2 + G^2}{2} \label{eq:iir_gain}
+    \end{align}
+
+    Ved at sætte $s = j \Omega$ i ligning \ref{eq:iir_bandpas} og \ref{eq:iir_bandstop}, og sætte $\big| H(j\omega)\big|^2 = G_B^2$, hvor $G_B^2$ er den ønskede forstærkning ved den ønskede centerfrekvens $\Omega_0$, kan parameteren $\alpha$ findes for de givne specifikationer.
+
+\husk{Til Dennis}{Forklarende tekst herunder}    
     \begin{align}
      |H_{a}(j \Omega)| = \dfrac{G_0 (\Omega_0^2- \Omega^2)+ j G \alpha \Omega}{-\Omega^2 + j \alpha \Omega + \Omega_0^2}   
     \end{align}
@@ -67,35 +52,36 @@
     \end{align}
 
 
-        \subsubsection{Bilinear Transformation}
-
-
+    \subsection{Bilinear Transformation}
+    Ud fra overføringsfunktionen $H_a(s)$ udskiftes $s$ med $z$ for at få $H(z)$ som ses i \ref{eq:iir_replace_s}.
     \begin{align}
-    s =   \dfrac{z^{-1} - 1}{z^{-1} + 1}
+    s =   \dfrac{z^{-1} - 1}{z^{-1} + 1} \label{eq:iir_replace_s}
     \end{align}
-
+	$H_a(s)$ transformeres med ligning \ref{eq:iir_replace_s} om til $H(z)$ i ligning \ref{eq:iir_omskriv_til_z}.
     \begin{equation}
-    H_d(z) = H_a(S)\bigg|_{S = \frac{z^{-1} -1 }{z^{-1} + 1}}
+    H_a(z) = H_a(S)\bigg|_{S = \frac{z^{-1} -1 }{z^{-1} + 1}} \label{eq:iir_omskriv_til_z}
     \end{equation}
+    Fordelen med denne transformation er at ordenen på $H(z)$ er denne samme som $H(z)$. Hvis $H_a(s)$ er stabil og kausal, så er $H(z)$ også.
+    
+    I ligning \ref{eq:iir_peak_tfz} ses overføringsfunktionen for et peak notch filter.
    \begin{align}
     H(z) = H_a(s)\bigg|_{s = \frac{z^{-1} -1 }{z^{-1} + 1}} = 
     \dfrac{\left(\dfrac{G_0 + G \beta}{1 + \beta} \right)- 2 \left(\dfrac{G_0 cos( \omega_0)}{1 +\beta} \right)z^{-1} + \left(\dfrac{ G_0 - G \beta}{1 + \beta }\right) z^{-2}}{1 - 2 \left(\dfrac{cos(\omega_0)}{1 + \beta}\right)z^{-1} + \left( \dfrac{1 - \beta}{1 + \beta} \right) z^{-2}}
+    \label{eq:iir_peak_tfz}
    \end{align}
 
-   Hvor parametrene er $Q$, $G$, $f_0$. Heraf beregnes $w_0$ udfra ligning (),$\Delta \omega$ udfra ligning (), $\beta$ fra ligning (\ref{eq:beta}), $G_B$ beregnes fra ligning (\ref{eq:gain_b}).
-   På figur (
-       %\ref{fig:iir_peak}
-       ) betragtes indflydelsen fra $Q$ når den varierer.
+   Hvor parametrene er $\Delta \omega$, $G$, $f_0$. Heraf beregnes $w_0$ udfra ligning \ref{eq:freq_warp_w0}, $\Delta \omega$ udfra ligning \ref{eq:freq_warp_BW}, $\beta$ fra ligning \ref{eq:beta}, $G_B$ beregnes fra ligning \ref{eq:iir_gain}.
+   På figur \ref{fig:iir_peak} betragtes indflydelsen fra $Q$, når den varierer.
 
- \begin{figure}[h]
+ \begin{figure}
     \centering
          \includegraphics{figure/iir_peak.pdf}
         \caption{Peak/notch filtre med centerfrekvens $f_0 = 2kHz$ og $f_0 = 4kHz$, varierende $Q$ og gain $G=5dB$}
-        \label{fig:iir_peak}
+        \label{fig:iir_peak}   
     \end{figure} 
+\FloatBlock
 
-
-     \subsubsection{Low-shelf filter}
+     \subsection{Low-shelf filter}
 
    %  \begin{align}
     %     H_{LS}(z) = \dfrac{\sqrt{G} \left( \sqrt{G} \Omega^2 + \sqrt{2} \Omega G^{\frac{1}{4}} + 1 \right) +2 \sqrt{G} \left( \sqrt{G} \Omega^2 - 1\right) z^{-1} + \sqrt{G} \left(\sqrt{G} \Omega^2- \sqrt{2} \Omega G^{\frac{1}{4}} + 1 \right) z^{-2}}{\sqrt{G} + \sqrt{2} \Omega G^{\frac{1}{4}} + \Omega^2 + 2 \left( \Omega^2 - \sqrt{G} \right) z^{-1} + \left(\sqrt{G} -\sqrt{2} G^{\frac{1}{4}} + \Omega^2 \right) z^{-2}}
@@ -104,19 +90,13 @@
     Ved at sætte $\omega_0 = 0$ ind i ligning til peak/notch 
     filteret bliver det til et low shelf filter med knækfrekvensen $\omega_c$. 
     Forstærkningen ved knækfrekvensen $G_C$ defineres ligeledes $G_B$ i peak/notch filteret.
-    Heraf kommer udtrykket for $\beta$ 
+    Heraf kommer udtrykket for $\beta$ ses i ligning \ref{eq_iir_beta}.
     \begin{align}
-        H_a (s) = \dfrac{G_0 s + G \beta}{s + \beta}
+        H_a (s) &= \dfrac{G_0 s + G \beta}{s + \beta} \nonumber \\
+        |H_a (\Omega)|^2 &= \dfrac{G_0^2 \Omega^2 + G^2 \beta^2}{\Omega^2 + \beta^2} = G_C^2 \nonumber \\
+        \beta &= \sqrt{\dfrac{G_C^2 - G_0^2}{G^2 - G_C^2}} \tan \left( \dfrac{\omega_c}{2} \right) \label{eq_iir_beta}
     \end{align}
-
-    \begin{align}
-        |H_a (\Omega)|^2 = \dfrac{G_0^2 \Omega^2 + G^2 \beta^2}{\Omega^2 + \beta^2} = G_C^2
-    \end{align}
-
-    \begin{align}
-        \beta = \sqrt{\dfrac{G_C^2 - G_0^2}{G^2 - G_C^2}} \tan \left( \dfrac{\omega_c}{2} \right)
-    \end{align}
-
+	
   
      \begin{align}
       H_{LS}(z) =   \dfrac{\left(\dfrac{G_0 + G \beta}{1 + \beta} \right)+ \left(\dfrac{ G_0 - G \beta}{1 + \beta }\right) z^{-1}}{1 + \left( \dfrac{1 - \beta}{1 + \beta} \right) z^{-1}}
@@ -129,7 +109,7 @@
     \end{figure} 
    
    
-     \subsubsection{High-shelf filter}
+     \subsection{High-shelf filter}
 
      \begin{align}
         H_a (s) = \dfrac{G_0 + G \beta s}{1 + \beta s}
@@ -154,8 +134,8 @@
      \begin{align}
      H_{HS}(z) =     \dfrac{\left(\dfrac{G_0 + G \beta}{1 + \beta} \right) + \left(\dfrac{ G_0 - G \beta}{1 + \beta }\right) z^{-1}}{1  + \left( \dfrac{1 - \beta}{1 + \beta} \right) z^{-1}}
      \end{align}
-
-
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Til Dennis - Q bliver ikke brugt mere. Anvend omega_0 i stedet
   \begin{figure}[h]
       \centering
         \includegraphics[]{figure/iir_hs.pdf}
@@ -164,7 +144,7 @@
 
 
 
-\subsection{Fejl ved BLT}
+\subsection{Fejl ved Bilinear Transformation}
 
 
 \section{Realisering af filter}

@@ -66,8 +66,9 @@ hvor $h(k)$ for $k=0,1,\text{ ... },2M$, repræsenterer filterkoefficienternes s
 
 Fremgangsmetoden for frekvenssamplingsmetoden er som følgende:
 
-\begin{enumerate}
+\begin{enumerate}[noitemsep,nolistsep]
 	\item Ud fra de ønskede filterspecifikationer vælges filterets orden (lige eller ulige) og derefter specificeres det om 
+	\item 
 \end{enumerate}
 
 
@@ -104,23 +105,24 @@ Filterets knækfrekvens, $f_c$, bestemmes ud fra midten af overgangsbåndet. En 
 	f_c =\frac{f_{pas}-f_{stop}}{2} \label{fir_cutoff}
 \end{equation}
 
-\begin{equation}
-h_{d,LP}[n] = \frac{sin(\omega_c n)}{\pi n} \label{windows_lp}
-\end{equation}
-\begin{equation}
-h_{d,HP}[n] = \delta(n) - \frac{sin(\omega_c n)}{\pi n} \label{windows_hp}
-\end{equation}
-\begin{equation}
-h_{d,BP}[n] = \frac{sin(\omega_b n) - sin(\omega_a n)}{\pi n} \label{windows_bp}
-\end{equation}
-\begin{equation}
-h_{d,BS}[n] = \delta(n) - \frac{sin(\omega_b n) - sin(\omega_a n)}{\pi n} \label{windows_bs}
-\end{equation}
+%\begin{equation}
+%h_{d,LP}[n] = \frac{sin(\omega_c n)}{\pi n} \label{windows_lp}
+%\end{equation}
+%\begin{equation}
+%h_{d,HP}[n] = \delta(n) - \frac{sin(\omega_c n)}{\pi n} \label{windows_hp}
+%\end{equation}
+%\begin{equation}
+%h_{d,BP}[n] = \frac{sin(\omega_b n) - sin(\omega_a n)}{\pi n} \label{windows_bp}
+%\end{equation}
+%\begin{equation}
+%h_{d,BS}[n] = \delta(n) - \frac{sin(\omega_b n) - sin(\omega_a n)}{\pi n} \label{windows_bs}
+%\end{equation}
 
-Ligningerne \ref{windows_lp}, \ref{windows_hp}, \ref{windows_bp} og \ref{windows_bs} er de generelle filterfunktioner. Efter valget af hvilken filtertype der skal anvendes, findes det nødvendige vindue, at påtrykke filteret med.
+%Ligningerne \ref{windows_lp}, \ref{windows_hp}, \ref{windows_bp} og \ref{windows_bs} er de generelle filterfunktioner. 
+Efter valget af hvilken filtertype der skal anvendes, findes det nødvendige vindue, at påtrykke filteret med.
 
 Fremgangsmetoden for windowsmetoden ses i de følgende 5 trin:
-\begin{enumerate}
+\begin{enumerate}[noitemsep,nolistsep]
 	\item Ud fra de ønskede filterspecifikationer, bestemmes filterordenen og knækfrekvensen. Der vælges en vinduesfunktion og ligning \ref{fir_cutoff} anvendes.
 	\item Beregn impulssekvensen $h(n)$ ved hjælp af Fourier transformations metoden.
 	\item Multiplicer det genererede filter koefficienter $h(n)$ i trin 2 med det valgte vindue, for at at opnå impulssekvensen for vinduet $h_w(n)$.
