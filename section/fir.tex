@@ -1,10 +1,7 @@
 \section{FIR - Finite Impulse Response}\label{sec:fir}
-Formålet med FIR filteret er at udregne filter koefficienterne, $b_{i}$, der bruges til at approksimere størrelsen af frekvens responset af FIR filteret $H(z)$.
+Formålet med FIR filteret er at udregne filter koefficienterne, $b_{i}$, der bruges til at approksimere størrelsen af frekvens responset af FIR filteret, $H(z)$.
 
-\husk{Kenneth}{FIR generelt her}
-
-
-Forholdet mellem input og output (også kaldet differensligning) i kaulsalt FIR filter er givet ved ligning \ref{fir_ligning},
+Forholdet mellem input og output (også kaldet differensligning) i et kaulsalt FIR filter er givet ved ligning \ref{fir_ligning},
 \begin {equation} 
 y(n)=\sum\limits_{i=0}^{K}b_{i}x(n-i) \label{fir_ligning}
 \end {equation}
@@ -64,13 +61,21 @@ h(n)=\frac{1}{2M+1}\left[ H_{0}+2\sum_{k=1}^{M} \left( \frac{2\pi k(n-M)}{2M+1} 
 
 hvor $h(k)$ for $k=0,1,\text{ ... },2M$, repræsenterer filterkoefficienternes størrelser, der bruges til at specificere det ønskede filterrespons med samplingslængden $\Omega_{k}=\frac{2\pi k}{(2M+1)}$.
 
-Fremgangsmetoden for frekvenssamplingsmetoden er som følgende:
-
+Design proceduren opskrives:
 \begin{enumerate}[noitemsep,nolistsep]
-	\item Ud fra de ønskede filterspecifikationer vælges filterets orden (lige eller ulige) og derefter specificeres det om 
-	\item 
+\item Ud fra filterlængden $2M+1$, angives størrelsen af frekvensresponset for det normaliserede filter gående fra $0$ til $\pi$.
+\begin{equation}
+	H_k \text{ ved } \Omega_{k} = \frac{2 \pi k}{2M+1} \hspace{1cm} \text{for} \hspace{1cm} k=0,1,\text{ ... , } M
+\end{equation}
+\item Udregn FIR koefficienterne
+\begin{equation}
+b_n = h(n)=\frac{1}{2M+1}\left[ H_{0}+2\sum_{k=1}^{M} \left( \frac{2\pi k(n-M)}{2M+1} \right) \right] \hspace{1cm} \text{for} \hspace{1 cm} n=0,1,\text{ ... },2M
+\end{equation}
+\item Anvend symmetri (heraf krav om lineær fase) til at finde resten af keofficienterne.
+\begin{equation}
+	h(n) = h(2M-n) \hspace{1cm} \text{for} \hspace{1cm} n=M+1 \text{, ..., } 2M
+\end{equation}
 \end{enumerate}
-
 
 \subsection{Windowsmetoden}
 \husk{Kenneth}{Blokdiagram - fortælling omkring de forskellige vinduer}

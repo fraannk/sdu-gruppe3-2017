@@ -9,7 +9,6 @@ y(n) = \sum\limits_{i=0}^{M} b_i x(n-i) - \sum\limits_{i=1}^{N} a_i y(n-i)
 \label{eq:iir_diff_lign}
 \end{align}
 
-
     Overføringsfunktionen for et IIR-filter er på formen fra ligning (\ref{eq:dig_tf}). Filterdesignet består  
     i at finde koefficienterne for denne funktion.
     
@@ -18,9 +17,8 @@ y(n) = \sum\limits_{i=0}^{M} b_i x(n-i) - \sum\limits_{i=1}^{N} a_i y(n-i)
         \label{eq:dig_tf}
     \end{align}
 
-
 Som løsningsmodel med IIR-filtre anvendes den Bilinear Transformations metode og består af følgende trin:
-    \begin{enumerate}
+    \begin{enumerate}[noitemsep,nolistsep]
         \item Definer de digital specifikationer. Kompenser mod forwrængning til de analoge specifikationer.
         \item Udfør analog filter design.
         \item Substituer BLT for at få det digitale filters overføringsfunktion og heraf koefficienterne. 
@@ -28,7 +26,7 @@ Som løsningsmodel med IIR-filtre anvendes den Bilinear Transformations metode o
 
 
 
-    \subsection{Frekvenpreswarp}
+    \subsection{Frekvens-preswarp}
     Da center frekvensen af filteret vil blive forskudt når der udføres en Bilinear
     transformation er det nødvendigt at prewarp'e (kompensere mod forvrængning), således at center frekvensen passer i det digitale filter.\\
     $\Omega_0$ er den analoge centerfrekvens, $\omega_0$ er den ønskede centerfrekvens, $f_s$ er samplingsfrekvensen. 
@@ -42,7 +40,7 @@ Som løsningsmodel med IIR-filtre anvendes den Bilinear Transformations metode o
     \end{align}
         
     Vha. ligning (\ref{eq:freq_warp_w0}), (\ref{eq:freq_warp_BW}),(\ref{eq:freq_warp_w1_w2}),(\ref{eq:freq_warp}) 
-    kommer et udtryk for den prewarp'et båndbredde $\Delta \Omega$ i 
+    kommer et udtryk for den prewarp'ede båndbredde $\Delta \Omega$ i 
     forhold til den ønskede båndredde $\Delta \omega$ og den analog center frekvens $\Omega_0^2$.
 \begin{align}
     \tan \left( \dfrac{\Delta \omega}{2} \right) = \tan \left( \dfrac{\omega_2 - \omega_1}{2} \right) &= \dfrac{\tan(\omega_2/2) - tan(\omega_1/2)}{1 + tan(\omega_1/2) \cdot tan(\omega_2/2)} = \dfrac{\Omega_2 - \Omega_1}{1 + \Omega_1 \Omega_2} = \dfrac{\Delta \Omega}{1 + \Omega_0^2}\\

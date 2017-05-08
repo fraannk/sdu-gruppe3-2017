@@ -72,7 +72,9 @@
 
    Hvor parametrene er $\Delta \omega$, $G$, $f_0$. Heraf beregnes $w_0$ udfra ligning \ref{eq:freq_warp_w0}, $\Delta \omega$ udfra ligning \ref{eq:freq_warp_BW}, $\beta$ fra ligning \ref{eq:beta}, $G_B$ beregnes fra ligning \ref{eq:iir_gain}.
    På figur \ref{fig:iir_peak} betragtes indflydelsen fra $Q$, når den varierer.
-
+   \\ \\ \\
+Til Dennis - Q bliver ikke brugt mere. Anvend omega0 i stedet
+\\
  \begin{figure}
     \centering
          \includegraphics{figure/iir_peak.pdf}
@@ -90,7 +92,7 @@
     Ved at sætte $\omega_0 = 0$ ind i ligning til peak/notch 
     filteret bliver det til et low shelf filter med knækfrekvensen $\omega_c$. 
     Forstærkningen ved knækfrekvensen $G_C$ defineres ligeledes $G_B$ i peak/notch filteret.
-    Heraf kommer udtrykket for $\beta$ ses i ligning \ref{eq_iir_beta}.
+    Heraf kommer udtrykket for $\beta$, som ses i ligning \ref{eq_iir_beta}.
     \begin{align}
         H_a (s) &= \dfrac{G_0 s + G \beta}{s + \beta} \nonumber \\
         |H_a (\Omega)|^2 &= \dfrac{G_0^2 \Omega^2 + G^2 \beta^2}{\Omega^2 + \beta^2} = G_C^2 \nonumber \\
@@ -106,7 +108,8 @@
     \centering
         \includegraphics{figure/iir_ls.pdf}
         \caption{Low shelf filter med knækfrekvens $f_c = 4kHz$, varierende gain $G$ i intervallet: $[-7.5 ; 7.5]$}
-    \end{figure} 
+    \end{figure}
+	\FloatBlock 
    
    
      \subsection{High-shelf filter}
@@ -134,14 +137,12 @@
      \begin{align}
      H_{HS}(z) =     \dfrac{\left(\dfrac{G_0 + G \beta}{1 + \beta} \right) + \left(\dfrac{ G_0 - G \beta}{1 + \beta }\right) z^{-1}}{1  + \left( \dfrac{1 - \beta}{1 + \beta} \right) z^{-1}}
      \end{align}
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-Til Dennis - Q bliver ikke brugt mere. Anvend omega_0 i stedet
+
   \begin{figure}[h]
       \centering
         \includegraphics[]{figure/iir_hs.pdf}
         \caption{High shelf filter med knækfrekvens $f_c = 4kHz$, varierende gain $G$ i intervallet: $[-7.5 ; 7.5]$}
    \end{figure}  
-
 
 
 \subsection{Fejl ved Bilinear Transformation}
