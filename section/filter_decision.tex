@@ -1,7 +1,30 @@
 \section{Valg af filter}\label{sec:dec_filter}
 For at finde det rigtige filter at realisere, vil der i dette afsnit blive set på begge filtertypers fordele og ulemper, hvoraf en vurdering vil blive lavet, som danner grundlag for valg af filtertype til realisering.
 
-\begin{itemize}
+
+\ref{tab:fir_iir_}
+
+
+\begin{table}[h!]
+	\centering
+	\caption{Tekst her}
+	\label{tab:fir_iir_}
+\begin{tabular}{l l l l}
+	\toprule
+	IIR &  &FIR & \\
+	\midrule 
+	Anvender tidligere input og output samples & - & Anvender nuværende og tidligere input samples til at opnå nuværende sample output værdi. & + \\
+	Dimensioneres efter analoge filtre, hvilket har den konsekvens, at faseresponset er ulineær. & - & Har generelt højere orden end orden end IIR, og heraf højere beregningskompleksitet. & - \\
+	Filteret er altid kausalt. & + & Grundet den højere orden, er FIR filteret derfor også mere præcis. & + \\	
+	Filteret har både poler og nulpunkter i overføringsfunktionen, hvilket muliggør at systemet kan blive ustabilt. & - & Har ingen poler, hvilket gør dem stabile i alle tilfælde & + \\
+	På grund af BLT, vil der være fejl med amplituderesponset. & - & Længere differensligning end IIR, hvilket resulterer i, at en designbestemt forsinkelse er nødvendig, for at beregningerne kan nå, at blive foretaget før næste beregning blok fremkommer. & - \\
+	& & Længden af FIR filterets blokke er designmæssigt vigtigt for kausaliteten i filteret. & ? \\
+	& & Lineær faserespons, hvilket gør gruppeløbetiden konstant. & + \\
+	\bottomrule
+\end{tabular}
+\end{table}
+\husk{Kenneth}{Hvad hulen sker der med tabellen?}	
+\begin{itemize}[noitemsep,nolistsep]
 	\item FIR filtre bruger nuværende og tidligere input samples til at opnå nuværende sample output værdi. Det bruger ikke tidligere output signaler, hvorimod IIR filtre har brug for både tidligere indput og output sample værdier.
 	\item FIR er mere beregningstung på grund af højere filterorden.
 	\item Da FIR filtre ingen poler har, er de altid stabile.
@@ -14,5 +37,7 @@ For at finde det rigtige filter at realisere, vil der i dette afsnit blive set p
 	\item IIR filtre har både poler og nulpunkter i overføringsfunktionen, hvilket muliggør at systemet kan blive ustabilt.
 	\item På grund af BLT, vil der være fejl med amplituderesponset.
 \end{itemize}
+
+
 
 \husk{Kenneth}{Færdig løsningsmodel for FIR påkrævet før afsnittet kan færdiggøres.}
