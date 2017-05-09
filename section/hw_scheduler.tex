@@ -10,6 +10,16 @@ Argumentere og for at systicks ikke misses pga. int. prioritering og at sceduler
 
 Overbevis læseren om at scheduleringen er effektiv til formålet .
 
+Noter:
+Problemer med schedulring når der ikke er tid til de enkelt tasks inden for et tick, når eq bliver aktiveret bliver der endnu mindre tid og så sker det at der misses ticks.
+Tag tider når OS starter op uden EQ tændt, og sammenlign med tider når EQ kører, så er tiden hver task er om at kører inkl. den tid som audio int. bruger -> nu skrider hele scheduleringen og tick misses. Især når eq-profil-amp funktionen bruges, som tager meget lang tid.
+
+Optimalt at flytte eq-profil dannelsen ind i boot sec. så den ikke bruger tid i realtime.
+
+Tiderne på LOW, MEDIUM og HIGH prioritet har indflydelse på systemet, absolut ikke den bedste løsning, en preemptive schedulering ville helt klart afhjælpe nogle af de problemer.
+
+
+
 
  
 
