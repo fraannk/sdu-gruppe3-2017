@@ -1,5 +1,5 @@
 \section{Design af filter}\label{sec:design_filter}
-    Parametre som brugeren skal kunne justere: Centerfrekvensen $\omega_0$,  forstærkning $G$,  filterets godhed $Q$ som bla. beskriver båndbredden på pasbåndet.\\
+    Parametre som brugeren skal kunne justere er centerfrekvensen $\omega_0$,  forstærkning $G$,  filterets godhed $Q$ som bla. beskriver båndbredden på pasbåndet.\\
     Øvrige parametre:
     $G_0$ er reference forstærkning (sættes til 1 for at kunne kaskadekoble flere bånd) og $G_B$ som er forstærkning ved knækfrekvenserne (typisk 3dB over/under fra analog filterteori).s
 
@@ -130,7 +130,7 @@ Til Dennis - Q bliver ikke brugt mere. Anvend omega0 i stedet
      %\end{align}
 
 
-     For at beregne $\beta$ anvendes ligning (\ref{eq:beta}), hvorefter $cos(\omega_0) = cos(\pi) = -1$. Dette giver overføringsfuntionen for high shelf filteret som ses i ligning \ref{iir_hs_tf_zd}, og er en forkortet udgave peak/notch filtrenes overføringsfuntion. Et plot af high shelf filteret ses i figur \ref{fig:iir_high_shelf}
+     For at beregne $\beta$ anvendes ligning (\ref{eq:beta}), hvorefter $cos(\omega_0) = cos(\pi) = -1$. Dette giver overføringsfuntionen for high shelf filteret som ses i ligning \ref{iir_hs_tf_z}, og er en forkortet udgave peak/notch filtrenes overføringsfuntion. Et plot af high shelf filteret ses på figur \ref{fig:iir_high_shelf}
      \begin{align}
      H_{HS}(z) =     \dfrac{\left(\dfrac{G_0 + G \beta}{1 + \beta} \right) + \left(\dfrac{ G_0 - G \beta}{1 + \beta }\right) z^{-1}}{1  + \left( \dfrac{1 - \beta}{1 + \beta} \right) z^{-1}} \label{iir_hs_tf_z}
      \end{align}
