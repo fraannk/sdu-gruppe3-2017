@@ -207,6 +207,35 @@ Til Dennis - Q bliver ikke brugt mere. Anvend omega0 i stedet
    \end{matrix}
    \right]
    \end{align}
+
+\section{Frekvensrepons af Amplituden}
+
+Ved at bruges ligning (\ref{eq:z_to_amp}) hvori amplituden findes fra (\ref{eq:complex_to_amp}).
+
+\begin{align}
+    z= e^{j \Omega} = \cos{\Omega} + j \sin{\Omega}  
+    \label{eq:z_to_amp}\\
+    |H(\Omega)| = \sqrt{ \Re{(H)}^2  + \Im{(H) }^2 }
+    \label{eq:complex_to_amp}
+\end{align}
+
+Da de individuelle filtre er af 2. orden kan amplituden regnes:
+
+\begin{align}
+    H(\omega) &= \prod\limits_{i=0}^{K-1} \dfrac{b_{i0} + b_{i1} z^{-1} + b_{i2} z^{-2}}{a_{i0} + a_{i1} z^{-1} + a_{i2} z^{-2}}
+    \\ &= \prod\limits_{i=0}^{K-1} \dfrac{b_{i0} + b_{i1} \left( \cos{\Omega} + j \sin{\Omega} \right)+b_{i2} \left( \cos{2\Omega} + j \sin{2\Omega} \right)}{a_{i0} + a_{i1} \left( \cos{\Omega} + j \sin{\Omega} \right)+a_{i2} \left( \cos{2\Omega} + j \sin{2\Omega} \right)}
+\end{align}
+Hvis $H(\Omega)$ deles op i hhv. $N(\Omega)$ tæller, $D(\Omega)$ nævner kan amplituden for en 
+given frekvens $\Omega$ findes ved ligning (\ref{eq:amp_calc}).
+
+\begin{align}
+    |H(\Omega)| &= \sqrt{ \dfrac{\Re{(N(\Omega))}^2 + \Im{(N(\Omega))}^2 }{\Re{(D(\Omega))}^2 + \Im{(D(\Omega))}^2 }}\\
+     &= \prod\limits_{i=0}^{K-1} \dfrac{ \sqrt{\left( b_{i0} + b_{i1} \cos{\Omega} + b_{i2} \cos{2 \Omega} \right)^2 +  \left( b_{i1} \sin{\Omega} + b_{i2} \sin{2 \Omega} \right)^2 } }{ \sqrt{\left( a_{i0} + a_{i1} \cos{\Omega} + a_{i2} \cos{2 \Omega} \right)^2 + \left( a_{i1} \sin{\Omega} + a_{i2} \sin{2 \Omega} \right)^2} }
+    \label{eq:amp_calc}
+\end{align}
+
+Denne ligning er den samlet beren
+
 \section{Delkonklusion}
 
 \note{
