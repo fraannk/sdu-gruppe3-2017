@@ -63,8 +63,10 @@ format=hang}
 \newcommand{\g}{9,82 \si{\meter\per\second\squared}}
 \newcommand{\dcite}[1]{\quotedblbase{#1}\textquotedblright}
 \newcommand{\husk}[2]{\todo[inline,color=green!40]{#1: #2}}
+\newcommand{\jj}[1]{\todo[inline,color=green!40]{JJ: #1}}
 \newcommand{\note}[1]{\todo[inline]{#1}}
 \DeclareMathOperator{\lapl}{\mathcal{L}}
+
 % Remove paragraph indentation for document
 \setlength{\parindent}{0pt}
 \newcommand\hcancel[2][black]{\setbox0=\hbox{$#2$}%
@@ -72,7 +74,6 @@ format=hang}
 
 % Listings package
 \usepackage{listings}
-
 
 %Fede overskrifter
 \usepackage{kpfonts}
@@ -137,6 +138,11 @@ format=hang}
 %\onehalfspacing                                       
 %\doublespacing
 
-
+%compile debug, check pdflatex time
+\newcommand\showtimer{Timer: \the\numexpr\the\pdfelapsedtime*1000/65536 \relax}
+%\pdfresettimer}
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyfoot[CE,CO]{\showtimer}
 
 
