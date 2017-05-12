@@ -2,64 +2,90 @@
 
 \begin{table}[h!]
 	\caption{Pin konfiguration ud fra hardware profil}
-	\label{tab:ordliste}
+	\label{tab:pin_mapping}
 	\begin{threeparttable}
-		\begin{tabular}{l l l l l}
+		\begin{tabular}{l l l l l l}
 			\toprule
-			\textbf{Tiva Pin}   & 
-			\textbf{GPIO}  &
-			\textbf{Tiva funktion\tnote{a}} & 
-			\textbf{EMP funktion}  &
-			\textbf{Proto board}	   \\ 
+			\textbf{Tiva Pin\tnote{a}} 	& 
+			\textbf{GPIO\tnote{b}}  	&
+			\textbf{Tiva\tnote{c}} 		& 
+			\textbf{EMP\tnote{d}}  		&
+			\textbf{P. PWM\tnote{e}} 	&
+			\textbf{P. DAC\tnote{g}}	\\ 
 			\midrule
-			1.01 &      & 3V3  &   &  3V3  \\
-			1.02 &  PB5 &      &   &  Audio in (Højre)\\
-			1.03 &	PB0 &		&	&	\\
-			1.04 &	PB1 &		&	&	\\
-			1.05 &	PE4 &		&	&	\\
-			1.06 &	PE5 &		& Analog In	&	\\
-			1.07 &	PB4 &		&			& Audio in (Venstre)	\\
-			1.08 &	PA5 &		& DIGI A	& SPI Tx (SDI)	\\
-			1.09 &	PA6 &		& DIGI B    & I2C SCL	\\
-			1.10 &	PA7 &		& DIGI P2	& I2C SDA	\\
+			1.01 &      & 3V3  	& +3.3VDC		& 3V3			&  3V3  		\\
+			1.02 &  PB5 &      	& PB5\tnote{g}	& Audio in (H) 	& Audio in (H)	\\
+			1.03 &	PB0 &	   	& PB0			&				&				\\
+			1.04 &	PB1 &      	& PB1			&				&				\\
+			1.05 &	PE4 &	   	& Audio Out\tnote{g}&			&				\\
+			1.06 &	PE5 &	   	& Audio In		&				&				\\
+			1.07 &	PB4 &	   	& PB4			& Audio in (V)	& Audio in (V)	\\
+			1.08 &	PA5 &	   	& DIGI A		& 				& SPI Tx (SDI)	\\
+			1.09 &	PA6 &	   	& DIGI B    	& 				&				\\
+			1.10 &	PA7 &	   	& DIGI P2		& 				&				\\
 			\midrule
-			2.01 &     & GND  &   &  GND  \\
-			2.02 & PB2 &      &   &  \\
-			2.03 & PE0 &	  & KEYB G &	\\
-			2.04 & PF0 &	  & SW2	&	\\
-			2.05 &     & RESET		&	& \\
-			2.06 & PB7/PD1    & 	& 	& \\
-			2.07 & PB6/PD0    &		&	& \\
-			2.08 & PA4   &      & KEYB F & SPI Rx	\\
-			2.09 & PA3   &		& KEYB E    & SPI CS	\\
-			2.10 & PA2   &		& KEYB D	& SPI SCK	\\
+			2.01 &     	& GND  	& GND  			&  GND 			& GND			\\
+			2.02 & PB2 	&      	& PB2\tnote{g}	&				&				\\
+			2.03 & PE0 	&	  	& KEYB G 		&				&				\\
+			2.04 & PF0 	& SW2	& 				&				&				\\
+			2.05 &     	& RESET	& 				&				&				\\
+			2.06 & PB7	&		& PB7			& Audio out (H)	&				\\
+			2.07 & PB6	&		& PB6			& Audio out (V)	&				\\
+			2.08 & PA4 	&      	& KEYB F 		&				& SPI Rx		\\
+			2.09 & PA3 	&		& KEYB E    	& 				& SPI CS		\\
+			2.10 & PA2  &		& KEYB D		& 				& SPI SCK		\\
 			\midrule
-			3.01 &		&		&		&		\\
-			3.02 &		&		&		&		\\
-			3.03 &		&		&		&		\\
-			3.04 &		&		&		&		\\
-			3.05 &		&		&		&		\\
-			3.06 &		&		&		&		\\
-			3.07 &		&		&		&		\\
-			3.08 &		&		&		&		\\
-			3.09 &		&		&		&		\\
-			3.10 &		&		&		&		\\
-			\midrule
-			4.01 &		&		&		&		\\
-			4.02 &		&		&		&		\\
-			4.03 &		&		&		&		\\
-			4.04 &		&		&		&		\\
-			4.05 &		&		&		&		\\
-			4.06 &		&		&		&		\\
-			4.07 &		&		&		&		\\
-			4.08 &		&		&		&		\\
-			4.09 &		&		&		&		\\
-			4.10 &		&		&		&		\\
+			3.01 &		& 5V0	& +5VDC			&				&				\\
+			3.02 &		& GND	& GND			&				&				\\
+			3.03 & PD0	&(R10)	&				&				&				\\
+			3.04 & PD1	&(R9)	&				&				&				\\
+			3.05 & PD2	&		& LCD RS		& LCD RS		& LCD RS		\\
+			3.06 & PD3	&		& LCD E			& LCD E			& LCD E			\\
+			3.07 & PE1	&		& KEYB H		& 				& LDAC			\\
+			3.08 & PE2	&		& KEYB J		&				& SHDN			\\
+			3.09 & PE3	&		& KEYB K		&				&				\\
+			3.10 & PF1	&LED (R)& LED R			&				&				\\
 			\bottomrule
 		\end{tabular}
 	
 		\begin{tablenotes}
-			\item[a] \textit{Funktionalitet på EMP board er beskrevet i diagrammet se [xx] }
+			\item[] Forsættes på næste side...
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table}
+\newpage
+\begin{table}[ht]
+	\caption{Pin konfiguration ud fra hardware profil}
+	\begin{threeparttable}
+		\begin{tabular}{l l l l l l}
+			\toprule
+			\textbf{Tiva Pin\tnote{a}} 	& 
+			\textbf{GPIO\tnote{b}}  	&
+			\textbf{Tiva\tnote{c}} 		& 
+			\textbf{EMP\tnote{d}}  		&
+			\textbf{P. PWM\tnote{e}} 	&
+			\textbf{P. DAC\tnote{f}}	\\ 
+			\midrule
+			4.01 & PF2	&LED (B)& LED Y			&				&				\\
+			4.02 & PF3	&LED (G)& LED G			&				&				\\
+			4.03 & PB3	&		& PB3			&				&				\\
+			4.04 & PC4	&		& LCD D4		& LCD D4		& LCD D4		\\
+			4.05 & PC5	&		& LCD D5		& LCD D5		& LCD D5		\\
+			4.06 & PC6	&		& LCD D6		& LCD D6		& LCD D6		\\
+			4.07 & PC7	&		& LCD D7		& LCD D7		& LCD D7		\\
+			4.08 & PD6	&		& Status LED	& Status LED	& Status LED	\\
+			4.09 & PD7	&		& 				&				&				\\
+			4.10 & PF4	& SW1	& 				&				&				\\
+			\bottomrule
+		\end{tabular}
+		
+		\begin{tablenotes}
+			\item[a,b] JP1-4 på Tiva LaunchPad \cite[Afsnit 2.1.5 s. 9]{spmu296}.
+			\item[c] On-board fnuktion  \cite[Afsnit 2.1.5 s. 9]{spmu296}.
+			\item[d] Funktionalitet på EMP board er beskrevet i tilhørende diagram, se [xx]
+			\item[e] Projekt printet med PWM hardware profil aktiveret, se [ref til diagram].
+			\item[f] Projekt printet med DAC hardware profil aktiveret, se [ref til diagram].
+			\item[g] Jumper konfiguration af på EMP printet. \textbf{J5 pin 1-2} og \textbf{J4 pin 2-3}.
 		\end{tablenotes}
 	\end{threeparttable}
 \end{table}
