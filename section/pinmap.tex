@@ -1,0 +1,68 @@
+\chapter{Pin mapping} \label{bilag:pinmap}
+
+\begin{table}[h!]
+	\caption{Pin konfiguration ud fra hardware profil}
+	\label{tab:ordliste}
+	\begin{threeparttable}
+		\begin{tabular}{l l l l l}
+			\toprule
+			\textbf{Tiva Pin}   & 
+			\textbf{GPIO}  &
+			\textbf{Tiva funktion\tnote{a}} & 
+			\textbf{EMP funktion}  &
+			\textbf{Proto board}	   \\ 
+			\midrule
+			1.01 &      & 3V3  &   &  3V3  \\
+			1.02 &  PB5 &      &   &  Audio in (Højre)\\
+			1.03 &	PB0 &		&	&	\\
+			1.04 &	PB1 &		&	&	\\
+			1.05 &	PE4 &		&	&	\\
+			1.06 &	PE5 &		& Analog In	&	\\
+			1.07 &	PB4 &		&			& Audio in (Venstre)	\\
+			1.08 &	PA5 &		& DIGI A	& SPI Tx (SDI)	\\
+			1.09 &	PA6 &		& DIGI B    & I2C SCL	\\
+			1.10 &	PA7 &		& DIGI P2	& I2C SDA	\\
+			\midrule
+			2.01 &     & GND  &   &  GND  \\
+			2.02 & PB2 &      &   &  \\
+			2.03 & PE0 &	  & KEYB G &	\\
+			2.04 & PF0 &	  & SW2	&	\\
+			2.05 &     & RESET		&	& \\
+			2.06 & PB7/PD1    & 	& 	& \\
+			2.07 & PB6/PD0    &		&	& \\
+			2.08 & PA4   &      & KEYB F & SPI Rx	\\
+			2.09 & PA3   &		& KEYB E    & SPI CS	\\
+			2.10 & PA2   &		& KEYB D	& SPI SCK	\\
+			\midrule
+			3.01 &		&		&		&		\\
+			3.02 &		&		&		&		\\
+			3.03 &		&		&		&		\\
+			3.04 &		&		&		&		\\
+			3.05 &		&		&		&		\\
+			3.06 &		&		&		&		\\
+			3.07 &		&		&		&		\\
+			3.08 &		&		&		&		\\
+			3.09 &		&		&		&		\\
+			3.10 &		&		&		&		\\
+			\midrule
+			4.01 &		&		&		&		\\
+			4.02 &		&		&		&		\\
+			4.03 &		&		&		&		\\
+			4.04 &		&		&		&		\\
+			4.05 &		&		&		&		\\
+			4.06 &		&		&		&		\\
+			4.07 &		&		&		&		\\
+			4.08 &		&		&		&		\\
+			4.09 &		&		&		&		\\
+			4.10 &		&		&		&		\\
+			\bottomrule
+		\end{tabular}
+	
+		\begin{tablenotes}
+			\item[a] \textit{Funktionalitet på EMP board er beskrevet i diagrammet se [xx] }
+		\end{tablenotes}
+	\end{threeparttable}
+\end{table}
+\jj{Tilføje EMP board diagram til BIB}
+\jj{Sikker på at alle navne svarer til det der bliver brugt på project PCB}
+\jj{tilføje pin mux navn fra data blad. fx AIN10 og SSI1Tx baseret på den valgte profil}
