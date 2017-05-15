@@ -30,25 +30,21 @@
     \end{align}
 
     Ved at sætte $s = j \Omega$ i ligning \ref{eq:iir_bandpas} og \ref{eq:iir_bandstop}, og sætte $\big| H(j\omega)\big|^2 = G_B^2$, hvor $G_B^2$ er den ønskede forstærkning ved den ønskede centerfrekvens $\Omega_0$, kan parameteren $\alpha$ findes for de givne specifikationer.
+   I kilde \cite{Orfanidis1996} udledes at udtryk (ud fra ligning \ref{eq:h_a_gb}) for $\alpha$ hvori $\beta$ defines som i ligning \ref{eq:beta_calc}. 
+   % \begin{align}
+   %  |H_{a}(j \Omega)| = \dfrac{G_0 (\Omega_0^2- \Omega^2)+ j G \alpha \Omega}{-\Omega^2 + j \alpha \Omega + \Omega_0^2}   
+  %  \end{align}
 
-\husk{Til Dennis}{Forklarende tekst herunder}    
     \begin{align}
-     |H_{a}(j \Omega)| = \dfrac{G_0 (\Omega_0^2- \Omega^2)+ j G \alpha \Omega}{-\Omega^2 + j \alpha \Omega + \Omega_0^2}   
-    \end{align}
-
-    \begin{align}
-        |H_{a}|^2 = G_B^2 =  \dfrac{(\Omega_0^2- \Omega^2)^2 + G^2 \alpha^2 \Omega^2}{(\Omega_0^2-\Omega^2)^2 +\alpha^2 \Omega^2}   \iff \Omega^4 - \left(2 \Omega_0^2 + \dfrac{G^2- G_B^2}{G_B^2- G_0^2} \alpha^2 \right) \Omega^2 + \Omega_0^4 =0
-    \end{align}
-    
-    
-    \begin{align}
-       \Delta \Omega^2 = (\Omega_2 - \Omega_1 ) = \dfrac{G^2 - G_B^2}{G_B^2 - G_0^2}  \alpha^2 \rightarrow \Delta \Omega = \sqrt{\dfrac{G^2 - G_B^2}{G_B^2 - G_0^2}} \alpha \iff \alpha = \sqrt{\dfrac{G_B^2-G_0^2}{G^2 - G_B^2 }} \Delta \Omega
+        |H_{a}|^2 &= G_B^2 =  \dfrac{(\Omega_0^2- \Omega^2)^2 + G^2 \alpha^2 \Omega^2}{(\Omega_0^2-\Omega^2)^2 +\alpha^2 \Omega^2}  % \iff \Omega^4 - \left(2 \Omega_0^2 + \dfrac{G^2- G_B^2}{G_B^2- G_0^2} \alpha^2 \right) \Omega^2 + \Omega_0^4 =0
+        \label{eq:h_a_gb}\\
+       \Delta \Omega^2 &= (\Omega_2 - \Omega_1 )^2 = \dfrac{G^2 - G_B^2}{G_B^2 - G_0^2}  \alpha^2 \rightarrow \Delta \Omega = \sqrt{\dfrac{G^2 - G_B^2}{G_B^2 - G_0^2}} \alpha \iff \alpha = \sqrt{\dfrac{G_B^2-G_0^2}{G^2 - G_B^2 }} \Delta \Omega
+       \label{eq:beta_calc}
     \end{align}
 
 
     \begin{align}
-    \alpha \equiv \beta (1 + \Omega_0^2)  = \sqrt{\dfrac{G_B^2-G_0^2}{G^2 - G_B^2 }} \left( 1 + \Omega_0^2 \right) \tan \left( \dfrac{\Delta \omega}{2} \right) \\
-    \iff \beta = \sqrt{\dfrac{G_B^2-G_0^2}{G^2 - G_B^2 }} \tan \left( \dfrac{\Delta \omega}{2} \right) \label{eq:beta}
+    \beta \equiv \dfrac{\alpha}{(1 + \Omega_0^2)}    = \sqrt{\dfrac{G_B^2-G_0^2}{G^2 - G_B^2 }} \tan \left( \dfrac{\Delta \omega}{2} \right) \label{eq:beta}
     \end{align}
 
 
@@ -71,14 +67,12 @@
    \end{align}
 
    Hvor parametrene er $\Delta \omega$, $G$, $f_0$. Heraf beregnes $w_0$ udfra ligning \ref{eq:freq_warp_w0}, $\Delta \omega$ udfra ligning \ref{eq:freq_warp_BW}, $\beta$ fra ligning \ref{eq:beta}, $G_B$ beregnes fra ligning \ref{eq:iir_gain}.
-   På figur \ref{fig:iir_peak} betragtes indflydelsen fra $Q$, når den varierer.
-   \\ \\ \\
-Til Dennis - Q bliver ikke brugt mere. Anvend omega0 i stedet
-\\
+   På figur \ref{fig:iir_peak} betragtes indflydelsen fra båndbredden $\Delta \omega$, når den varierer.
+
  \begin{figure}
     \centering
-         \includegraphics{figure/iir_peak.pdf}
-        \caption{Peak/notch filtre med centerfrekvens $f_0 = 2kHz$ og $f_0 = 4kHz$, varierende $Q$ og gain $G=5dB$}
+         \includegraphics{figure/iir_peak-crop.pdf}
+        \caption{Peak/notch filtre med centerfrekvens $f_0 = 2kHz$ og $f_0 = 4kHz$, varierende $\Delta \omega$ og gain $G=5dB$}
         \label{fig:iir_peak}   
     \end{figure} 
 \FloatBlock
@@ -160,26 +154,43 @@ Til Dennis - Q bliver ikke brugt mere. Anvend omega0 i stedet
 
 \section{Realisering af filter}
 
-    Differensligning:
+Differensligningen er beskrevet med ligning \ref{eq:diffrens}, dette kan illustreres vha. et blok diagram figur (\ref{fig:real_diag}). 
+
     \begin{align}
     y(n) = \sum\limits_{i=0}^{M} b_i x(n-i) - \sum\limits_{i=1}^N a_i y(n-i)
+    \label{eq:diffrens}
     \end{align}
 
-   %\begin{figure}[h]
-        %\centering
-        %\input{figure/iir_sos}
-    %    \caption{Realiserings diagram af 2. ordens iir filter. }    
-    %\end{figure}
 
-   
+   \begin{figure}[h]
+        \centering
+        \includegraphics[scale = 0.8]{figure/iir_sos-crop.pdf}
+        \caption{Realiserings diagram af 2. ordens iir filter. }    
+        \label{fig:real_diag}
+    \end{figure}
 
+   Ud fra blokdiagrammet \ref{fig:real_diag} kan iir-filteret beskrives med ligning \ref{eq_iir_diff_real} 
+   hvor $b_i$ er filterets tæller koefficienter, $a_i$ er filterets nævner koefficienter og $w$ indeholder 
+   værdier fra de tidligere filtrede samples. Efter $y[n]$ er beregnet skubbes værdierne i $w$ variablen  
+ således at de passer til det nye filtrede samples. 
+    \begin{align}
+        w[0] &=x[n] - w[1] \cdot a_1 - w[2] \cdot a_2 \\
+        y[n] &= w[0] \cdot b_0 + w[1] \cdot b_1 + w[2] \cdot b_2
+        \label{eq:iir_diff_real}
+        \\
+        w[2] &= w[1] \\
+        w[1] &= w[0]
+    \end{align}
 
+    Da filteret er afhængig af de tidligere værdier skal det filtrere et par samples således at all $w$ variablene 
+    har fået tildelt sig en værdi.
+Når de forskellige 2. ordensfiltre skal kaskadekobles. Hvis $x_{1}[n]$ repræsenterer det sample der filtres af det 1. bånd så vil $x_{2}[n] = y_{1}[n]$.
+    Dvs. at ligning \label{eq:iir_diff_real} beregnes per bånd af equalizeren hvor det samlet antal bånd betegnes $K$.\\
+\subsection{Repræsentering af koefficienter}
 
-   Koefficienter:\\
-   Koefficienterne haves i $K \times 3$ matricer hvor $K$ angiver antal bånd på equalizeren,
-    $A_K$ er nævner polynomiet, $B_K$ er tæller polynomiet
-   og $W_K$ er state-variablene.  
-
+    Koefficienterne haves i $K \times 3$ matricer,
+    $A_K$ er nævner polynomie matricen, $B_K$ er tæller polynomie matricen
+   og $W_K$ er state-variablene hvilket kan ses i ligning \ref{eq:matrix_states}.  
 
    \begin{align}
    A_{Kj} = \left[\begin{matrix}
@@ -206,7 +217,12 @@ Til Dennis - Q bliver ikke brugt mere. Anvend omega0 i stedet
    w_{K0}		& w_{K1} 	& w_{K2} \\
    \end{matrix}
    \right]
+   \label{eq:matrix_states}
    \end{align}
+
+   Koefficienterne haves i floating point format. For at effektivisere beregningerne aktiveres floating point 
+   enheden. 
+
 
 \section{Frekvensrepons af Amplituden}
 
