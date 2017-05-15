@@ -28,7 +28,6 @@ H(z)=\sum\limits_{k=0}^{N-1}h(k)z^{-1} \label{FIR_transfer}
 
 \section{Design metoder} \label{sec:fir_design}
 \husk{Kenneth}{Mere eller mindre en løsningsmodel, så det kan sammenlignes med IIR implementeringen - teori og praksis}
-\husk{Kenneth}{Blokdiagram som løsning}
 Herunder redegøres der for 2 forskellíge design metoder, til beregning af filter koefficienter.
 Frekvenssamplingsmetoden vil være mere dybdegående end de to andre, da det er den metode der vil blive implementeret.
 \subsection{Frekvenssampling}
@@ -78,7 +77,6 @@ b_n = h(n)=\frac{1}{2M+1}\left[ H_{0}+2\sum_{k=1}^{M} \left( \frac{2\pi k(n-M)}{
 \end{enumerate}
 
 \subsection{Windowsmetoden}
-\husk{Kenneth}{Blokdiagram - fortælling omkring de forskellige vinduer}
 \husk{Kenneth}{Gennemgang af koefficienterne med Fourier}
 Den grundlæggende tilgang til windowsmetoden er baseret på at det ideelle lavpas-, højpas-, båndpas-, og båndstop filter, bestående af den følgende ikke-kausale impulsrespons på $-\infty < n < \infty$. Windowsmetoden bygger på Fourier Transformationen, hvor der gælder om at fjerne de uønskede Gibbs oscilleringer i pas- og stopbåndet, som finder sted under trunkeringen. Anvendes windowsmetoden på filterkoefficienterne fås ligning \ref{window_function},
 \begin{equation}

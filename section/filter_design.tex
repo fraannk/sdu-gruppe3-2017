@@ -10,12 +10,11 @@
 
      \subsection{Peak/notch filter}
 
-    Et peak/notch filter i en parametrisk equalizer består af et båndpas- $H_{BP}$ og et båndstop $H_{BS}$ filter. 
-    Et analogt båndpas filter kan beskrives med ligning \ref{eq:iir_bandpas} 
+    Et peak/notch filter i en parametrisk equalizer består af et båndpas-, $H_{BP}$, og et båndstopfilter, $H_{BS}$. 
+    Et analogt båndpasfilter kan beskrives med ligning \ref{eq:iir_bandpas} 
     hvor $\alpha$ er en konstant der er afhængig af frekvensspecifikationer, $\Omega_0$ er centerfrekvensen.\\
     I ligning \ref{eq:iir_bandstop} er en overføringsfunktion for et båndstopfilter.
-    I ligning \ref{eq:iir_peaknotch} summeres båndstop- og båndpasfilteret for at kunne forstærke eller dæmpe signalet omkring center frekvensen.
-    
+    I ligning \ref{eq:iir_peaknotch} summeres båndstop- og båndpasfilteret for at kunne forstærke eller dæmpe signalet omkring center frekvensen.    
      \begin{align}
      H_{NOTCH}(s) &= \dfrac{s^2 + \Omega_0^2}{s^2 + \alpha s + \Omega_0^2}
      \label{eq:iir_bandpas} \\
@@ -105,8 +104,8 @@
    
    
      \subsection{High-shelf filter}
-	I et high shelf filter tages der ligesom i low shelf filteret udgangspunkt i ligning \ref{eq:iir_peak_tfz}. Modsat low shelf filteret sættes $\omega_0 = \pi$.
-	Overføringsfunktionen for high shelf filterets opskrives i ligning \ref{iir_hs_tf}.
+	I et high-shelf filter tages der ligesom i low-helf filteret udgangspunkt i ligning \ref{eq:iir_peak_tfz}. Modsat low-shelf filteret sættes $\omega_0 = \pi$.
+	Overføringsfunktionen for high-shelf filterets opskrives i ligning \ref{iir_hs_tf}.
      \begin{align}
         H_a (s) = \dfrac{G_0 + G \beta s}{1 + \beta s} \label{iir_hs_tf}
      \end{align}
@@ -114,7 +113,7 @@
      \begin{align}
          |H_a(\Omega)|^2 = \dfrac{G_0^2 + G^2 \beta^2 \Omega^2}{1 + \beta^2 \Omega^2} = G_C^2 \label{iir_hs_tf_size}
      \end{align}
-     For at simplificere udtrykket, laves en omskrivning i ligning \ref{iir_beta_helper}. Her indføres knækfrekvensen $\omega_c = \pi - w_0$ og $\omega_0 = \pi$ hvilket vil sætte centerfrekvensen i $f = \infty$, båndbredden bliver heraf knækfrekvensen til high shelf filteret.
+     For at simplificere udtrykket, laves en omskrivning i ligning \ref{iir_beta_helper}. Her indføres knækfrekvensen $\omega_c = \pi - w_0$ og $\omega_0 = \pi$ hvilket vil sætte centerfrekvensen i $f = \infty$, båndbredden bliver heraf knækfrekvensen til high-shelf filteret.
     \begin{align}
         \beta = \sqrt{\dfrac{G_C^2 - G_0^2}{G^2 - G_C^2}} \tan \left( \dfrac{\pi - \omega_c}{2} \right) \label{iir_beta_helper}
     \end{align}
@@ -124,7 +123,7 @@
      %\end{align}
 
 
-     For at beregne $\beta$ anvendes ligning (\ref{eq:beta}), hvorefter $cos(\omega_0) = cos(\pi) = -1$. Dette giver overføringsfuntionen for high shelf filteret som ses i ligning \ref{iir_hs_tf_zd}, og er en forkortet udgave peak/notch filtrenes overføringsfuntion. Et plot af high shelf filteret ses i figur \ref{fig:iir_high_shelf}
+     For at beregne $\beta$ anvendes ligning (\ref{eq:beta}), hvorefter $cos(\omega_0) = cos(\pi) = -1$. Dette giver overføringsfuntionen for high-shelf filteret som ses i ligning \ref{iir_hs_tf_z}, og er en forkortet udgave peak/notch filtrenes overføringsfuntion. Et plot af high-shelf filteret ses i figur \ref{fig:iir_high_shelf}.
      \begin{align}
      H_{HS}(z) =     \dfrac{\left(\dfrac{G_0 + G \beta}{1 + \beta} \right) + \left(\dfrac{ G_0 - G \beta}{1 + \beta }\right) z^{-1}}{1  + \left( \dfrac{1 - \beta}{1 + \beta} \right) z^{-1}} \label{iir_hs_tf_z}
      \end{align}
@@ -238,14 +237,14 @@ Ved at bruges ligning (\ref{eq:z_to_amp}) hvori amplituden findes fra (\ref{eq:c
 Da de individuelle filtre er af 2. orden kan amplituden regnes:
 
 \begin{align}
-    H(\omega) &= \prod\limits_{i=0}^{K-1} \dfrac{b_{i0} + b_{i1} z^{-1} + b_{i2} z^{-2}}{a_{i0} + a_{i1} z^{-1} + a_{i2} z^{-2}}
+    H(\omega) &= \prod\limits_{i=0}^{K-1} \dfrac{b_{i0} + b_{i1} z^{-1} + b_{i2} z^{-2}}{a_{i0} + a_{i1} z^{-1} + a_{i2} z^{-2}} \nonumber
     \\ &= \prod\limits_{i=0}^{K-1} \dfrac{b_{i0} + b_{i1} \left( \cos{\Omega} + j \sin{\Omega} \right)+b_{i2} \left( \cos{2\Omega} + j \sin{2\Omega} \right)}{a_{i0} + a_{i1} \left( \cos{\Omega} + j \sin{\Omega} \right)+a_{i2} \left( \cos{2\Omega} + j \sin{2\Omega} \right)}
 \end{align}
 Hvis $H(\Omega)$ deles op i hhv. $N(\Omega)$ tæller, $D(\Omega)$ nævner kan amplituden for en 
 given frekvens $\Omega$ findes ved ligning (\ref{eq:amp_calc}).
 
 \begin{align}
-    |H(\Omega)| &= \sqrt{ \dfrac{\Re{(N(\Omega))}^2 + \Im{(N(\Omega))}^2 }{\Re{(D(\Omega))}^2 + \Im{(D(\Omega))}^2 }}\\
+    |H(\Omega)| &= \sqrt{ \dfrac{\Re{(N(\Omega))}^2 + \Im{(N(\Omega))}^2 }{\Re{(D(\Omega))}^2 + \Im{(D(\Omega))}^2 }} \nonumber	\\ 
      &= \prod\limits_{i=0}^{K-1} \dfrac{ \sqrt{\left( b_{i0} + b_{i1} \cos{\Omega} + b_{i2} \cos{2 \Omega} \right)^2 +  \left( b_{i1} \sin{\Omega} + b_{i2} \sin{2 \Omega} \right)^2 } }{ \sqrt{\left( a_{i0} + a_{i1} \cos{\Omega} + a_{i2} \cos{2 \Omega} \right)^2 + \left( a_{i1} \sin{\Omega} + a_{i2} \sin{2 \Omega} \right)^2} }
     \label{eq:amp_calc}
 \end{align}
