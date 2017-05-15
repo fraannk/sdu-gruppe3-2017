@@ -1,19 +1,56 @@
 \chapter{Test af equalizer}\label{sec:test_eq}
 
+
+
+
 \emph{I dette kapitel bliver der redegjort for testforløbet af equalizeren. Der bliver brugt en Bode 100 til måling af equalizerens overførselsfunktion. På denne måde kan det bevises om equalizerens profiler fungerer korrekt.}
 
-\section{Forberedelse}
-Der blev bestemt at følgende målinger bedst kunne eftervise equalizerens funktion: \\
+\section{Equalizer filtre}
 
-Måling af amplitude og fase med Bode 100 for følgende presets:
+
+Liste over presets hvis amplitude spektrum måles.
+
+Måling af Amplitude og fase med bode100 for følgende presets:
 \begin{enumerate}[noitemsep,nolistsep]
     \item Equalizeren slået fra.
     \item Megafon preset.
     \item Bass boost preset.
     \item High boost preset.
     \item Rock preset. 
-    \item 1K notch preset. \\
+    \item 1K notch preset.
 \end{enumerate}
+
+Måling med funktions generator. Scoop på indgang, udgang.
+EQ med 1k notch presetet. 
+Send 1k sin bølge ind. 
+
+
+\subsection{Målinger}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[]{matlabdemo/test/eq_off.png}  
+\caption{Måling af hele systemet uden equalizer slået til.}
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[]{matlabdemo/test/eq_megafon.png}
+\caption{Måling af megafon preset.}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[]{matlabdemo/test/eq_1knotch.png}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[]{matlabdemo/test/eq_rock.png}
+\caption{Sammenligning mellem den teoretiske rock profil og den målte.}
+\end{figure}
+
 
 
 Derudover skulle "1k notch" preset'et måles med et oscilloskop på indgangen og udgangen, mens en funktionsgenerator sendte en $1$\kilo\hertz bølge ind på indgangen. Dette skulle eftervise om preset'et gjorde præcist hvad det skulle. \\
@@ -25,3 +62,4 @@ Derudover skulle "1k notch" preset'et måles med et oscilloskop på indgangen og
 	\caption{Målingssetup med Bode 100]}
 	\label{fig:bode100}
 \end{figure}
+
