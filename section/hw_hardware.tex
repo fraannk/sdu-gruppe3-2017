@@ -4,6 +4,12 @@ Den dybere tekniske beskrivelse i forhold til produkt specifikke registre eller 
 Det komplette hardware modul findes i \emph{hardware.c}.
 
 \subsection{Valg af hardware profil}
+\begin{wrapfigure}[20]{r}{5cm}
+	\centering
+	\includegraphics[width=4.5cm]{billeder/hardware_profiles.png}
+	\caption{Oversigt over mulige konfigurationer af \textit{hardware.c}.}
+	\label{fig:hardware_profiler}
+\end{wrapfigure}
 For at kunne håndtere de forskellige opsætninger af hardware i udviklingsforløbet af equalizerens software, er der lavet forskellige hardware opsætninger, således at man på en nem måde kan skifte imellem dem.
 \\
 I \textit{global.h} filen, findes to compiler \textbf{\#define} direktiver til makro definitionerne \textbf{EMP} og \textbf{DAC}.
@@ -14,13 +20,6 @@ Her kan der vælges imellem DAC eller PWM som udgangssignal.
 Den tilhørende pin-konfiguration for de valgte hardware profiler kan ses i bilag \ref{bilag:pinmap}.
 
 \subsection{CPU clock frekvens}
-\begin{wrapfigure}[20]{r}{5cm}
-	\centering
-	\includegraphics[width=4.5cm]{billeder/hardware_profiles.png}
-	\caption{Oversigt over mulige konfigurationer af \textit{hardware.c}.}
-	\label{fig:hardware_profiler}
-\end{wrapfigure}
-
 For at kunne opnå så mange beregninger som muligt i sekundet, sættes MCU'en clock frekvens til den maksimale.
 Den valgte MCU (TM4C123GH6PM) er en $80\si{\mega\hertz}$ mikrokontroller, og den ønskede clock frekvens sættes i funktionen \texttt{set\_80Mhz\_clock()} i hardwaremodulet \textit{hardware.c} til $F_{CPU} = 80\si{\mega\hertz}$. 
 
@@ -129,7 +128,7 @@ Konfigurationen af SPI laves i \texttt{spi\_init()} i modulet \textit{hardware.c
 \jj{funktion / time diagram er}
 
 
-\subsection{UART}
+\subsection{UART}\label{subsec:uart}
 \jj{Meget kort beskrivelse af opsætning af uart til den ønskede baudrate.}
 
 \subsection{LCD}
