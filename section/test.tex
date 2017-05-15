@@ -1,26 +1,27 @@
 \chapter{Test af equalizer}\label{sec:test_eq}
 
-For at teste equlizerens profiler, og resten af systemet - anvendes måleudstyret BODE100. Denne maskine, kan måle frekvensresponset/overføringsfunktionen på indgangen og udgangen af equalizeren. Det ønskes at finde at finde ud af, om de teoretiske beregninger stemmer overens med de målte.
-\section{Equalizer filtre}
+\emph{I dette kapitel bliver der redegjort for testforløbet af equalizeren. Der bliver brugt en Bode 100 til måling af equalizerens overførselsfunktion. På denne måde kan det bevises om equalizerens profiler fungerer korrekt.}
 
+\section{Forberedelse}
+Der blev bestemt at følgende målinger bedst kunne eftervise equalizerens funktion: \\
 
-Liste over presets hvis amplitude spektrum måles.
-
-Måling af Amplitude og fase med bode100 for følgende presets:
+Måling af amplitude og fase med Bode 100 for følgende presets:
 \begin{enumerate}[noitemsep,nolistsep]
     \item Equalizeren slået fra.
     \item Megafon preset.
     \item Bass boost preset.
     \item High boost preset.
     \item Rock preset. 
-    \item 1K notch preset.
+    \item 1K notch preset. \\
 \end{enumerate}
 
 
+Derudover skulle "1k notch" preset'et måles med et oscilloskop på indgangen og udgangen, mens en funktionsgenerator sendte en $1$\kilo\hertz bølge ind på indgangen. Dette skulle eftervise om preset'et gjorde præcist hvad det skulle. \\
 
-Måling med funktions generator. Scoop på indgang, udgang.
-EQ med 1k notch presetet. 
-Send 1k sin bølge ind. 
-
-\emph{I dette kapitel bliver der redegjort for testforløbet af equalizeren. Der bliver brugt en Bode 100 til måling af equalizerens overførselsfunktion. På denne måde kan det bevises om equalizerens profiler fungerer korrekt.}
-
+\section{Udførelse}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15cm]{billeder/setup}
+	\caption{Målingssetup med Bode 100]}
+	\label{fig:bode100}
+\end{figure}
