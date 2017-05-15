@@ -9,7 +9,7 @@
     xmin = 0,
     xmax = 15000,
     xtick ={0,1000,...,15000},
-	title={Peak/Notch filtre med varierende Q},
+	title={Peak/Notch filtre med varierende båndbredde $\Delta \omega$},
 	grid=both,
 	minor grid style={gray!25},
 	major grid style={gray!25},
@@ -18,28 +18,28 @@
 	no marks]
     \addplot[line width=\plotlinewidth,solid,color=red] %
 	table[col sep=comma]{../matlabdemo/p_h1.dat};
-\addlegendentry{$$Q = 1, G = 5 (dB)$$};
+\addlegendentry{$\Delta \omega = 1000 (Hz), G = 5 (dB)$};
     \addplot[line width=\plotlinewidth,solid,color =cyan] %
 	table[col sep=comma]{../matlabdemo/p_h2.dat};
-\addlegendentry{$$Q = 5, G = 5 (dB)$$};
+\addlegendentry{$\Delta \omega = 500 (Hz), G = 5 (dB)$};
     \addplot[line width=\plotlinewidth,solid,color=orange] %
 	table[col sep=comma]{../matlabdemo/p_h3.dat};
-\addlegendentry{$$Q = 10, G = 5 (dB)$$};
+\addlegendentry{$\Delta \omega = 100 (Hz), G = 5 (dB)$};
     \addplot[line width=\plotlinewidth,solid,color=yellow] %
 	table[col sep=comma]{../matlabdemo/p_h4.dat};
-\addlegendentry{$$Q = 50, G = 5 (dB)$$};
+\addlegendentry{$\Delta \omega = 10 (Hz), G = 5 (dB)$};
     \addplot[line width=\plotlinewidth,solid,color=brown] %
 	table[col sep=comma]{../matlabdemo/p_h5.dat};
-\addlegendentry{$$Q = 1, G = -5(dB)$$};
+\addlegendentry{$\Delta \omega = 1000 (Hz), G = -5(dB)$};
     \addplot[line width=\plotlinewidth,solid,color=blue] %
 	table[col sep=comma]{../matlabdemo/p_h6.dat};
-\addlegendentry{$$Q = 5, G = -5 (dB)$$};
+\addlegendentry{$\Delta \omega = 500 (Hz), G = -5 (dB)$};
     \addplot[line width=\plotlinewidth,solid,color=green] %
 	table[col sep=comma]{../matlabdemo/p_h7.dat};
-\addlegendentry{$$Q = 10, G = -5 (dB)$$};
+\addlegendentry{$\Delta \omega = 100 (Hz), G = -5 (dB)$};
     \addplot[line width=\plotlinewidth,solid,color=black] %
 	table[col sep=comma]{../matlabdemo/p_h8.dat};
-\addlegendentry{$$Q = 50, G = -5 (dB)$$};
+\addlegendentry{$\Delta \omega = 10 (Hz), G = -5 (dB)$};
 \end{axis}
    \end{tikzpicture}
 

@@ -37,7 +37,7 @@ xlim( [20 20*10^3])
 ylim([-16 16])
 xlabel('f [Hz]')
 ylabel('|H(f)| [dB]')
-% print( h1, '-dpng', '-r200', 'eq_klassik.png')
+print( h1, '-dpng', '-r200', 'eq_klassik.png')
 
 
 %% Rock preset
@@ -77,14 +77,15 @@ f = 0:1:fs/2;
  %end
 
 H = amp(1,:).*amp(2,:).*amp(3,:).*amp(4,:).*amp(5,:).*amp(6,:).*amp(7,:).*Master;
-figure(2)
+h1 = figure(1);
 semilogx(f,20*log10(abs(H)))
+grid on
 title('Rock EQ')
 xlim( [20 20000])
 ylim([-16 16])
 xlabel('f [Hz]')
 ylabel('|H(f)| [dB]')
-
+print( h1, '-dpng', '-r200', 'eq_rock.png')
 %% Megaphon preset
 clc, clear all, close all
 fs = 44.1*10^3;
@@ -122,6 +123,7 @@ xlim( [20 20*10^3])
 ylim([-16 16])
 xlabel('f [Hz]')
 ylabel('|H(f)| [dB]')
+print( h1, '-dpng', '-r200', 'eq_megafon.png')
 
 %% EMP board kompensering preset
 clc, clear all, close all
@@ -160,6 +162,7 @@ xlim( [20 20*10^3])
 ylim([-16 16])
 xlabel('f [Hz]')
 ylabel('|H(f)| [dB]')
+print( h1, '-dpng', '-r200', 'eq_emp komp.png')
 
 %% Bass boost preset
 clc, clear all, close all
@@ -197,9 +200,10 @@ semilogx(f,20*log10(H),'Linewidth',2)
 grid on
 title('Bass Boost EQ')
 xlim( [20 20*10^3])
-ylim([-16 16])
+ylim([-5 7])
 xlabel('f [Hz]')
 ylabel('|H(f)| [dB]')
+print( h1, '-dpng', '-r200', 'eq_bassboost.png')
 
 
 %% High boost preset
@@ -239,6 +243,7 @@ xlim( [20 20*10^3])
 ylim([-16 16])
 xlabel('f [Hz]')
 ylabel('|H(f)| [dB]')
+print( h1, '-dpng', '-r200', 'eq_highboost.png')
 
 %% Treble and Bass boost preset
 clc, clear all, close all
@@ -277,6 +282,8 @@ xlim( [20 20*10^3])
 ylim([-16 16])
 xlabel('f [Hz]')
 ylabel('|H(f)| [dB]')
+
+print( h1, '-dpng', '-r200', 'eq_highbassboost.png')
 
 %% Cut 1k notch preset
 clc, clear all, close all
@@ -317,5 +324,5 @@ xlabel('f [Hz]')
 ylabel('|H(f)| [dB]')
 
 
-
+print( h1, '-dpng', '-r200', 'eq_1knotch.png')
 
