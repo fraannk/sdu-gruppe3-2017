@@ -89,6 +89,8 @@ Afhængig af den valgte hardware profil, sættes pin konfigurationen ud fra tabe
 
 \FloatBlock
 
+\jj{Mangler overgang til DAC}
+
 \subsection{DAC}
 Til at generer udgangssignalet fra MCU'en vælges en ekstern DAC kreds, da MCU'en ikke råder over denne funktionalitet.
 Valget blev en \texttt{MCP4922E/P}\footnote{Microchip MCP4922E/P 12-Bit Dual Voltage Output Digital-to-Analog Converter with SPI Interface \cite{mcp4922} } 12bit DAC IC, således at opløsningen på udgangen bliver den samme som på indgangen.
@@ -129,13 +131,43 @@ Konfigurationen af SPI laves i \texttt{spi\_init()} i modulet \textit{hardware.c
 
 
 \subsection{UART}\label{subsec:uart}
-\jj{Meget kort beskrivelse af opsætning af uart til den ønskede baudrate.}
+Det er muligt at tilgå Shell'en i equalizeren via seriel kommunikation.
+I task modellen (figur \ref{fig:eq-taskmodel}) ses kommunikationen mellem \textbf{UART RX/TX} task'ne og Shell tasken.
+Grundet hastighedsforskellen imellem scheduleringen af shell'en tasken og den meget langsommere serielle kommunikation, er \textbf{RX/TX queues} implementeret med asymmetrisk størrelse. 
+\textbf{TX queue} er således 1KB og \textbf{RX queue} er kun  xx bytes.
+
+Standard opsætningen for seriel kommunikation er
+\begin{center}
+	\textbf{Baudrate : }19200  \quad \textbf{Databits : } 8 \quad \textbf{Stopbits : }1
+\end{center}
+
+Opsætningen af UART'en findes i \texttt{uart0\_init(...);} i uart modulet \textit{uart.c}
 
 \subsection{LCD}
-\jj{LCD konfiguratoin er arvet fra EMP board, men det er i drift ikke noget krav at der bruges et LCD, således bør det kunne fjernes ved et release build og kun brugbart ved udvikling
-}
-\subsection{TIVA}
-\jj{Kort beskrivelse af Tiva Board konfiguration, med henvisninger til release note for produktet.}
+LCD displayet der er monteret på EMP printet, er primært brugt under udvikling til debug information og derfor bliver det brugt på samme måde på projekt printet.
+Information som VU-meter, equalizerens tilstand, valgt equalizer profil navn, CPU belastning samt en simpel repræsentation af equalizerens frekvens spektrum kan aflæses på LCD displayet.
+
+LCD modulet er sammensat af et driver API sammen med en \texttt{LCD\_buffer\_task(...);} der sørger for at opdatere selve LCD'en.
+Skrivning til LCD displayet sker således ikke direkte
+API'et skriver i en shared-memory buffer, som bliver brugt at LCD buffer tasken, se figur \ref{fig:eq-taskmodel}. 
+I figur \ref{fig:lcd_task} ses state diagrammet for LCD tasken, hvor \textbf{State N} repræsenterer alle de mellemliggende states.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=.6\textwidth]{billeder/lcd_task.png}
+	\caption{LCD buffer task state diagram.}
+	\label{fig:lcd_task}
+\end{figure}
+
+
+LCD displayet bliver initialiseret fra modulet \textit{emp\_lcd1602.c} i  \texttt{lcd\_init();}
+  
+\FloatBlock
+
+\subsection{Tiva™ C Series TM4C123G LaunchPad Evaluation Board}
+Som udviklingsplatform anvendes Tiva LaunchPad \cite{spmu296}. 
+Tiva LaunchPad stiller en række funktionalitet til rådighed som fx. On-board ICDI.
+Derudover er der på printet også monteret 2 trykkontakter (\textbf{SW1 / SW2}) og en RGB LED, som er medtaget i pin mapping tabellen i bilag \ref{bilag:pinmap}, således at det ikke påvirker hardwareprofilen til projektet.   
 
 \subsection{FPU}
 For at kunne gøre brug af FPU'en (floating point unit) på den valgte MCU, kræver denne en produkt specifik aktivering.
@@ -168,7 +200,7 @@ __asm__("ISB");       // Instruction Synchronisation Barrier
 \end{lstlisting}
 \end{tabular}
 
-\subsection{sysTick og Timers}
+\subsection{Timers og sysTick}
 
 
 %\subsection{ADC fra Simon}
