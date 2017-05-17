@@ -21,14 +21,14 @@ Som løsningsmodel med IIR-filtre anvendes den Bilinear Transformations metode o
     \begin{enumerate}[noitemsep,nolistsep]
         \item Definer de digital specifikationer. Kompenser mod forvrængning til de analoge specifikationer.
         \item Udfør analog filter design.
-        \item Substituer BLT for at få det digitale filters overføringsfunktion og heraf koefficienterne. 
+        \item Substituer BLT for at finde det digitale filters overføringsfunktion og heraf koefficienterne. 
     \end{enumerate}
 
 
 
     \subsection{Frekvens-preswarp}
     Da center frekvensen af filteret vil blive forskudt når der udføres en Bilinear
-    transformation er det nødvendigt at prewarp'e (kompensere mod forvrængning), således at center frekvensen passer i det digitale filter.\\
+    transformation er det nødvendigt at prewarp'e (kompensere mod forvrængning), således at center frekvensen passer i det digitale filter.  
     $\Omega_0$ er den analoge centerfrekvens, $\omega_0$ er den ønskede centerfrekvens, $f_s$ er samplingsfrekvensen. 
     Forholdet mellem $\Omega_0$ og $\omega_0$:
   
@@ -65,7 +65,7 @@ Som løsningsmodel med IIR-filtre anvendes den Bilinear Transformations metode o
     \subsection{Bilinear Transformation}
     Når det analog filter skal transformeres fra s-plan til z-plan bruges ligning (\ref{eq:s_to_z}). Hvilket giver et 
     filter i z-planet der har samme orden som det analog filter. Derudover bliver faseresponset af det digitale filter magen til 
-    det analoge filter, hvilket medfører at der bliver ulineær fasedrejning på filteret. 
+    det analoge filter, hvilket medfører at der kommer ulineær fasedrejning på filteret. 
     Heraf kommer koefficienterne $a_1, \dots, a_N, b_0,\dots, b_N $. 
   
     \begin{align}

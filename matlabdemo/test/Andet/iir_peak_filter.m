@@ -1,6 +1,6 @@
 function [b, a] = iir_peak_filter(W,G_dB, f_0,fs)
 % preliminary 
-w_0 = (2*pi*f_0)/fs; 
+w_0 = (2*pi*f_0)/fs;
 G_0 = 1;
 W = 2*pi*W/fs;
 
