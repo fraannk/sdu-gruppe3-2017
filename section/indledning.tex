@@ -38,9 +38,10 @@ Formålet med dette projekt, er at formidle de opnåede fagligheder fra 4. semes
 %\note{
 %Projektet går ud på at designe en parametrisk equalizer, der kan efterbehandle et lydsignal. Den skal realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller som er platformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd som brugeren frit kan modulere.
 %}
-Ud fra formålet med projektet, er der blevet valgt at fremstille et produkt, hvoraf alle fagligheder kan anvendes. Produktet der ønskes realiseret, er at konstruere en digital parametrisk equalizer. Denne digitale equalizer, skal realiseres vha. en Tiva™ TM4C123GH6PM Microcontroller, som er platformen i faget Embedded programmering. Equalizeren skal have nogle såkaldte "bånd", som brugeren frit kan modulere. Ud fra fagbeskrivelsen, kan dette relateres i et så bredt omfang, at formålet opfyldes. Problemformuleringen forlyder sig derfor som følgende: \\
+Ud fra formålet med projektet, er der blevet valgt at fremstille et produkt, hvoraf alle fagligheder kan anvendes. Produktet der ønskes realiseret, er at konstruere en digital parametrisk equalizer. Denne digitale equalizer, skal realiseres ved en mikrokontroller af samme type , der anvendes som platformen i faget Embedded programmering. Equalizeren skal have nogle såkaldte "bånd", som brugeren frit kan modulere. Ud fra fagbeskrivelsen, kan dette relateres i et så bredt omfang, at formålet opfyldes. Problemformuleringen forlyder sig derfor som følgende: \\
 
-En digital parametrisk equalizer ønskes realiseret vha. en Tiva™ TM4C123GH6PM microcontroller, samt digital signalbehandling og analog filterteori. Herunder ønskes en konfigurerbar brugerflade, som interagerer med systemet. Denne brugerflade skal kunne håndtere equalizerserens båndprofiler.\\
+En digital parametrisk equalizer ønskes realiseret ved en mikrokontroller, samt digital signalbehandling og analog filterteori. Herunder ønskes en konfigurerbar brugerflade, som interagerer med systemet. Denne brugerflade skal kunne håndtere equalizerserens båndprofiler.\\
+\jj{forklaring af parametrisk}
 
 Der ønskes herudover svar på følgende problemstillinger:
 \begin{itemize}[noitemsep,nolistsep]
@@ -67,7 +68,7 @@ I dette afsnit fremstår de opsatte krav for projektet, der er fastsat dels ud f
 \begin{itemize}[noitemsep,nolistsep]
 	\item Prototypen udvikles på Tiva™ C Series TM4C123G LaunchPad Evaluation Kit.
 	\item Tiva™ TM4C123G serie Microcontroller anvendes.
-	\item Kildekoden er en del af produktet og skal overholde EMP-C standarden.
+	\item Kildekoden er en del af produktet og skal overholde \textit{EMP C Code Standard}\cite{emp-c}.
 	\item Equalizeren skal virke som parametrisk equalizer.
 	\item Det skal være muligt at ændre frekvensprofiler på equalizeren.
 	\item Indgangs- og udgangssignaler skal overholde line-level standard på, nominal $-10 dBV$, $0,894 V_{pp}$ (Forbruger elektronik line-signal).
@@ -75,6 +76,7 @@ I dette afsnit fremstår de opsatte krav for projektet, der er fastsat dels ud f
 	\item Equalizerparametre skal omfatte - Frekvens, båndbredde og gain.
 	\item Equalizerens funktionalitet og effektivitet efterprøves med et velbeskrevet test-signal.
 \end{itemize}
+\jj{Henvisning til signal standard.}
 
 \section{Løsningsmodel}
 %Løsningsmodellen som ses på figur \ref{fig:losningsmodel}, er den overordnede arbejdsproces faget digital signalbehandling, hvoraf meget af stoffet bliver hentet fra. Modellen gør det nemmere at dele arbejdet op, da det er et blokdiagram.
@@ -85,9 +87,9 @@ I dette afsnit fremstår de opsatte krav for projektet, der er fastsat dels ud f
 	\caption{Løsningsmodellen}
 	\label{fig:losningsmodel}
 \end{figure}
+\husk{Søren}{Lave alle blokdiagrammer om fra AA og Rec. til Antialias og Rekonstruktion}
 
-Løsningsmodellen som ses på figur \ref{fig:losningsmodel}, er delt op i tre hovedemner. Denne model gør det nemt at dele emnerne som indgår i rapporten op. Som første emne er der filtrene - altså både indgangs- og udgangsfiltret. Efter indgangsfiltret går man ind i hardware-blokken, som blandt andet indeholder den analoge til digitale konverter samt den digitale til analoge konverter. Til sidst er der emnet som indeholder den digitale signalbehandling, hvor de forskellige former for filtre bliver beskrevet.  
-
+Løsningsmodellen som ses på figur \ref{fig:losningsmodel}, er delt op i tre hovedemner. Denne model gør det nemt at dele emnerne som indgår i rapporten op. Som første emne er der filtrene - altså både indgangs- og udgangsfiltret. Efter indgangsfiltret går man ind i hardware-blokken, som blandt andet indeholder den analoge til digitale konverter samt den digitale til analoge konverter. Til sidst er der emnet som indeholder den digitale signalbehandling, hvor de fs
 
 \section{Proces- og arbejdsmetode}
 %\note{Metodebeskrivelse: Hvordan vil det blive gjort? (Opgaven bygger på den-og-den litteratur samt interviews med dem og dem. Først undersøger vi dét, og så undersøger vi dét. Derefter …)}
@@ -96,18 +98,4 @@ Denne rapport er bygget op på baggrund af den faglige undervisning, hvor alle f
 %Gennemarbejdningen med denne rapport vil tage udgangspunkt i undervisningen med dertilhørende litteratur. Ekspertviden vil blive hentet fra underviserne, med henblik på bedre forståelse af stoffet. Rapporten er bygget op omkring signalvejen igennem equalizeren. Det kan derved lette forståelsen for, hvordan signalet ændres løbende igennem systemet.
 %\husk{Kenneth}{Tage udgangspunkt i signalvejen - men bedre ord for det}
 
-\section{Læsevejledning}
-Denne rapport er opbygget således, at den læses fra start til slut. Rapportens struktur er opdelt i hovedsektioner og undersektioner. Opbygningen er taksonomisk både i kapitelstrukturer og som helhed. Der vil i starten af hvert hovedafsnit være en figur som viser hvilken del af produktet der i det respektive afsnit bliver dækket. (Variant af figur \ref{fig:losningsmodel}) Denne figur er delvist opbygget efter signalvejen, og delvist efter hvilke emner der hører mest sammen.
 
-\subsection{Typografiske konventioner}
-Her er en kort oversigt over de typografiske konventioner der anvende i denne rapport
-\\
-\textit{Kursiv tekst} : Angiver filnavne i den tilhørende kodebase.
-\\
-\textbf{Fed tekst} : Bruges til a fremhæve produkt eller system specifikke betegnelser.
-\\
-\texttt{Konstant brede tekst} : Anvendes til kildekode eksempler.
-\\
-\emph{Fremhævet tekst} : Bliver brugt når der gives en kort introduktion til hvert kapitel. 
-\\
-\jj{Gennemgang af alle typografier og at de bliver brugt rigtigt igennem rapporten.}

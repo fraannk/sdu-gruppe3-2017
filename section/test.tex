@@ -1,4 +1,6 @@
 \chapter{Test af equalizer}\label{sec:test_eq}
+\husk{Søren}{Lave blockdiagram til kapitel}
+
 
 \emph{I dette kapitel bliver der redegjort for testforløbet af equalizeren. Der bliver brugt en Bode 100 til måling af equalizerens overførselsfunktion. På denne måde kan det bevises om equalizerens profiler fungerer korrekt.}
 
@@ -52,6 +54,34 @@ Det ses også at båndenes amplitude heller ikke stemmer helt overens. Dette kan
 
 \husk{SF}{Dette skal specificeres. Dennis? :D}
 
+
+
+\subsection{Målinger}
+
+\begin{figure}[h]
+\centering
+\includegraphics[]{matlabdemo/test/eq_off.png}  
+\caption{Måling af hele systemet uden equalizer slået til.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[]{matlabdemo/test/eq_megafon.png}
+\caption{Måling af megafon preset.}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[]{matlabdemo/test/eq_1knotch.png}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[]{matlabdemo/test/eq_rock.png}
+\caption{Sammenligning mellem den teoretiske rock profil og den målte.}
+\end{figure}
+
+
+
 \subsection{Målinger}
 Equalizer off.
 \begin{figure}[h]
@@ -101,20 +131,9 @@ Equalizer off.
 %\includegraphics[]{matlabdemo/test/eq_rock.png}
 %\caption{Sammenligning mellem den teoretiske rock profil og den målte.}
 %\end{figure}
-%
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-	
