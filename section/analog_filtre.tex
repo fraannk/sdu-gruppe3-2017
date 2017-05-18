@@ -44,6 +44,7 @@ Det første trin i filteret er et 1. ordens butterworth filter og det designes u
 \end{equation} 	
 hvor knækfrekvensen, $f_c$, er sat ved $17kHz$.
 R1 vælges til $10K\Omega$ og C1 udregnes til $940pF$.
+\Kenneth{Argumentet for 17 kilo hertz?}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.3]{./billeder/stage1}
@@ -58,7 +59,7 @@ Hvis kredsløbet på figur \ref{fig::anfilter_gensallen} betragtes, ses det at\\
 	\vspace*{5mm}
 	$V_- = V_{out}$
 \end{center}
-
+\Kenneth{Skal lige snakke med Jonas om denne udregning}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.4]{./billeder/komp_udregn}
@@ -68,17 +69,16 @@ Hvis kredsløbet på figur \ref{fig::anfilter_gensallen} betragtes, ses det at\\
 \FloatBlock
 
 Ved KCL findes\\
-\begin{center}
-	$\dfrac{V_{out}}{V_{in}} = \dfrac{V_{in}-V_1}{Z_1} = \dfrac{V_1 - V_{out}}{Z_4}+\dfrac{V_1}{Z_2+Z_3}$
-\end{center}
+\begin{equation}
+	\dfrac{V_{out}}{V_{in}} = \dfrac{V_{in}-V_1}{Z_1} = \dfrac{V_1 - V_{out}}{Z_4}+\dfrac{V_1}{Z_2+Z_3}
+\end{equation}
 Ved omrokering af disse ligninger findes
 
 \begin{center}
 	$\dfrac{V_{out}}{V_{in}} = \dfrac{1}{\dfrac{Z_1Z_2}{Z_3Z_4}+\dfrac{Z_1}{Z_3}+\dfrac{Z_2}{Z_3}+1} = \dfrac{Z_3Z_4}{Z_1Z_2+Z_1Z_4+Z_2Z_4+Z_3Z_4}$
 \end{center}
 
-Komponenter indsættes som følgende
-
+Komponenter indsættes som følgende,
 \begin{center}
 	$Z_1 = R1, \hspace{3mm} Z_2 = R_2, \hspace{3mm} Z_3 = \dfrac{1}{sC_1}$ \hspace{0.5mm} og \hspace{0.5mm} $Z_4 = \dfrac{1}{sC_2}$
 \end{center}
@@ -93,7 +93,7 @@ H(s) = \dfrac{1}{1+C2(R1+R2) s+C1C2R1R2 s^2}
 	
 \end{center} 
 
-Betragtes formel \ref{eq::anfilter_standardeq} kan følgende udledes\\
+Ud fra den ønskede form (ligning \ref{eq::anfilter_standardeq}), udledes &b_0& og &b_1&.
 \begin{center}
 	 $b_0 = C2(R1+R2) = \dfrac{1}{w_0\cdot Q}$ og $b_1 = C1C2R1R2 = \dfrac{1}{w_0^2}$, hvor $Q = \dfrac{\sqrt{b_0}}{b_1}$ og $w_0 = \sqrt{b_0}$.
 \end{center}
