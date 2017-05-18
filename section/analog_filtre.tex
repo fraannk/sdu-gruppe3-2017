@@ -1,3 +1,4 @@
+
 \section{Anti aliasing filter}
 \subsection{Formål}
 Analog til digital konverteren sampler ved en vis frekvens. Det er derfor vigtigt, ifølge Nyquist’s sætning, at begrænse indgangssignalet til halvdelen af denne samplingsfrekvens. Dette udelukker støj ved højere frekvenser.\\
@@ -5,65 +6,120 @@ Analog til digital konverteren sampler ved en vis frekvens. Det er derfor vigtig
 Dette kan realiseres ved hjælp af et anti aliasing filter (herefter AA filter). Samplingsfrekvensen af sat til 44.1kHz, det vil derfor være ideelt at påføre et AA filter med en betydelig dæmpning ved 22.5kHz.\\
 \subsection{Overvejelser}
 Når der arbejdes med lydsignaler er det vigtigt at overveje gruppeløbetiden. Denne beskriver hvor stor en forsinkelse forskellige frekvenser har i forhold til gengivelsen. Ud fra dette blev der indledningsvis valgt et bessel filter, da denne type filter har en konstant gruppeløbetid op til knækfrekvensen. Senere på forløbet blev afklaret at forsinkelsen skulle ligge i millisekund før det var tydelig hørbart. Der blev derfor taget en beslutning om at skifte til Butterworth filtre, da disse har en stejlere dæmpnings hældning og kræver færre komponenter.\\
-\subsection{Parametre, udregning og Sallen Key}
+\subsection{Parametre, udregning og Sallen Key}\label{sec::anfilter_sallenpara}
 Butterworth filteret blev valgt som det endelige filter. 
 Det vælges at knækfrekvensen skal ligge ved 17kHz med en dæmpning på -3dB. Ved hjælp af Matlab (der refereres til bilag \ref{void}) udregnes at amplituden ved 22.5kHz kan dæmpes med -12dB med at 5. ordens butterworth filter.\\
 Der ønskes tre overføringsfunktioner på formen\\
 \begin{center}
-	$H(s) = \dfrac{1}{s^2+b_1\cdot s + b_0}$\\
+	$H(s) = \dfrac{1}{s^2+b_1\cdot s + b_0}$\label{eq::anfilter_standardeq}\\
 \end{center}
 Ved hjælp af tablerne \ref{void} i bilag, kan overføringsfunktionerne for de tre aktive filtre findes.
 
-\begin{figure}
-	
 \begin{center}
-	\begin{itemize}	
- $H_1(s) = \dfrac{1}{s+1}$ \\ 
+ $H_1(s) = \dfrac{1}{s+1}$\\
+ \vspace{4mm} 
  $H_2(s) = \dfrac{1}{s^2 + 0.618034\cdot s + 1}$\\
+ \vspace{4mm}
  $H_3(s) = \dfrac{1}{s^2 + 1.618034\cdot s + 1}$\\
-
-	\end{itemize}
 \end{center}
-\end{figure}
 
 Den totale overføringsfunktion kan findes via tabel \ref{void}.\\ 
 \begin{center}
  $H(s) = \dfrac{1}{s^5+3.236068\cdot s^4 + 5.236068\cdot s^3 + 5.236068\cdot s^2 + 3.236068\cdot s +1}$
 \end{center}
-\subsection{Realisering}
-Et 5. ordens filter kan realiseres aktivt ved at kaskadekoble et 1. ordens filter med to 2. ordens filtre som vist på figur  \ref{fig::filter_kask_butterworth}. Ved realisering af det aktive filter benyttes Sallen-Key, en filter topologi der anvendes til at realisere 2. ordens aktive filtre. 
+Et 5. ordens filter kan realiseres aktivt ved at kaskadekoble et 1. ordens filter med to 2. ordens filtre som vist på figur  \ref{fig::anfilter_kask_butterworth}. Ved realisering af det aktive filter benyttes Sallen-Key, en filter topologi der anvendes til at realisere 2. ordens aktive filtre. 
+
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.7]{./billeder/Kaskade.png}
+	\includegraphics[scale=0.7]{./billeder/Kaskade}
 	\caption{Kaskade af flere butterworth filtre.}
-	\label{fig::kask_butterworth}
+	\label{fig::anfilter_kask_butterworth}
 \end{figure}
 \FloatBlock
-Stage 1 er et 1. ordens butterworth filter. Der designes ud fra formlen:\\
+
+For at simplificere udregningerne vil alle operationsforstærkere anses for at være ideelle og arbejde i den lineær region, dvs\\
+
+\begin{center}
+	$V_+ = V_-$
+\end{center}
+
+\subsubsection{Stage 1} 
+Det første stage på filteret er et 1. ordens butterworth filter og det designes ud fra formlen\\
+
 \begin{center}
 	$f_c = \dfrac{1}{2\cdot\pi\cdot R C}$\\
 \end{center} 	
 hvor $f_c$ er knækfrekvensen sat ved $17kHz$.
-R1 vælges til $10K\Omega$ og C1 udregnes til $936pF$.\\
+R1 vælges til $10K\Omega$ og C1 udregnes til $940pF$.\\
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.3]{./billeder/stage1}
 	\caption{Stage 1 filter opbygning.}
 	\label{fig::stage1}
 \end{figure}
+
+\subsection{Stage 2}\label{sec::stage2}
+Hvis kredsløbet på figur \ref{fig::anfilter_gensallen} betragtes, ses det at\\
+\begin{center}
+	$V_+ = V1\dfrac{Z3}{Z2+Z3}$\\
+	\vspace*{5mm}
+	$V_- = V_{out}$
+\end{center}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale = 0.4]{./billeder/komp_udregn}
+	\caption{Standard Sallen-Key filter}
+	\label{fig::anfilter_gensallen}
+\end{figure}
 \FloatBlock
-Stage 2 designes ved hjælp af formlen\\
+
+Ved KCL findes\\
+\begin{center}
+	$\dfrac{V_{out}}{V_{in}} = \dfrac{V_{in}-V_1}{Z_1} = \dfrac{V_1 - V_{out}}{Z_4}+\dfrac{V_1}{Z_2+Z_3}$
+\end{center}
+Ved omrokering af disse ligninger findes
+
+\begin{center}
+	$\dfrac{V_{out}}{V_{in}} = \dfrac{1}{\dfrac{Z_1Z_2}{Z_3Z_4}+\dfrac{Z_1}{Z_3}+\dfrac{Z_2}{Z_3}+1} = \dfrac{Z_3Z_4}{Z_1Z_2+Z_1Z_4+Z_2Z_4+Z_3Z_4}$
+\end{center}
+
+Komponenter indsættes som følgende
+
+\begin{center}
+	$Z_1 = R1, \hspace{3mm} Z_2 = R_2, \hspace{3mm} Z_3 = \dfrac{1}{sC_1}$ \hspace{0.5mm} og \hspace{0.5mm} $Z_4 = \dfrac{1}{sC_2}$
+\end{center}
+
+Overføringsfunktionen for dette filter vil slutteligt være\\
+
 \begin{center}
 \begin{math}
-H(s) = \dfrac{1}{1+C1(R1+R2)\cdot s+C1C2R1R2\cdot s^2}
+H(s) = \dfrac{1}{1+C2(R1+R2) s+C1C2R1R2 s^2}
 \label{eq::SallenKey}
 \end{math}
 	
 \end{center} 
 
-Her sættes $C2(R1+R2) = \dfrac{1}{w_0\cdot Q}$ og $C1C2R1R2 = \dfrac{1}{w_0^2}$, hvor $Q = \dfrac{\sqrt{b_0}}{b_1}$ og $w_0 = 2 \pi  f_c$.
-\\R1 og R2 vælges til $32K\Omega$. Ud fra to ligninger med to ubekendte, udregnes C1 til at være $90pF$, og C2 udregnes til $936pF$.\\
-Ud fra formel \ref{eq::SallenKey} udregnes også stage 3. Her vælges R2 til at være $155k\Omega$ og C2 til at være $936pF$, C1 udregnes til at være $93pF$ og R1 til $6.4K\Omega$. 
+Betragtes formel \ref{eq::anfilter_standardeq} kan følgende udledes\\
+\begin{center}
+	 $b_0 = C2(R1+R2) = \dfrac{1}{w_0\cdot Q}$ og $b_1 = C1C2R1R2 = \dfrac{1}{w_0^2}$, hvor $Q = \dfrac{\sqrt{b_0}}{b_1}$ og $w_0 = \sqrt{b_0}$.
+\end{center}
+R1 og R2 vælges til $32K\Omega$. Ud fra to ligninger med to ubekendte, udregnes C1 til at være $90pF$, og C2 udregnes til $940pF$.\\
+\subsection{Stage 3}
+Ud fra formel \ref{eq::SallenKey} udregnes også stage 3. Her vælges R2 til at være $150k\Omega$ og C2 til at være $940pF$, C1 udregnes til at være $95pF$ og R1 til $6K\Omega$. 
+
+%\begin{figure}[h]
+%	\centering
+%	\subbottom[]{%
+%		\includegraphics[width=3cm]{./billeder/stage2.png}
+%		\label{fig::anfilter_restage2}}
+%	\subbottom[]{%
+%		\includegraphics[width=3cm]{./billeder/stage3.png}
+%		\label{fig::anfilter_restage3}}
+%	\caption{\ref{fig::anfilter_restage2}: Stage 2 filter. \hspace{4cm} \ref{fig::anfilter_restage3}: Stage 3 filter.
+%\end{figure}
+%\FloatBlock
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.3]{./billeder/stage23}
@@ -71,6 +127,15 @@ Ud fra formel \ref{eq::SallenKey} udregnes også stage 3. Her vælges R2 til at 
 	\label{fig::filter_stage2}
 \end{figure}
 \FloatBlock
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{./billeder/stage3}
+	\caption{Stage 3 filter.}
+	\label{fig::filter_stage3}
+\end{figure}
+\FloatBlock
+
 \subsection{Simulering}
 Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{fig::aa_sim}, findes en dæmpning på -3dB ved 17kHz og en dæmpning på -12dB ved 22.5kHz. Forskellen i gruppeløbetiden er maksimalt $18 \mu s$.
 \begin{figure}[h!]
@@ -80,7 +145,7 @@ Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{f
 	\label{fig::afilter_aasim}
 \end{figure}
 \FloatBlock
-Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to komplekse poler i stage 2 og to komplekse poler i stage 3. Disse kan ses i figur \ref{void}.
+Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to komplekse poler i stage 2 og to komplekse poler i stage 3. Disse kan ses i figur \ref{fig::anfilter_pol}.
 
 \begin{figure}[h!]
 	\centering
@@ -93,5 +158,16 @@ Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to kompleks
 \subsection{Formål}
 I et system med både analog og digitale signaler, bruges et rekonstruktions filter (eller anti image filter) til at genererer et glat analog signal fra udgangssignalet fra bla. en DAC. Et digitalt lyd signal har en trappetrin type bølgeform som indeholder en del højfrekvent energi kaldet "images". Et rekonstruktions filter konstruerer en mere jævn version af det originale signal.
 \subsection{Parametre og udregning}
-Det er almindelig praksis at benytte et filter til rekonstruktion, magen til det filter der anvendes til antialiasing. For udregninger af dette filter, henvises til afsnit \ref{void}.
+Det er almindelig praksis at benytte et filter til rekonstruktion, magen til det filter der anvendes til antialiasing. For udregninger henvises til afsnit \ref{sec::anfilter_sallenpara}.\\
+
+
 \subsection{Test og målinger}
+På figur \ref{fig::anfilter_recon} ses udgangssignalet fra DAC (gul), og det rekonstrueret signal (blå).
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale = 0.4]{./billeder/reconstruction.png}
+	\caption{Rekonstruktion af udgangen på DAC}
+	\label{fig::anfilter_recon}
+\end{figure}
+\FloatBlock
+
