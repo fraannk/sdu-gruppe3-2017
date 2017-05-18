@@ -9,18 +9,16 @@ Når der arbejdes med lydsignaler er det vigtigt at overveje gruppeløbetiden. D
 \subsection{Parametre, udregning og Sallen Key}\label{sec::anfilter_sallenpara}
 Butterworth filteret blev valgt som det endelige filter. 
 Det vælges at knækfrekvensen skal ligge ved 17kHz med en dæmpning på -3dB. Ved hjælp af Matlab (der refereres til bilag \ref{void}) udregnes at amplituden ved 22.5kHz kan dæmpes med -12dB med at 5. ordens butterworth filter.\\
-Der ønskes tre overføringsfunktioner på formen\\
-\begin{center}
-	$H(s) = \dfrac{1}{s^2+b_1\cdot s + b_0}$\label{eq::anfilter_standardeq}\\
-\end{center}
-Ved hjælp af tablerne \ref{void} i bilag, kan overføringsfunktionerne for de tre aktive filtre findes.
+Der ønskes tre overføringsfunktioner på formen som vist i ligning \ref{eq::anfilter_standardeq}.
+\begin{equation}
+	H(s) = \dfrac{1}{s^2+b_1\cdot s + b_0}\label{eq::anfilter_standardeq}
+\end{equation}
+Ved hjælp af tablerne \ref{void} i bilag \ref{bilagetellerandet}, kan overføringsfunktionerne for de tre aktive filtre findes.
 
 \begin{center}
- $H_1(s) = \dfrac{1}{s+1}$\\
- \vspace{4mm} 
- $H_2(s) = \dfrac{1}{s^2 + 0.618034\cdot s + 1}$\\
- \vspace{4mm}
- $H_3(s) = \dfrac{1}{s^2 + 1.618034\cdot s + 1}$\\
+ $H_1(s) = \dfrac{1}{s+1}$ \hspace{1.5cm}
+ $H_2(s) = \dfrac{1}{s^2 + 0.618034\cdot s + 1}$ \hspace{1.5cm}
+ $H_3(s) = \dfrac{1}{s^2 + 1.618034\cdot s + 1}$
 \end{center}
 
 Den totale overføringsfunktion kan findes via tabel \ref{void}.\\ 
@@ -37,35 +35,31 @@ Et 5. ordens filter kan realiseres aktivt ved at kaskadekoble et 1. ordens filte
 \end{figure}
 \FloatBlock
 
-For at simplificere udregningerne vil alle operationsforstærkere anses for at være ideelle og arbejde i den lineær region, dvs\\
+For at simplificere udregningerne vil alle operationsforstærkere anses for at være ideelle og arbejde i den lineær region, hvilket medfører $V_+ = V_-$.
 
-\begin{center}
-	$V_+ = V_-$
-\end{center}
-
-\subsubsection{Stage 1} 
-Det første stage på filteret er et 1. ordens butterworth filter og det designes ud fra formlen\\
-
-\begin{center}
-	$f_c = \dfrac{1}{2\cdot\pi\cdot R C}$\\
-\end{center} 	
-hvor $f_c$ er knækfrekvensen sat ved $17kHz$.
-R1 vælges til $10K\Omega$ og C1 udregnes til $940pF$.\\
+\subsubsection{Trin 1} 
+Det første trin i filteret er et 1. ordens butterworth filter og det designes ud fra ligning \ref{filter_trin1},
+\begin{equation}
+	f_c = \dfrac{1}{2\cdot\pi\cdot R C} \label{filter_trin1}
+\end{equation} 	
+hvor knækfrekvensen, $f_c$, er sat ved $17kHz$.
+R1 vælges til $10K\Omega$ og C1 udregnes til $940pF$.
+\Kenneth{Argumentet for 17 kilo hertz?}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.3]{./billeder/stage1}
-	\caption{Stage 1 filter opbygning.}
+	\caption{Trin 1 filter opbygning.}
 	\label{fig::stage1}
 \end{figure}
 
-\subsection{Stage 2}\label{sec::stage2}
+\subsection{Trin 2}\label{sec::stage2}
 Hvis kredsløbet på figur \ref{fig::anfilter_gensallen} betragtes, ses det at\\
 \begin{center}
 	$V_+ = V1\dfrac{Z3}{Z2+Z3}$\\
 	\vspace*{5mm}
 	$V_- = V_{out}$
 \end{center}
-
+\Kenneth{Skal lige snakke med Jonas om denne udregning}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.4]{./billeder/komp_udregn}
@@ -75,17 +69,16 @@ Hvis kredsløbet på figur \ref{fig::anfilter_gensallen} betragtes, ses det at\\
 \FloatBlock
 
 Ved KCL findes\\
-\begin{center}
-	$\dfrac{V_{out}}{V_{in}} = \dfrac{V_{in}-V_1}{Z_1} = \dfrac{V_1 - V_{out}}{Z_4}+\dfrac{V_1}{Z_2+Z_3}$
-\end{center}
+\begin{equation}
+	\dfrac{V_{out}}{V_{in}} = \dfrac{V_{in}-V_1}{Z_1} = \dfrac{V_1 - V_{out}}{Z_4}+\dfrac{V_1}{Z_2+Z_3}
+\end{equation}
 Ved omrokering af disse ligninger findes
 
 \begin{center}
 	$\dfrac{V_{out}}{V_{in}} = \dfrac{1}{\dfrac{Z_1Z_2}{Z_3Z_4}+\dfrac{Z_1}{Z_3}+\dfrac{Z_2}{Z_3}+1} = \dfrac{Z_3Z_4}{Z_1Z_2+Z_1Z_4+Z_2Z_4+Z_3Z_4}$
 \end{center}
 
-Komponenter indsættes som følgende
-
+Komponenter indsættes som følgende,
 \begin{center}
 	$Z_1 = R1, \hspace{3mm} Z_2 = R_2, \hspace{3mm} Z_3 = \dfrac{1}{sC_1}$ \hspace{0.5mm} og \hspace{0.5mm} $Z_4 = \dfrac{1}{sC_2}$
 \end{center}
@@ -97,15 +90,13 @@ Overføringsfunktionen for dette filter vil slutteligt være\\
 H(s) = \dfrac{1}{1+C2(R1+R2) s+C1C2R1R2 s^2}
 \label{eq::SallenKey}
 \end{math}
-	
 \end{center} 
-
-Betragtes formel \ref{eq::anfilter_standardeq} kan følgende udledes\\
+Ud fra den ønskede form (ligning \ref{eq::anfilter_standardeq}), udledes $b_04$ og $b_1$.
 \begin{center}
 	 $b_0 = C2(R1+R2) = \dfrac{1}{w_0\cdot Q}$ og $b_1 = C1C2R1R2 = \dfrac{1}{w_0^2}$, hvor $Q = \dfrac{\sqrt{b_0}}{b_1}$ og $w_0 = \sqrt{b_0}$.
 \end{center}
 R1 og R2 vælges til $32K\Omega$. Ud fra to ligninger med to ubekendte, udregnes C1 til at være $90pF$, og C2 udregnes til $940pF$.\\
-\subsection{Stage 3}
+\subsection{Trin 3}
 Ud fra formel \ref{eq::SallenKey} udregnes også stage 3. Her vælges R2 til at være $150k\Omega$ og C2 til at være $940pF$, C1 udregnes til at være $95pF$ og R1 til $6K\Omega$. 
 
 %\begin{figure}[h]
