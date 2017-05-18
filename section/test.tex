@@ -29,18 +29,19 @@ For bedst at teste equalizeren, blev der besluttet at følgende tre 3 parametre 
     \item Ved frekvensen blev der holdt en fast amplitude ($\pm5\decibel$) og fast bandwidth ($100\hertz$). Her blev der dog målt med forskellige typer filtre. Peak filtret blev målt ved $100\hertz$ og $5\kilo\hertz$, hvor high shelf og low shelf filtrene blev målt ved $1\kilo\hertz$ og $5\kilo\hertz$. \\
 \end{enumerate}
 
-Derudover blev der opstillet en "kode-test" hvor der blev beregnet filtre som alle havde samme egenskaber, uanset om dette var et peak, high shelf eller et low shelf. Dette var for at eftervise om DSP koden var konsistent i alle typer filtre. 
+Derudover blev der opstillet en "kode-test" hvor der blev beregnet filtre som alle havde samme egenskaber, uanset om dette var et peak, high shelf eller et low shelf. Dette var for at eftervise om DSP koden var konsistent i alle typer filtre. \\
 
 \section{Udførelse}
-For at måle overføringsfunktionen sættes Bode 100'ens output til indgangen på equalizeren. CH1 sættes også til indgangen. CH2 sættes til udgangen og målingen foretages for samtlige af ovenstående presets.
+For at måle overføringsfunktionen sættes Bode 100'ens output til indgangen på equalizeren. CH1 sættes også til indgangen. CH2 sættes til udgangen og målingen foretages for samtlige af ovenstående presets. \\
 
-\husk{Søren}{Ret billede til diagram over opsætning}
-\begin{figure}[h!]
+
+\begin{figure}[h!]\label{fig:bode_setup}
 	\centering
-	\includegraphics[width=15cm]{billeder/setup}
+	\includegraphics[width=13cm]{billeder/bode_setup}
 	\caption{Målingssetup med Bode 100}
 \end{figure}	
 
+\FloatBlock
 
 \section{Resultater}
 I dette afsnit vil resultaterne af målingerne blive sammenlignet med de teoretiske udregninger og grafer.
@@ -74,25 +75,25 @@ Den vigtige del at eftervise, er hvor equalizeren er slået til.
 
 \subsection{Målinger}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[]{matlabdemo/test/eq_off.png}  
 \caption{Måling af hele systemet uden equalizer slået til.}
 \label{fig:eq_off1}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[]{matlabdemo/test/eq_megafon.png}
 \caption{Måling af megafon preset.}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[]{matlabdemo/test/eq_1knotch.png}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \includegraphics[]{matlabdemo/test/eq_rock.png}
 \caption{Sammenligning mellem den teoretiske rock profil og den målte.}
 \end{figure}
@@ -101,7 +102,7 @@ Den vigtige del at eftervise, er hvor equalizeren er slået til.
 
 \subsection{Målinger}
 Equalizer off.
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[scale = 0.8]{matlabdemo/test/test_eq_off.png}  
 \caption{Måling af hele systemet uden equalizer slået til.}
@@ -110,7 +111,7 @@ Equalizer off.
 \subsection{Frekvensplacerings}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[scale = 0.8]{matlabdemo/test/test_freq_peak.png}
 \caption{Måling af forskellige amplituder.}
@@ -121,7 +122,7 @@ Equalizer off.
 
 \subsection{Båndbredde}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[scale = 0.8]{matlabdemo/test/test_bw.png}
 \caption{Måling af varierende båndbredde.}
@@ -132,7 +133,7 @@ Equalizer off.
 
 \subsection{Amplitude}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[scale = 0.8]{matlabdemo/test/test_amp.png}
 \caption{Måling af forskellige amplituder.}
