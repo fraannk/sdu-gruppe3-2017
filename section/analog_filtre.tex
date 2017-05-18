@@ -91,13 +91,15 @@ H(s) = \dfrac{1}{1+C2(R1+R2) s+C1C2R1R2 s^2}
 \label{eq::SallenKey}
 \end{math}
 \end{center} 
-Ud fra den ønskede form (ligning \ref{eq::anfilter_standardeq}), udledes $b_04$ og $b_1$.
-\begin{center}
-	 $b_0 = C2(R1+R2) = \dfrac{1}{w_0\cdot Q}$ og $b_1 = C1C2R1R2 = \dfrac{1}{w_0^2}$, hvor $Q = \dfrac{\sqrt{b_0}}{b_1}$ og $w_0 = \sqrt{b_0}$.
-\end{center}
-R1 og R2 vælges til $32K\Omega$. Ud fra to ligninger med to ubekendte, udregnes C1 til at være $90pF$, og C2 udregnes til $940pF$.\\
+Ud fra den ønskede form (ligning \ref{eq::anfilter_standardeq}), udledes $b_0$ og $b_1$,
+
+\begin{equation}
+	 b_0 = C2(R1+R2) = \dfrac{1}{w_0\cdot Q} \hspace{1cm} b_1 = C1 \cdot C2 \cdot R1 \cdot R2 = \dfrac{1}{w_0^2} \nonumber
+\end{equation}
+hvor $Q = \dfrac{\sqrt{b_0}}{b_1}$ og $w_0 = \sqrt{b_0}$, og komponenterne R1 og R2 vælges til $32K\Omega$. Ud fra to ligninger med to ubekendte, udregnes C1 til at være $90pF$, og C2 udregnes til $940pF$.
+\Kenneth{Hvilke komponenter er det? Vi skal matche dem med dem fra schematics.}
 \subsection{Trin 3}
-Ud fra formel \ref{eq::SallenKey} udregnes også stage 3. Her vælges R2 til at være $150k\Omega$ og C2 til at være $940pF$, C1 udregnes til at være $95pF$ og R1 til $6K\Omega$. 
+Ud fra formel \ref{eq::SallenKey} udregnes også trin 3. Her vælges R2 til at være $150k\Omega$ og C2 til at være $940pF$, C1 udregnes til at være $95pF$ og R1 til $6K\Omega$. 
 
 %\begin{figure}[h]
 %	\centering
@@ -111,10 +113,11 @@ Ud fra formel \ref{eq::SallenKey} udregnes også stage 3. Her vælges R2 til at 
 %\end{figure}
 %\FloatBlock
 
+\Kenneth{De to billeder side om side}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.3]{./billeder/stage23}
-	\caption{Stage 2 og 3 filter opbygning.}
+	\caption{Trin 2 og 3 filter opbygning.}
 	\label{fig::filter_stage2}
 \end{figure}
 \FloatBlock
@@ -122,7 +125,7 @@ Ud fra formel \ref{eq::SallenKey} udregnes også stage 3. Her vælges R2 til at 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.4]{./billeder/stage3}
-	\caption{Stage 3 filter.}
+	\caption{Trin 3 filter.}
 	\label{fig::filter_stage3}
 \end{figure}
 \FloatBlock
@@ -149,8 +152,7 @@ Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to kompleks
 \subsection{Formål}
 I et system med både analog og digitale signaler, bruges et rekonstruktions filter (eller anti image filter) til at genererer et glat analog signal fra udgangssignalet fra bla. en DAC. Et digitalt lyd signal har en trappetrin type bølgeform som indeholder en del højfrekvent energi kaldet "images". Et rekonstruktions filter konstruerer en mere jævn version af det originale signal.
 \subsection{Parametre og udregning}
-Det er almindelig praksis at benytte et filter til rekonstruktion, magen til det filter der anvendes til antialiasing. For udregninger henvises til afsnit \ref{sec::anfilter_sallenpara}.\\
-
+Det er almindelig praksis at benytte et filter til rekonstruktion, magen til det filter der anvendes til antialiasing. For udregninger henvises til afsnit \ref{sec::anfilter_sallenpara}.
 
 \subsection{Test og målinger}
 På figur \ref{fig::anfilter_recon} ses udgangssignalet fra DAC (gul), og det rekonstrueret signal (blå).
