@@ -11,9 +11,16 @@ som kommunikerer med equalizer modulet.
 \end{figure}
 
 
-beregning af amplitude \\
-beregning af coefficienter\\
-add filter \\
-use filter \\
-clear filter \\
-cascade filter \\
+active\_band holder styr på hvor mange bånd equalizer har.
+
+
+
+Funktionaliteter:
+\begin{itemize}[noitemsep,nolistsep]
+\item Calculate Amplitude: modtager en frekvens og returnerer amplituden i $dB$.  \\
+\item Calculate Coefficients: modtager parametre og beregner koefficienter. \\
+\item Add filter: modtager koefficienter og overfører dem til temp bufferen. Inkrementerer active\_band.\\
+\item Use filter: overfører koefficienterne fra temp bufferen til bufferen \\
+\item Clear filter: nulstiller $W$  \\
+\item Cascade filter: modtager et sample som skal filtreres, henter koefficienterne fra bufferen.
+\end{itemize}
