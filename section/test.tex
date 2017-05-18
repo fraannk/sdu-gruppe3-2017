@@ -7,22 +7,23 @@
 \section{Forberedelse}
 
 
-Der blev bestemt at følgende målinger bedst kunne eftervise equalizerens funktion: \\
+For bedst at teste equalizeren, blev der besluttet at følgende tre 3 parametre skulle gennemtestes: 
 
-Måling af amplitude og fase med Bode 100 for følgende presets:
 \begin{enumerate}[noitemsep,nolistsep]
-    \item Equalizeren slået fra.
-    \item Megafon preset.
-    \item Bass boost preset.
-    \item High boost preset.
-    \item Rock preset. 
-    \item 1k notch preset. \\
+    \item Amplituden/Gain
+    \item Bandwidth
+    \item Frekvens \\
 \end{enumerate}
-	
 
 
-Derudover skulle "1k notch" preset'et måles med et oscilloskop på indgangen og udgangen, mens en funktionsgenerator sendte en $1\kilo\hertz$ bølge ind på indgangen. Dette skulle eftervise om preset'et gjorde præcist hvad det skulle. \\
+Under disse parametre var der en del forskellige ting der skulle tages højde for. 
+\begin{enumerate}[noitemsep,nolistsep]
+    \item Ved amplituden skulle der holdes en fast bandwidth ($100\hertz$) og en fast frekvens ($1\kilo\hertz$). Der blev målt hhv. $\pm5\decibel$ og $\pm7\decibel$
+    \item Ved bandwidth skulle der holdes en fast amplitude ($\pm5\decibel$) samt en fast frekvens. ($1\kilo\hertz$). Her blev der målt forskellig bandwidth, hhv. $100\hertz$, $500\hertz$ og $1\kilo\hertz$.
+    \item Ved frekvensen blev der holdt en fast amplitude ($\pm5\decibel$) og fast bandwidth ($100\hertz$). Her blev der dog målt med forskellige typer filtre. Peak filtret blev målt ved $100\hertz$ og $5\kilo\hertz$, hvor high shelf og low shelf filtrene blev målt ved $1\kilo\hertz$ og $5\kilo\hertz$. \\
+\end{enumerate}
 
+Derudover blev der opstillet en "kode-test" hvor der blev beregnet filtre som alle havde samme egenskaber, uanset om dette var et peak, high shelf eller et low shelf. Dette var for at eftervise om DSP koden var konsistent i alle typer filtre. 
 
 \section{Udførelse}
 For at måle overføringsfunktionen sættes Bode 100'ens output til indgangen på equalizeren. CH1 sættes også til indgangen. CH2 sættes til udgangen og målingen foretages for samtlige af ovenstående presets.
