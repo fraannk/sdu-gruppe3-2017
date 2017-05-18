@@ -216,14 +216,48 @@ legend('\Delta\omega = 100','\Delta\omega = 500','\Delta\omega = 1000','\Delta\o
   grid on
 print( h3, '-dpng', '-r200', 'test_bw.png')
 hold off
+%% Test
+clear all, close all, clc
+% peak/notch
+[foff, ampoff,phaseoff]= plotcsvbode('./Frekvens/Eq_off_freq.csv','rock',1);
+
+[f1, amp1,phase1]=plotcsvbode('./Maalinger/Med_hotfix/Bandwidth/100bw.csv','Frekvensplacering',1);
+[f2, amp2,phase2]=plotcsvbode('./Maalinger/Med_hotfix/Bandwidth/500bw.csv','Frekvensplacering',1);
+[f3, amp3,phase3]=plotcsvbode('./Maalinger/Med_hotfix/Bandwidth/1000bw.csv','Frekvensplacering',1);
+[f4, amp4,phase4]=plotcsvbode('./Maalinger/Med_hotfix/Bandwidth/bw_100hz_minus5dB.csv','Frekvensplacering',1);
+[f5, amp5,phase5]=plotcsvbode('./Maalinger/Med_hotfix/Bandwidth/bw_500hz_minus5dB.csv','Frekvensplacering',1);
+[f6, amp6,phase6]=plotcsvbode('./Maalinger/Med_hotfix/Bandwidth/bw_1000hz_minus5dB.csv','Frekvensplacering',1);
+
+
+h3 = figure(1);
+semilogx(f1,amp1 - ampoff)
+hold on
+semilogx(f2,amp2 - ampoff)
+semilogx(f3,amp3 - ampoff)
+semilogx(f4,amp4 - ampoff)
+semilogx(f5,amp5 - ampoff)
+semilogx(f6,amp6 - ampoff)
+xlim([20 20000])
+ylim([-6 6])
+xlabel('f [Hz]')
+ylabel('|H(f)| [dB]')
+legend('BW = 100hz','BW = 500hz','BW = 1000hz','BW = 100hz','BW = 500hz','BW = 1000hz')
+  grid on
+print( h3, '-dpng', '-r200', 'Bandwidth_Med_hotfix.png')
+hold off
+
 
 %% Frekvensplacering
 clear all, close all, clc
 % peak/notch
-[f1, amp1,phase1]=plotcsvbode('./Frekvens/100hz.csv','rock',1);
-[f2, amp2,phase2]=plotcsvbode('./Frekvens/5000hz.csv','rock',1);
-[f3, amp3,phase3]=plotcsvbode('./Frekvens/minus100hz.csv','rock',1);
-[f4, amp4,phase4]=plotcsvbode('./Frekvens/minus5000hz.csv','rock',1);
+subplot(411)
+[f1, amp1,phase1]=plotcsvbode('./Maalinger/Uden_hotfix/Bandwidth/bw_100_gain_5dB.csv','Frekvensplacering',10);
+subplot(412)
+[f2, amp2,phase2]=plotcsvbode('./Maalinger/Uden_hotfix/Bandwidth/bw_100_gain_minus5dB.csv','Frekvensplacering',10);
+subplot(413)
+[f3, amp3,phase3]=plotcsvbode('./Maalinger/Uden_hotfix/Bandwidth/bw_500_gain_5dB.csv','Frekvensplacering',10);
+subplot(414)
+[f4, amp4,phase4]=plotcsvbode('./Maalinger/Uden_hotfix/Bandwidth/bw_500_gain_minus5dB.csv','Frekvensplacering',10);
 % high shelv
 [f5, amp5,phase5]=plotcsvbode('./Frekvens/hs1000hz_5dB.csv','rock',1);
 [f6, amp6,phase6]=plotcsvbode('./Frekvens/hs5000hz_5db.csv','rock',1);

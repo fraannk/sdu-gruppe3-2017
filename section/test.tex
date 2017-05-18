@@ -16,7 +16,8 @@ For bedst at teste equalizeren, blev der besluttet at følgende tre 3 parametre 
 \end{enumerate}
 
 
-Under disse parametre var der en del forskellige ting der skulle tages højde for. 
+
+Under disse parametre var der en del forskellige ting der skulle tages højde for. 
 \begin{enumerate}[noitemsep,nolistsep]
     \item Ved amplituden skulle der holdes en fast bandwidth ($100\hertz$) og en fast frekvens ($1\kilo\hertz$). Der blev målt hhv. $\pm5\decibel$ og $\pm7\decibel$
     \item Ved bandwidth skulle der holdes en fast amplitude ($\pm5\decibel$) samt en fast frekvens. ($1\kilo\hertz$). Her blev der målt forskellig bandwidth, hhv. $100\hertz$, $500\hertz$ og $1\kilo\hertz$.
@@ -49,12 +50,12 @@ Den vigtige del at eftervise, er hvor equalizeren er slået til.
 %Som det ses på figur \ref{fig:rock_test} ligger testresultaterne meget tæt på de teoretiske. Det vurderes at dette ligger inden for fejlmargin. Målingerne blev foretaget med et indgangssignal på 4dBm, for at sikre at ingen af profilerne overstyrede.
 
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=15cm]{billeder/rock_test}
-	\caption{Sammenligning af "Rock"-profilen, teoretisk (orange) og måling (blå)}
-	\label{fig:rock_test}
-\end{figure}
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=15cm]{billeder/rock_test}
+%	\caption{Sammenligning af "Rock"-profilen, teoretisk (orange) og måling (blå)}
+%	\label{fig:rock_test}
+%\end{figure}
 	
 
 %Der blev dog, vha. testene, fundet en fejl i DSP-beregningerne, som derfor kunne rettes. Der blev opdaget at den angivede frekvens i profilen altid var fordoblet på udgangen. Dette var på grund af at udregningen skulle ganges med $\frac{f_s}{2}$ i stedet for $f_s$. \\ 
@@ -66,70 +67,69 @@ Den vigtige del at eftervise, er hvor equalizeren er slået til.
 
 
 
-\subsection{Målinger}
 
-\begin{figure}[h]
-\centering
-\includegraphics[]{matlabdemo/test/eq_off.png}  
-\caption{Måling af hele systemet uden equalizer slået til.}
-\label{fig:eq_off1}
-\end{figure}
+%\begin{figure}[h]
+%\centering
+%\includegraphics[]{matlabdemo/test/eq_off.png}  
+%\caption{Måling af hele systemet uden equalizer slået til.}
+%\end{figure}
 
-\begin{figure}[h]
-\centering
-\includegraphics[]{matlabdemo/test/eq_megafon.png}
-\caption{Måling af megafon preset.}
-\end{figure}
+%\begin{figure}[h]
+%\centering
+%\includegraphics[]{matlabdemo/test/eq_megafon.png}
+%\caption{Måling af megafon preset.}
+%\end{figure}
+%
+%\begin{figure}[h]
+%    \centering
+%    \includegraphics[]{matlabdemo/test/eq_1knotch.png}
+%\end{figure}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[]{matlabdemo/test/eq_1knotch.png}
-\end{figure}
-
-\begin{figure}[h]
-\includegraphics[]{matlabdemo/test/eq_rock.png}
-\caption{Sammenligning mellem den teoretiske rock profil og den målte.}
-\end{figure}
+%\begin{figure}[h]
+%\includegraphics[]{matlabdemo/test/eq_rock.png}
+%\caption{Sammenligning mellem den teoretiske rock profil og den målte.}
+%\end{figure}
 
 
-
-\subsection{Målinger}
-Equalizer off.
 \begin{figure}[h]
 \centering
 \includegraphics[scale = 0.8]{matlabdemo/test/test_eq_off.png}  
 \caption{Måling af hele systemet uden equalizer slået til.}
+\label{fig:eq_off1}
 \end{figure}
 
-\subsection{Frekvensplacerings}
+%\subsection{Frekvensplacerings}
 
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale = 0.8]{matlabdemo/test/test_freq_peak.png}
 \caption{Måling af forskellige amplituder.}
+\label{fig:eq_freq_peak}
 \end{figure}
 
 
 
 
-\subsection{Båndbredde}
+%\subsection{Båndbredde}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale = 0.8]{matlabdemo/test/test_bw.png}
 \caption{Måling af varierende båndbredde.}
+\label{fig:eq_bw}
 \end{figure}
 
 
 
 
-\subsection{Amplitude}
+%\subsection{Amplitude}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale = 0.8]{matlabdemo/test/test_amp.png}
 \caption{Måling af forskellige amplituder.}
+\label{fig:eq_amp}
 \end{figure}
 
 
