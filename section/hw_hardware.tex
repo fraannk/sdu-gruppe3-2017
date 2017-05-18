@@ -4,12 +4,6 @@ Den dybere tekniske beskrivelse i forhold til produkt specifikke registre eller 
 Det komplette hardware modul findes i \emph{hardware.c}.
 
 \subsection{Valg af hardware profil}
-\begin{wrapfigure}[20]{r}{5cm}
-	\centering
-	\includegraphics[width=4.5cm]{billeder/hardware_profiles.png}
-	\caption{Oversigt over mulige konfigurationer af \textit{hardware.c}.}
-	\label{fig:hardware_profiler}
-\end{wrapfigure}
 For at kunne håndtere de forskellige opsætninger af hardware i udviklingsforløbet af equalizerens software, er der lavet forskellige hardware opsætninger, således at man på en nem måde kan skifte imellem dem.
 \\
 I \textit{global.h} filen, findes to compiler \textbf{\#define} direktiver til makro definitionerne \textbf{EMP} og \textbf{DAC}.
@@ -20,6 +14,12 @@ Her kan der vælges imellem DAC eller PWM som udgangssignal.
 Den tilhørende pin-konfiguration for de valgte hardware profiler kan ses i bilag \ref{bilag:pinmap}.
 
 \subsection{CPU clock frekvens}
+\begin{wrapfigure}[20]{r}{5cm}
+	\centering
+	\includegraphics[width=4.5cm]{billeder/hardware_profiles.png}
+	\caption{Oversigt over mulige konfigurationer af \textit{hardware.c}.}
+	\label{fig:hardware_profiler}
+\end{wrapfigure}
 For at kunne opnå så mange beregninger som muligt i sekundet, sættes MCU'en clock frekvens til den maksimale.
 Den valgte MCU (TM4C123GH6PM) er en $80\si{\mega\hertz}$ mikrokontroller, og den ønskede clock frekvens sættes i funktionen \texttt{set\_80Mhz\_clock()} i hardwaremodulet \textit{hardware.c} til $F_{CPU} = 80\si{\mega\hertz}$. 
 
@@ -96,7 +96,6 @@ Til at generer udgangssignalet fra MCU'en vælges en ekstern DAC kreds, da MCU'e
 Valget blev en \texttt{MCP4922E/P}\footnote{Microchip MCP4922E/P 12-Bit Dual Voltage Output Digital-to-Analog Converter with SPI Interface \cite{mcp4922} } 12bit DAC IC, således at opløsningen på udgangen bliver den samme som på indgangen.
 Således er spændingsdifferencen for den mindst betydende bit $ V_{LSb} = V_{ref} / 4096 \approx \num{0,8}\si{\milli\volt} $, ved en ekstern reference spænding på $V_{ref} = 3,3\si{\volt}$.
 Derudover har den valgte DAC en maksimal indsvingningstid på $t_{settling} = \num{4.5}\si{\micro\second}$, hvilket passer fint til samplingsperioden på $23\si{\micro\second}$. 
-\jj{Hvis der bliver plads, kan AC fejl i DAC'en beskrives her }
 
 \subsection{SPI}
 Den valgte DAC forbindes direkte til MCU'en igennem en SPI bus, de valgte pins er beskrevet i bilag \ref{bilag:pinmap}.
@@ -124,18 +123,16 @@ I overensstemmelse med databladene for DAC'en og MCU'en, bruges SPI Freescale Fa
 	\label{fig:dac_dataframe}
 \end{figure}
 
-\jj{beskriv AB, BUF, GA og SHDN}
-
-Konfigurationen af SPI laves i \texttt{spi\_init()} i modulet \textit{hardware.c}
-
-\jj{Beskrive LDAC funktionalitet}   
+Konfigurationen af SPI laves i \texttt{spi\_init()} i modulet \textit{hardware.c}  
 
 \FloatBlock
 
 \subsection{Interrupt}
-\jj{Konstant kode selv om der er variable gennemløb audio in og audio out}
-\jj{funktion / time diagram er}
+Det er som tidligere fortalt kaldet til \texttt{sample\_handler();} ISR'en der ligger til grund for hele timing af lydsampling med mere.
+Det er dog ikke så vigtigt hvilken interrupt vektor der får opgaven.
+I dette system er det valgt at bruge \textbf{zero reload event} på PWM'en, som \textit{interrupt trigger}.\\
 
+Konfiguration af \textbf{NVIC}'en kan finde i modulet \textit{tm4c123gh6pm\_startup\_ccs\_gcc.c} og funktionen \texttt{init\_PWM(INT16U cycles);} i hardware modulet \textit{hardware.c}
 
 \subsection{UART}\label{subsec:uart}
 Det er muligt at tilgå Shell'en i equalizeren via seriel kommunikation.

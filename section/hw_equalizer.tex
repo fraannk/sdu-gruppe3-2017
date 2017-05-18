@@ -23,9 +23,11 @@ Profilerne bliver lagt i hukommelsen som linked lister, som det kan ses i figur 
 
 I modulet \textit{equalizer.c} findes et udvalg af funktioner til at håndtere og oprette profiler.
 Et lille udsnit af \texttt{equalizer\_profiles\_setup();} ses i figur \ref{lst:eq_profil_setup}, for at give et kort indblik i dennes funktionalitet.
+Når profilerne er lagt op i hukommelsen, bliver bliver profil med \texttt{id=0} valgt som standard, lyd ind- og udgange bliver aktiveret.
+Equalizeren er som standard deaktiveret.
 
 \begin{figure}[h!]
-\centering
+\centering	
 \lstset{language=C,
 	frame=sigle,
 	basicstyle=\ttfamily\tiny,
@@ -65,9 +67,7 @@ equalizer_create_spectrum( profile );			// Store LCD stectrum profile
 \label{lst:eq_profil_setup}
 \end{figure}
 
-\jj{beskriv initalizerings forløb i diagram }
-
-Det er også i equalizermodulet at den profil vælges der skal bruges som aktiv profil og at det er muligt at vælge om equalizer funktionaliteten skal være aktiv eller inaktiv.\\
+Det er ligeledes i equalizermodulet at den profil vælges der skal bruges som aktiv profil og at det er muligt at vælge om equalizer funktionaliteten skal være aktiv eller inaktiv.\\
 
 Modulet findes i kodebasen \textit{equalizer.c}
 
