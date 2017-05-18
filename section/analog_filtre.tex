@@ -34,7 +34,7 @@ Den totale overføringsfunktion kan findes via tabel \ref{void}.\\
 Et 5. ordens filter kan realiseres aktivt ved at kaskadekoble et 1. ordens filter med to 2. ordens filtre som vist på figur  \ref{fig::filter_kask_butterworth}. Ved realisering af det aktive filter benyttes Sallen-Key, en filter topologi der anvendes til at realisere 2. ordens aktive filtre. 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.7]{./billeder/kaskade.png}
+	\includegraphics[scale=0.7]{./billeder/Kaskade.png}
 	\caption{Kaskade af flere butterworth filtre.}
 	\label{fig::kask_butterworth}
 \end{figure}
@@ -47,7 +47,7 @@ hvor $f_c$ er knækfrekvensen sat ved $17kHz$.
 R1 vælges til $10K\Omega$ og C1 udregnes til $936pF$.\\
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.3]{./billeder/stage1.png}
+	\includegraphics[scale=0.3]{./billeder/stage1}
 	\caption{Stage 1 filter opbygning.}
 	\label{fig::stage1}
 \end{figure}
@@ -66,7 +66,7 @@ Her sættes $C2(R1+R2) = \dfrac{1}{w_0\cdot Q}$ og $C1C2R1R2 = \dfrac{1}{w_0^2}$
 Ud fra formel \ref{eq::SallenKey} udregnes også stage 3. Her vælges R2 til at være $155k\Omega$ og C2 til at være $936pF$, C1 udregnes til at være $93pF$ og R1 til $6.4K\Omega$. 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.3]{./billeder/stage23.png}
+	\includegraphics[scale=0.3]{./billeder/stage23}
 	\caption{Stage 2 og 3 filter opbygning.}
 	\label{fig::filter_stage2}
 \end{figure}
@@ -75,7 +75,7 @@ Ud fra formel \ref{eq::SallenKey} udregnes også stage 3. Her vælges R2 til at 
 Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{fig::aa_sim}, findes en dæmpning på -3dB ved 17kHz og en dæmpning på -12dB ved 22.5kHz. Forskellen i gruppeløbetiden er maksimalt $18 \mu s$.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.2]{./billeder/aa_sim1.png}
+	\includegraphics[scale=0.2]{./billeder/aa_sim1}
 	\caption{Simulering af AA filteret. Sort: Amplitude, Grå: Gruppeløbetid.}
 	\label{fig::afilter_aasim}
 \end{figure}
@@ -84,7 +84,7 @@ Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to kompleks
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale = 0.4]{./billeder/pzmap.png}
+	\includegraphics[scale = 0.4]{./billeder/pzmap}
 	\caption{Kortlægning af polerne i AA og rekonstruktions filterne.}
 	\label{fig:afilter_pol}
 \end{figure}
