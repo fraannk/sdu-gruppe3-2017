@@ -219,6 +219,7 @@ hold off
 
 %% Frekvensplacering
 clear all, close all, clc
+
 % peak/notch
 [f1, amp1,phase1]=plotcsvbode('./Frekvens/100hz.csv','rock',1);
 [f2, amp2,phase2]=plotcsvbode('./Frekvens/5000hz.csv','rock',1);

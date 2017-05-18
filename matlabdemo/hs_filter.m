@@ -80,20 +80,20 @@ h8_data = 20*log10((abs(h8)));
 data8_8 = [w8 h8_data];
 csvwrite('hs_h8.dat',data8_8);   
 
- plot(w1,20*log10(abs(h1)));
+ semilogx(w1,20*log10(abs(h1)));
  hold on
- plot(w1,20*log10(abs(h2)));
- plot(w1,20*log10(abs(h3)));
- plot(w1,20*log10(abs(h4)));
- plot(w1,20*log10(abs(h5)));
- plot(w1,20*log10(abs(h6)));
- plot(w1,20*log10(abs(h7)));
- plot(w1,20*log10(abs(h8)));
+ semilogx(w1,20*log10(abs(h2)));
+ semilogx(w1,20*log10(abs(h3)));
+ semilogx(w1,20*log10(abs(h4)));
+ semilogx(w1,20*log10(abs(h5)));
+ semilogx(w1,20*log10(abs(h6)));
+ semilogx(w1,20*log10(abs(h7)));
+ semilogx(w1,20*log10(abs(h8)));
     grid;
  title('High Sleving filtre')
  ylabel('[dB]')
  xlabel('Hz')
-xlim([0 15*10^3])
+xlim([0 fs/2])
 legend('G=1 [dB]','G=2.5 [dB]','G=5 [dB]','G=7.5 [dB]','G=-1 [dB]','G=-2.5 [dB]','G=-5 [dB]','G=-7.5 [dB]')
 hold off
 H = h1.* h2.* h3.* h4.* h5.* h6.* h7.* h8;
