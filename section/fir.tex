@@ -27,9 +27,7 @@ H(z)=\sum\limits_{k=0}^{N-1}h(k)z^{-1} \label{FIR_transfer}
 \end {equation}
 
 \section{Design metoder} \label{sec:fir_design}
-\husk{Kenneth}{Mere eller mindre en løsningsmodel, så det kan sammenlignes med IIR implementeringen - teori og praksis}
 Herunder redegøres der for 2 forskellíge design metoder, til beregning af filter koefficienter.
-Frekvenssamplingsmetoden vil være mere dybdegående end de to andre, da det er den metode der vil blive implementeret.
 \subsection{Frekvenssampling}
 Ved frekvenssampling approksimeres det ønskede frekvensrespons ved, at sample det $N$ antal gange, med samme interval imellem samplingspunkterne. Der kan derved opnås et interpolateret frekvens respons.
 Pointen med frekvenssampling er at filterkoefficienter kan beregnes udfra specificerede størrelser i forhold det ønskede filter respons uniformt i frekvensdomænet.
@@ -43,7 +41,7 @@ hvor
 \begin {equation}
 W_{N}=e^{j\frac{2\pi}{N}} \hspace{1cm}\text{og} \hspace{1cm} H_{d}(k)=h(e^{j\Omega_{k}}) \nonumber
 \end {equation}
-Det antages lineær fase og at antallet af samplingspunkt er $N=2M+1$.
+Der antages lineær fase og at antallet af samplingspunkt er $N=2M+1$.
 
 
 
