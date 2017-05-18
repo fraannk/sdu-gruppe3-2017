@@ -22,7 +22,7 @@ R30 & $\SI{330}{\ohm}$ & Metalfilm	& $\pm 5\%$ & $\SI{0.25}{\watt}$ & 100ppm/\si
 R1, R5 & $\SI{4.7}{\kilo\ohm}$ & Metalfilm	& $\pm 5\%$ & $\SI{0.25}{\watt}$ & 100ppm/\si{\celsius} & (a) \\
 R15, R17, R26, R28 & $\SI{6}{\kilo\ohm}$ & Metalfilm & $\pm 5\%$ & $\SI{0.25}{\watt}$ & 100ppm/\si{\celsius} & (a) \\
 R9, R10, R20, R21 & $\SI{10}{\kilo\ohm}$ & Metalfilm & $\pm 5\%$ & $\SI{0.25}{\watt}$ & 100ppm/\si{\celsius} & (a) \\
-R31 & $\SI{30}{\kilo\ohm}$ & Trim & $\pm 5\%$ & $\SI{0.25}{\watt}$ & 100ppm/\si{\celsius} & (u) \\
+R31 & $\SI{30}{\kilo\ohm}$ & Trim & $\pm 5\%$ & $\SI{0.25}{\watt}$ & 100ppm/\si{\celsius} & (b) \\
 R11, R12, R13, R14, R22, R23, R24, R25 & $\SI{32}{\kilo\ohm}$ & Metalfilm & $\pm 5\%$ & $\SI{0.25}{\watt}$ & 100ppm/\si{\celsius} & (a) \\
 R2, R4, R7, R8 & $\SI{100}{\kilo\ohm}$ & Metalfilm & $\pm 5\%$ & $\SI{0.25}{\watt}$ & 100ppm/\si{\celsius} & (a) \\
 R16, R18, R27, R29 & $\SI{150}{\kilo\ohm}$ & Metalfilm	& $\pm 5\%$ & $\SI{0.25}{\watt}$ & 100ppm/\si{\celsius} & (a) \\
@@ -85,18 +85,24 @@ C25 & $\SI{100}{\nano\farad}$ & Type & $\pm 5\%$ & 50 \si{\volt} & 30ppm/\si{\ce
 C40 & $\SI{0.1}{\micro\farad}$ & Keramisk & $\pm 5\%$ & 50 \si{\volt} & 30ppm/\si{\celsius} & (f)\\
 C41 & $\SI{10}{\micro\farad}$ & Tantal & $\pm 5\%$ & 50 \si{\volt} & 30ppm/\si{\celsius} & (f)\\
 \midrule
-%IC1, IC2, IC4, IC5 & MCP6274-E_P & OP Amp & N/A & N/A & N/A & (u) \\
-%IC6 & MCP4922-E_P & D/A converter & N/A & N/A & N/A & (u) \\
-& NAVN & Type & N/A & N/A & N/A & N/A \\
-JP1 & N/A & Pin headers & N/A & N/A & N/A & (u) \\
-Stik & MX-387GL & Phono & N/A & N/A & N/A & (u) \\
-LED1 & $\SI{3.3}{\volt}$ & LED & N/A & N/A & N/A & (u) \\
+IC1, IC2, IC4, IC5 & MCP6274-E\_P & OP Amp & N/A & N/A & N/A & (u) \\
+IC6 & MCP4922-E\_P & D/A converter & N/A & N/A & N/A & (u) \\
+P7, P8, P9, P10, P11, P12, P13, P14 & Pinheader & Stik &  &  & 1 pin & (u) \\
+P15, P16, P17, P18 & Pinheader & Stik &  &  & 2 pins & (u) \\
+P1, P2, P3, P4, P5, P6 & Pinheader & Stik &  &  & 10 pins & (u) \\
+P19 & Pinheader & Stik &  &  & 4 headers & (u) \\
+S2, S3, S4, S5, S8, S9 & Socket & Stik &  &  & 10 huller & (u) \\
+S1 & Socket & Stik &  &  & 16 huller & (u) \\
+S6, S7 & Socket & Stik &  &  & 2x10 huller & (u) \\
+PHONO1, PHONO2 & MX-387GL & Phono &  &  &  & (u) \\
+LED1 & $\SI{3.3}{\volt}$ & Grøn lysdiode &  & $\SI{0.1}{\watt}$ & $\SI{3}{\milli\meter}$ & (u) \\
 \hline
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
 %\textbf{Typ/Lev.}
 \item[a] (MRS25), (Phillips)
+\item[b] (), (Bourns)
 \item[u] Ukendt
 \end{tablenotes}
 \end{threeparttable}
