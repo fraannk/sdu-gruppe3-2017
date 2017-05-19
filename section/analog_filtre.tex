@@ -4,7 +4,6 @@
 Analog til digital konverteren sampler ved en vis frekvens. Det er derfor vigtigt, ifølge Nyquist’s sætning, at begrænse indgangssignalet til halvdelen af denne samplingsfrekvens. Dette udelukker støj ved højere frekvenser.\\
 
 Dette kan realiseres ved hjælp af et anti aliasing filter (refererers herefter som AA filter). Samplingsfrekvensen af sat til 44.1kHz, det vil derfor være ideelt at påføre et AA filter med en betydelig dæmpning ved 22.5kHz.\\
-\Kenneth{Argument for knækfrekvens ved 22.5 kHz}
 \subsection{Overvejelser}
 Når der arbejdes med lydsignaler er det vigtigt at overveje gruppeløbetiden. Den beskriver hvor stor en forsinkelse forskellige frekvenser har i forhold til gengivelsen. Ud fra dette blev der indledningsvis valgt et bessel filter, da denne type filter har en konstant gruppeløbetid op til knækfrekvensen. Senere på forløbet blev det afklaret at forsinkelsen skulle ligge i millisekund før det var tydelig hørbart. Der blev derfor taget en beslutning om at skifte til Butterworth filtre, da de har en stejlere dæmpnings hældning og kræver færre komponenter.
 \Kenneth{Noget omformulering ved valg af butterworth frem for bessel}
@@ -12,7 +11,6 @@ Når der arbejdes med lydsignaler er det vigtigt at overveje gruppeløbetiden. D
 Butterworth filteret blev valgt som det endelige filter. 
 Det vælges at knækfrekvensen skal ligge ved 17kHz med en dæmpning på -3dB. Denne frekvens vælges da en mindre dæmpning ved den øvre del af frekvensspektrumet kan accepteres, og giver mulighed for en betydelig dæmpning af signalet efter 22.5kHz. Ved hjælp af Matlab (der refereres til bilag \ref{void}) udregnes at amplituden ved 22.5kHz kan dæmpes med -12dB med at 5. ordens butterworth filter.\\
 Der ønskes tre overføringsfunktioner på formen som vist i ligning \ref{eq::anfilter_standardeq}.
-\Kenneth{Argumenter for valg af størrelserne}
 \begin{equation}
 	H(s) = \dfrac{1}{s^2+b_1\cdot s + b_0}\label{eq::anfilter_standardeq}
 \end{equation}
@@ -46,11 +44,10 @@ Det første trin i filteret er et 1. ordens butterworth filter og det designes u
 	f_c = \dfrac{1}{2\cdot\pi\cdot R C} \label{eq::filter_trin1}
 \end{equation} 	
 hvor knækfrekvensen, $f_c$, er sat ved $17kHz$.
-R1 vælges til $10K\Omega$ og C1 udregnes til $940pF$.
-\Kenneth{Argumentet for 17 kilo hertz?}
+R9 vælges til $10K\Omega$ og C8 udregnes til $940pF$.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.3]{./billeder/stage1}
+	\includegraphics[scale=0.4]{./billeder/stage1a.png}
 	\caption{Trin 1 filter opbygning.}
 	\label{fig::stage1}
 \end{figure}
@@ -62,7 +59,6 @@ Hvis kredsløbet på figur \ref{fig::anfilter_gensallen} betragtes, ses det at\\
 	\vspace*{5mm}
 	$V_- = V_{out}$
 \end{center}
-\Kenneth{Skal lige snakke med Jonas om denne udregning}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.4]{./billeder/komp_udregn}
@@ -71,7 +67,7 @@ Hvis kredsløbet på figur \ref{fig::anfilter_gensallen} betragtes, ses det at\\
 \end{figure}
 \FloatBlock
 
-Ved KCL findes\\
+Ved Kirchoff's spændingslov findes\\
 \begin{equation}
 	\dfrac{V_{out}}{V_{in}} = \dfrac{V_{in}-V_1}{Z_1} = \dfrac{V_1 - V_{out}}{Z_4}+\dfrac{V_1}{Z_2+Z_3}
 \end{equation}
@@ -83,26 +79,25 @@ Ved omrokering af disse ligninger findes
 
 Komponenter indsættes som følgende,
 \begin{center}
-	$Z_1 = R1, \hspace{3mm} Z_2 = R_2, \hspace{3mm} Z_3 = \dfrac{1}{sC_1}$ \hspace{0.5mm} og \hspace{0.5mm} $Z_4 = \dfrac{1}{sC_2}$
+	$Z_1 = R_{11}, \hspace{3mm} Z_2 = R_{12}, \hspace{3mm} Z_3 = \dfrac{1}{sC_{11}}$ \hspace{0.5mm} og \hspace{0.5mm} $Z_4 = \dfrac{1}{sC_{10}}$
 \end{center}
 
 Overføringsfunktionen for dette filter vil slutteligt være\\
 
-\begin{center}
-\begin{math}
-H(s) = \dfrac{1}{1+C2(R1+R2) s+C1C2R1R2 s^2}
+
+\begin{equation}
+H(s) = \dfrac{1}{1+C10(R11+R12) s+C11C10R11R12 s^2}
 \label{eq::SallenKey}
-\end{math}
-\end{center} 
+\end{equation}
+ 
 Ud fra den ønskede form (ligning \ref{eq::anfilter_standardeq}), udledes $b_0$ og $b_1$,
 
 \begin{equation}
-	 b_0 = C2(R1+R2) = \dfrac{1}{w_0\cdot Q} \hspace{1cm} b_1 = C1 \cdot C2 \cdot R1 \cdot R2 = \dfrac{1}{w_0^2} \nonumber
+	 b_0 = C10(R11+R12) = \dfrac{1}{w_0\cdot Q} \hspace{1cm} b_1 = C11 \cdot C10 \cdot R11 \cdot R12 = \dfrac{1}{w_0^2} \nonumber
 \end{equation}
-hvor $Q = \dfrac{\sqrt{b_0}}{b_1}$ og $w_0 = \sqrt{b_0}$, og komponenterne R1 og R2 vælges til $32\si{\kilo\ohm}$. Ud fra to ligninger med to ubekendte, udregnes C1 til at være $90 \si{\pico\farad}$, og C2 udregnes til $940\si{\pico\farad}$.
-\Kenneth{Hvilke komponenter er det? Vi skal matche dem med dem fra schematics.}
+hvor $Q = \dfrac{\sqrt{b_0}}{b_1}$ og $w_0 = \sqrt{b_0}$, og komponenterne R11 og R12 vælges til $32\si{\kilo\ohm}$. Ud fra to ligninger med to ubekendte, udregnes C10 udregnes til $940\si{\pico\farad}$, og C11 til at være $90 \si{\pico\farad}$.
 \subsection{Trin 3}
-Ud fra formel \ref{eq::SallenKey} udregnes også trin 3. Her vælges R2 til at være $150\si{\kilo\ohm}$ og C2 til at være $940\si{\pico\farad}$, C1 udregnes til at være $95\si{\pico\farad}$ og R1 til $6 \si{\kilo\ohm} $. 
+Ud fra formel \ref{eq::SallenKey} udregnes også trin 3. Her vælges R16 til at være $150\si{\kilo\ohm}$ og C15 til at være $940\si{\pico\farad}$, C16 udregnes til at være $95\si{\pico\farad}$ og R15 til $6 \si{\kilo\ohm} $. 
 
 \begin{figure}[h]
 	\centering
@@ -115,14 +110,13 @@ Ud fra formel \ref{eq::SallenKey} udregnes også trin 3. Her vælges R2 til at v
 	\caption{(a) Trin 2 filter. (b) Trin 3 filter.}
 \end{figure}
 \FloatBlock
-\Kenneth{Figur 3.6 - Tydligere linjer}
 \subsection{Simulering}
-Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{fig::aa_sim}, findes en dæmpning på -3dB ved 17kHz og en dæmpning på -12dB ved 22.5kHz. Forskellen i gruppeløbetiden er maksimalt $18 \si{\micro \second}$.
+Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{fig::anfilter_aasim}, findes en dæmpning på -3dB ved 17kHz og en dæmpning på -12dB ved 22.5kHz. Forskellen i gruppeløbetiden er maksimalt $18 \si{\micro \second}$.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.2]{./billeder/aa_sim1}
-	\caption{Simulering af AA filteret. Sort: Amplitude, Grå: Gruppeløbetid.}
-	\label{fig::afilter_aasim}
+	\includegraphics[scale=0.5]{./billeder/aa_sim1}
+	\caption{Simulering af AA filteret. Solid: Amplitude, Stiplet: Gruppeløbetid.}
+	\label{fig::anfilter_aasim}
 \end{figure}
 \FloatBlock
 Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to komplekse poler i stage 2 og to komplekse poler i stage 3. Disse kan ses i figur \ref{fig::anfilter_pol}.
@@ -131,7 +125,7 @@ Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to kompleks
 	\centering
 	\includegraphics[scale = 0.4]{./billeder/pzmap}
 	\caption{Kortlægning af polerne i AA og rekonstruktions filterne.}
-	\label{fig:afilter_pol}
+	\label{fig::anfilter_pol}
 \end{figure}
 \FloatBlock
 \section{Rekonstruktions filter}
