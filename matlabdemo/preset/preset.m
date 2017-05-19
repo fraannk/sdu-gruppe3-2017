@@ -30,7 +30,7 @@ f = 0:1:fs/2;
 
 H = amp(1,:).*amp(2,:).*amp(3,:).*amp(4,:).*Master;
 h1 = figure(1);
-plot(f,20*log10(H),'Linewidth',2)
+semilogx(f,20*log10(H),'Linewidth',2)
 grid on
 title('Klassisk EQ')
 xlim( [20 20*10^3])

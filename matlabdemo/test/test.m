@@ -249,6 +249,7 @@ hold off
 
 %% Frekvensplacering
 clear all, close all, clc
+
 % peak/notch
 subplot(411)
 [f1, amp1,phase1]=plotcsvbode('./Maalinger/Uden_hotfix/Bandwidth/bw_100_gain_5dB.csv','Frekvensplacering',10);
