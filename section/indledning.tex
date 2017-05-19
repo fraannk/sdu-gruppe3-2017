@@ -1,6 +1,10 @@
 \chapter{Indledning}
 \vspace*{0.5 cm}
-\emph{Musik er en naturlig del af hverdagen. Om det er baggrundsmusikken nede i Brugsen, til Grøn Koncert eller i høretelefonerne i bussen, så er den altid til stede. At musikken er så væsentlig en størrelse giver anledning til at undersøge hvilke optimeringsmåder man kan foretage sig, for at få den bedst mulige oplevelse ud af det - hver især. En equalizers egenskab er at udforme en musikafspillers lydsignal, så musikken lyder som brugeren finder bedst. I denne rapport vil læseren blive guidet gennem processen bag ved udvikling af en digital equalizer - fra musikafspillerens udgangssignal til det ønskede lydsignal.}
+\emph{Musik er en naturlig del af hverdagen. 
+	Om det er baggrundsmusikken nede i Brugsen, en Grøn Koncert eller i høretelefonerne i bussen, er den altid til stede. 
+	At musikken er så væsentlig en størrelse giver anledning til at undersøge hvilke optimeringsmåder man kan foretage sig, for at få den bedst mulige oplevelse ud af det - hver især. 
+	En equalizers egenskab er at forme en musikafspillers lydsignal, så musikken lyder som brugeren finder bedst. 
+	I denne rapport vil læseren blive guidet gennem processen bag ved udvikling af en digital equalizer - fra musikafspillerens udgangssignal til det ønskede lydsignal.}
 
 \section{Formål}
 %\note{Indledningen skal ikke handle om rapporten, men om rapportens emne. Man kan sige, at den kridter banen op ved at præsentere emneområdet.
@@ -38,26 +42,35 @@ Formålet med dette projekt, er at formidle de opnåede fagligheder fra 4. semes
 %\note{
 %Projektet går ud på at designe en parametrisk equalizer, der kan efterbehandle et lydsignal. Den skal realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller som er platformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd som brugeren frit kan modulere.
 %}
-Ud fra formålet med projektet, er der blevet valgt at fremstille et produkt, hvoraf alle fagligheder kan anvendes. Produktet der ønskes realiseret, er at konstruere en digital parametrisk equalizer. Denne digitale equalizer, skal realiseres ved en mikrokontroller af samme type , der anvendes som platformen i faget Embedded programmering. Equalizeren skal have nogle såkaldte "bånd", som brugeren frit kan modulere. Ud fra fagbeskrivelsen, kan dette relateres i et så bredt omfang, at formålet opfyldes. Problemformuleringen forlyder sig derfor som følgende: \\
+Ud fra formålet for projektet, er der blevet valgt at fremstille et produkt, hvori alle fagligheder kan anvendes. 
+Produktet der ønskes realiseret, er konstruktionen af en digital parametrisk equalizer. 
+Denne parametriske equalizer, skal realiseres ved en mikrocontroller af samme type, der anvendes som platformen i faget embedded programmering.
+Equalizeren skal have nogle såkaldte "bånd" med justerbarer parametre, som fx frekvens og forstærkning. 
+Ud fra fagbeskrivelsen, kan dette relateres i et så bredt omfang, at formålet opfyldes. 
+Problemformuleringen forlyder sig derfor som følgende: \\
 
-En digital parametrisk equalizer ønskes realiseret ved en mikrokontroller, samt digital signalbehandling og analog filterteori. Herunder ønskes en konfigurerbar brugerflade, som interagerer med systemet. Denne brugerflade skal kunne håndtere equalizerserens båndprofiler.\\
-\jj{forklaring af parametrisk}
+En digital parametrisk equalizer ønskes realiseret ved en mikrocontroller hvor der anvendes digital signalbehandling og analog filterteori. 
+Herunder ønskes en brugerflade, som interagerer med systemet. 
+Denne brugerflade skal kunne håndtere equalizerserens båndprofiler.\\
 
 Der ønskes herudover svar på følgende problemstillinger:
 \begin{itemize}[noitemsep,nolistsep]
 	\item Hvilke digitale signalbehandlingsmetoder er bedst til fremstilling af en digital equalizer?
 	\item Hvordan kan et analogt filter anvendes på en digital equalizer?
-	\item Hvad er fordelen ved en digital equalizer fremfor en analog?
 	\item Hvordan anvendes digital signalbehandling, til at give de ønskede båndspecifikationer?
-	\item Hvordan anvendes EMP-boardet fra Embedded programmering til en digital equalizer?
+	\item Hvilke krav er der til de analoge filtre i forhold til den samlede signalbehandling.
+	\item Hvordan fremstilles og designes software der kan håndtere digital sampling og gengivelse af lydsignalet
 \end{itemize}
 
 \section{Projektafgrænsning}
 %\note{Hvilke emner / delemner kommer rapporten ikke ind på? Hvorfor?\\
 	%Det er meget almindeligt, at problemformulering og metoderedegørelse simpelthen er en del af indledningen, men så bør de normalt være markeret med underrubrikker (under-overskrifter) for overskuelighedens skyld. Hvis du er uddannelsessøgende, så tjek, om skolen eller institutionen (eller din vejleder) har særlige krav på det punkt.}
 
-En equalizer kan realiseres på analogt og digitalt. I dette projekt vil den blive realiseret digitalt, da faget Embedded programmering skal indgå. Der træffes endvidere valget om at gøre den parametrisk, for bedre fleksibilitet. Følgende medtages ikke i rapporten og afgrænser projektet:
-\begin{itemize}[noitemsep,nolistsep]
+En equalizer kan realiseres både analogt og digitalt.
+I projektet vil den blive realiseret digitalt, da faget embedded programmering skal indgå. 
+Der træffes endvidere valget om at gøre den parametrisk, for bedre fleksibilitet. 
+Følgende medtages ikke i rapporten og afgrænser projektet:
+\begin{itemize}[noitemsep]
 	\item Equalizeren bliver udviklet som prototype og ikke et produktionsklart produkt.
 	\item Der tages ikke højde for ledningsteori, da dette pensum blev fremlagt for sent i projektforløbet.
 \end{itemize}
@@ -65,7 +78,7 @@ En equalizer kan realiseres på analogt og digitalt. I dette projekt vil den bli
 \section{Kravspecifikation} \label{afs:kravspecifikation}
 I dette afsnit fremstår de opsatte krav for projektet, der er fastsat dels ud fra kravet til selve projektbeskrivelsen, men også ud fra de studerende selv med henblik på at efterligne den virkelige ingeniørverden.
 
-\begin{itemize}[noitemsep,nolistsep]
+\begin{itemize}[noitemsep]
 	\item Prototypen udvikles på Tiva™ C Series TM4C123G LaunchPad Evaluation Kit.
 	\item Tiva™ TM4C123G serie Microcontroller anvendes.
 	\item Kildekoden er en del af produktet og skal overholde \textit{EMP C Code Standard}\cite{emp-c}.
