@@ -1,6 +1,6 @@
 \section{Shell}
-Til at kunne styre den nuværende udgave af equalizeren, er der blevet implementeret en shell, der kan tilgås over UART'en\footnote{Mere uddybende information til opsætning af seriel kommunikation til equalizeren findes i afsnit om UART på side \pageref{subsec:uart}}.
-Fortolkningen af indkommende ASCII tegn over UART'en behandles ud fra den i figure \ref{fig:shell_task} beskrevende model.
+Til at kunne styre equalizeren, er der blevet implementeret en shell, der kan tilgås over UART'en\footnote{Mere uddybende information til opsætning af seriel kommunikation til equalizeren findes i afsnit om UART på side \pageref{subsec:uart}}.
+Fortolkningen af indkommende ASCII tegn over UART'en behandles ud fra den i figur \ref{fig:shell_task} beskrevne model.
 
 \begin{figure}[h!]
 	\centering
@@ -9,8 +9,8 @@ Fortolkningen af indkommende ASCII tegn over UART'en behandles ud fra den i figu
 	\label{fig:shell_task}
 \end{figure}
 
-Shell'en aktiveres, efter opnået forbindelse, ved at sende et \textbf{0x0D} \textit{(enter/return)}, hvorefter velkomstskærmen vises.
-Der er et lille udvalg af kommandoer tilgængeligt for brugeren til at styre equalizeren - se tabel \ref{tab:shell_cmd} 
+Shell'en aktiveres efter opnået forbindelse, ved at sende et \textbf{0x0D} \textit{(enter/return)}, hvorefter velkomstskærmen vises.
+Der er et mindre udvalg af kommandoer tilgængeligt for brugeren til at styre equalizeren - se tabel \ref{tab:shell_cmd} 
 
 \begin{table}[h!]
 	\caption{Kommando liste i EQ-ONE shell}
@@ -36,8 +36,8 @@ Der er et lille udvalg af kommandoer tilgængeligt for brugeren til at styre equ
 	\end{threeparttable}
 \end{table}
 
-Shell'en gør brug af ANSI/VT100 escape-sekvenserer, som fx. \textit{slet display} og \textit{set grafik modus}.
-Derfor bør den terminalklient der anvendes understøtte dette, således at teksten bliver vist korrekt.
+Shell'en gør brug af ANSI/VT100 escape-sekvenserer, som f.eks. \textit{slet display} og \textit{set grafic modus}.
+Terminalklienten der anvendes bør derfor understøtte dette, således at teksten bliver vist korrekt.
 
 
 
