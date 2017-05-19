@@ -76,7 +76,6 @@ b_n = h(n)=\frac{1}{2M+1}\left[ H_{0}+2\sum_{k=1}^{M} \left( \frac{2\pi k(n-M)}{
 \end{enumerate}
 
 \subsection{Windowsmetoden}
-\husk{Kenneth}{Gennemgang af koefficienterne med Fourier}
 Den grundlæggende tilgang til windowsmetoden er baseret på at det ideelle lavpas-, højpas-, båndpas-, og båndstop filter, bestående af den følgende ikke-kausale impulsrespons på $-\infty < n < \infty$. Windowsmetoden bygger på Fourier Transformationen, hvor der gælder om at fjerne de uønskede Gibbs oscilleringer i pas- og stopbåndet, som finder sted under trunkeringen. Anvendes windowsmetoden på filterkoefficienterne fås ligning \ref{window_function},
 \begin{equation}
 	h_w(n) = h(n)*w(n) \hspace{1cm}\text{,} \hspace{1cm}n=-M,\text{ ... },0, 1,\text{ ... , }M	
