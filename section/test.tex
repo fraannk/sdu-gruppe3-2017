@@ -49,38 +49,17 @@ For at måle overføringsfunktionen sættes Bode 100'ens output til indgangen p�
 I dette afsnit vil resultaterne af målingerne blive vist, og der vil herefter drages til delkonklusion, hvor teorien stilles op mod praktis.
 Det første resultat på figur \ref{fig:eq_off1}, viser en graf hvor den digitale del er slået fra, og selve equalizeren er deaktiveret. Det er altså kun de analoge filtre der dominerer. Det teoretiske AA-filter ses til sammenligning på figur \ref{fig::afilter_aasim}. \\
 Den vigtige del at eftervise, er hvor equalizeren er slået til. 
-Udfra forberedelsen, skulle 3 parametre testes - Amplituden, Båndbredden og Frekvensen. 
-Da der blev målt første gang, viste det sig, at både frekvensen og amplituden afvigede med ca. en faktor 2, hvorfor der blev lavet en korrigeret måling også.
-
-
-
-
-%Som det ses på figur \ref{fig:rock_test} ligger testresultaterne meget tæt på de teoretiske. Det vurderes at dette ligger inden for fejlmargin. Målingerne blev foretaget med et indgangssignal på 4dBm, for at sikre at ingen af profilerne overstyrede.
-
-
-	
-
-%Der blev dog, vha. testene, fundet en fejl i DSP-beregningerne, som derfor kunne rettes. Der blev opdaget at den angivede frekvens i profilen altid var fordoblet på udgangen. Dette var på grund af at udregningen skulle ganges med $\frac{f_s}{2}$ i stedet for $f_s$. \\ 
-%
-%Det ses også at båndenes amplitude heller ikke stemmer helt overens. Dette kan skyldes indgang- og udgangsfiltrene eller en fejlberegning i DSP-koden. 
-%
-%
-%\husk{SF}{Dette skal specificeres. Dennis? :D}
-
-
-
-
-
+Udfra forberedelsen, skulle 3 parametre testes - amplituden, båndbredden og frekvensen. 
+Da der blev målt første gang, viste det sig, at både frekvensen og amplituden afvigede med ca. en faktor 2, hvorfor der blev lavet en måling med korrigerede parametre. 
 
 \subsection{Målinger}
-\begin{figure}[h!]
-\centering
-\includegraphics[scale = 0.8]{matlabdemo/test/test_eq_off.png}  
-\caption{Måling af hele systemet uden equalizer slået til.}
-\label{fig:eq_off1}
-\end{figure}
 
-%\subsection{Gain}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale = 0.8]{matlabdemo/test/test_eq_off.png}  
+	\caption{Måling af hele systemet uden equalizer slået til.}
+	\label{fig:eq_off1}
+\end{figure}
 
 \begin{figure}[h!]\label{fig:Gain_uden_hotfix}
 	\centering
