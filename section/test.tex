@@ -50,7 +50,10 @@ I dette afsnit vil resultaterne af målingerne blive vist, og der vil herefter d
 Det første resultat på figur \ref{fig:eq_off1}, viser en graf hvor den digitale del er slået fra, og selve equalizeren er deaktiveret. Det er altså kun de analoge filtre der dominerer. Det teoretiske AA-filter ses til sammenligning på figur \ref{fig::afilter_aasim}. \\
 Den vigtige del at eftervise, er hvor equalizeren er slået til. 
 Udfra forberedelsen, skulle 3 parametre testes - amplituden, båndbredden og frekvensen. 
-Da der blev målt første gang, viste det sig, at både frekvensen og amplituden afvigede med ca. en faktor 2, hvorfor der blev lavet en måling med korrigerede parametre. 
+Da der blev målt første gang, viste det sig, at både frekvensen og amplituden afvigede med ca. en faktor 2, hvorfor der blev lavet en måling med korrigerede parametre også.
+De teoretisk beregninger og resultaterne stilles op ved siden af hinanden.
+Dette ses for hhv. for hvert parameter i figur: \ref{fig:Gain_uden_hotfix}, \ref{fig:Bandwith_uden_hotfix} og \ref{fig:Frekvensplacering_uden_hotfix}. 
+Her ses tydeligt den afvigende amplitude og båndbredde.
 
 \subsection{Målinger}
 
@@ -61,28 +64,32 @@ Da der blev målt første gang, viste det sig, at både frekvensen og amplituden
 	\label{fig:eq_off1}
 \end{figure}
 
-\begin{figure}[h!]\label{fig:Gain_uden_hotfix}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.8]{billeder/Gain_uden_hotfix}
 	\caption{Målingsresultat af hhv. gain $5\si{\dB}$, $7\si{\dB}$, $-5\si{\dB}$ og $-7\si{\dB}$ uden korrigering}
+	\label{fig:Gain_uden_hotfix}
 \end{figure}
 
-\begin{figure}[h!]\label{fig:Bandwith_uden_hotfix}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.8]{billeder/Bandwith_uden_hotfix}
 	\caption{Målingssetup med Bode 100}
+	\label{fig:Bandwith_uden_hotfix}
 \end{figure}
 
-\begin{figure}[h!]\label{fig:Frekvensplacering_uden_hotfix}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.8]{billeder/Frekvensplacering_uden_hotfix}
 	\caption{Målingssetup med Bode 100}
+	\label{fig:Frekvensplacering_uden_hotfix}
 \end{figure}
 
-\begin{figure}[h!]\label{fig:Gain_med_hotfix}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.8]{billeder/Gain_Med_hotfix}
 	\caption{Målingssetup med Bode 100}
+	\label{fig:Gain_med_hotfix}
 \end{figure}
 
 \begin{figure}[h!]\label{fig:Bandwith_med_hotfix}
@@ -91,10 +98,11 @@ Da der blev målt første gang, viste det sig, at både frekvensen og amplituden
 	\caption{Målingssetup med Bode 100}
 \end{figure}
 
-\begin{figure}[h!]\label{fig:Frekvensplacering_med_hotfix}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.8]{billeder/Frekvensplacering_Med_hotfix}
 	\caption{Målingssetup med Bode 100}
+	\label{fig:Frekvensplacering_med_hotfix}
 \end{figure}
 
 \section{Delkonklusion}
