@@ -165,11 +165,11 @@ Ved at bruges ligning (\ref{eq:z_to_amp}) hvori amplituden findes fra (\ref{eq:c
     \label{eq:complex_to_amp}
 \end{align}
 
-Da de individuelle filtre er af 2. orden kan amplituden regnes:
+Da de individuelle filtre (bånd) er af 2. orden kan amplituden beregnes med ligning \ref{eq:amp_calc}.
 
 \begin{align}
     H(\omega) &= \prod\limits_{i=0}^{K-1} \dfrac{b_{i0} + b_{i1} z^{-1} + b_{i2} z^{-2}}{a_{i0} + a_{i1} z^{-1} + a_{i2} z^{-2}} \nonumber
-    \\ &= \prod\limits_{i=0}^{K-1} \dfrac{b_{i0} + b_{i1} \left( \cos{\Omega} + j \sin{\Omega} \right)+b_{i2} \left( \cos{2\Omega} + j \sin{2\Omega} \right)}{a_{i0} + a_{i1} \left( \cos{\Omega} + j \sin{\Omega} \right)+a_{i2} \left( \cos{2\Omega} + j \sin{2\Omega} \right)}
+    \\ &= \prod\limits_{i=0}^{K-1} \dfrac{b_{i0} + b_{i1} \left( \cos{\Omega} + j \sin{\Omega} \right)+b_{i2} \left( \cos{2\Omega} + j \sin{2\Omega} \right)}{a_{i0} + a_{i1} \left( \cos{\Omega} + j \sin{\Omega} \right)+a_{i2} \left( \cos{2\Omega} + j \sin{2\Omega} \right)} \label{eq:amp_rep}
 \end{align}
 Hvis $H(\Omega)$ deles op i hhv. $N(\Omega)$ tæller, $D(\Omega)$ nævner kan amplituden for en 
 given frekvens $\Omega$ findes ved ligning (\ref{eq:amp_calc}).
@@ -180,14 +180,15 @@ given frekvens $\Omega$ findes ved ligning (\ref{eq:amp_calc}).
     \label{eq:amp_calc}
 \end{align}
 
-Denne ligning er den samlet beren
+Det resultat der kommer regnes derefter om til $dB$.
 
 
 
 \section{Realisering af filter}
 
 Differensligningen er beskrevet med ligning \ref{eq:iir_diff_lign}, dette kan illustreres vha. et blok diagram figur (\ref{fig:real_diag}). 
-
+Da $z^{-1}$ svarer til en tidsforsinkelse på 1 sample kan differensligningen. I blogdiagrammet er forsinkelsen 
+(fra tæller- og nævner-polynomiet af overføringsfunktionen) rykket sammen.
 
    \begin{figure}[h]
         \centering
