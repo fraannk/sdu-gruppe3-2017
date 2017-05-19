@@ -39,8 +39,8 @@ For at måle overføringsfunktionen sættes Bode 100'ens output til indgangen p�
 
 \begin{figure}[h!]\label{fig:bode_setup}
 	\centering
-	\includegraphics[width=13cm]{billeder/bode_setup}
-	\caption{Målingssetup med Bode 100}
+	\includegraphics[width=0.7\textwidth]{billeder/bode_setup}
+	\caption{Målingeopstilling af equalizer med Bode 100}
 \end{figure}	
 
 \FloatBlock
@@ -50,12 +50,12 @@ I dette afsnit vil resultaterne af målingerne blive vist, og der vil herefter d
 Det første resultat på figur \ref{fig:eq_off1}, viser en graf hvor den digitale del er slået fra, og selve equalizeren er deaktiveret. Det er altså kun de analoge filtre der dominerer. Det teoretiske AA-filter ses til sammenligning på figur \ref{fig::afilter_aasim}. \\
 Den vigtige del at eftervise, er hvor equalizeren er slået til. 
 Udfra forberedelsen, skulle 3 parametre testes - amplituden, båndbredden og frekvensen. 
-Da der blev målt første gang, viste det sig, at både frekvensen og amplituden afvigede med ca. en faktor 2, hvorfor der blev lavet en måling med korrigerede parametre også.
-De teoretisk beregninger og resultaterne stilles op ved siden af hinanden.
-Dette ses for hhv. for hvert parameter i figur: \ref{fig:Gain_uden_hotfix}, \ref{fig:Bandwith_uden_hotfix} og \ref{fig:Frekvensplacering_uden_hotfix}. 
-Her ses tydeligt den afvigende amplitude og båndbredde.
+Da der blev målt første gang, viste det sig, at både frekvensen og amplituden afvigede med ca. en faktor 2, hvorfor der blev lavet en måling med korrigerede parametre. \\
 
-\subsection{Målinger}
+\husk{Skal der beskrives hvad der er gjort på de korrigerede grafer?}
+De teoretiske beregninger og resultater stilles op ved siden af hinanden.
+Dette ses for hhv. for hvert parameter i figur: \ref{fig:gain_uden_hotfix}, \ref{fig:bandwidth_uden_hotfix} og \ref{fig:freq_uden_hotfix}. 
+Her ses tydeligt den afvigende amplitude og båndbredde.
 
 \begin{figure}[h!]
 	\centering
@@ -64,49 +64,63 @@ Her ses tydeligt den afvigende amplitude og båndbredde.
 	\label{fig:eq_off1}
 \end{figure}
 
+\subsection{Målinger}
+
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale = 0.8]{billeder/Gain_uden_hotfix}
-	\caption{Målingsresultat af hhv. gain $5\si{\dB}$, $7\si{\dB}$, $-5\si{\dB}$ og $-7\si{\dB}$ uden korrigering}
-	\label{fig:Gain_uden_hotfix}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Gain_uden_hotfix}
+	\label{fig:gain_uden_hotfix}}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Gain_uden_hotfix}
+	\label{fig:gain_teori}}
+  	\caption{Målingsresultat af hhv. gain $5\si{\dB}$, $7\si{\dB}$, $-5\si{\dB}$ og $-7\si{\dB}$ uden korrigering}
+	\label{fig:gain}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale = 0.8]{billeder/Bandwith_uden_hotfix}
-	\caption{Målingssetup med Bode 100}
-	\label{fig:Bandwith_uden_hotfix}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Bandwith_uden_hotfix}
+	\label{fig:bandwidth_uden_hotfix}}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Bandwith_uden_hotfix}
+	\label{fig:bandwidth_teori}}
+  	\caption{Målingsresultat af bandwidth med hhv. 100hz, 500hz og 1000hz.}
+	\label{fig:gain}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale = 0.8]{billeder/Frekvensplacering_uden_hotfix}
-	\caption{Målingssetup med Bode 100}
-	\label{fig:Frekvensplacering_uden_hotfix}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Frekvensplacering_uden_hotfix}
+	\label{fig:freq_uden_hotfix}}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Frekvensplacering_uden_hotfix}
+	\label{fig:freq_teori}}
+  	\caption{Målingsresultat af frekvensen i hhv. 100hz og 5kHz}
+	\label{fig:gain}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale = 0.8]{billeder/Gain_Med_hotfix}
-	\caption{Målingssetup med Bode 100}
-	\label{fig:Gain_med_hotfix}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Gain_Med_hotfix}
+	\label{fig:gain_med_hotfix}}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Bandwidth_Med_hotfix}
+	\label{fig:bandwidth_med_hotfix}}
+  	\caption{Her ses de korrigerede værdier}
+	\label{fig:gain}
 \end{figure}
 
-\begin{figure}[h!]\label{fig:Bandwith_med_hotfix}
+\begin{figure}[h!]\label{fig:Frekvensplacering_med_hotfix}
 	\centering
-	\includegraphics[scale = 0.8]{billeder/Bandwidth_Med_hotfix}
+	\includegraphics[width=7cm]{billeder/Frekvensplacering_Med_hotfix}
 	\caption{Målingssetup med Bode 100}
-\end{figure}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale = 0.8]{billeder/Frekvensplacering_Med_hotfix}
-	\caption{Målingssetup med Bode 100}
-	\label{fig:Frekvensplacering_med_hotfix}
 \end{figure}
 
 \section{Delkonklusion}
-
 
 
 
