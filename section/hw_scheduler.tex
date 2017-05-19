@@ -6,9 +6,9 @@
 	\caption{Task model af equalizerens operativ system.}
 	\label{fig:eq-taskmodel}
 \end{figure}
-
+\Kenneth{Hvorfor er der valgt en variant af FreeRTOS?}
 Det er valgt at bruge en variant af RTCS (Run To Completion Scheduler)\footnote{RTCS blev introduceret i faget embedded programmering.}. 
-Den valgte model for task schedulering er ikke preemtive, således vil task der bliver sat i kø til udførelse forblive aktive indtil de selv afslutter sig selv.
+Den valgte model for task schedulering er ikke preemtive, således vil task der bliver sat i kø til udførelse forblive aktive indtil de afslutter sig selv.
 \textbf{sysTick} tiden for scheduleringen er sat til $1\si{\milli\second}$.\\
 
 I figur \ref{fig:eq-taskmodel} ses task modellen for equalizeren. 
@@ -16,9 +16,9 @@ Der er i hele systemet ikke brugt semaphore beskyttelse af \textit{queues} eller
 
 Alle task der er klar til at blive behandlet af scheduleren, bliver det i den rækkefølge de er oprettet og ligger i \textbf{task pool}. 
 I figur \ref{fig:eq-taskstates} ses state diagrammet over de tilstande en task kan befinde sig i.
-Ud over at scheduleringen forgår sequentielt, er hver task tilknyttet en tidsprioritet. 
+Ud over at scheduleringen forgår sekventielt, er hver task tilknyttet en tidsprioritet. 
 Således vil en task kunne have prioritet lav = 10, mellem = 5 og høj = 1, som angiver hvor mange \textbf{sysTick}'s af schedulere før de kommer til.
-I figur \ref{fig:eq-sched-algo} ses shedulering algoritmen.
+I figur \ref{fig:eq-sched-algo} ses shedulerings algoritmen.
 
 \begin{figure}[h]
 	\centering
