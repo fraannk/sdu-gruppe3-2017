@@ -10,13 +10,13 @@
 For at kunne håndtere de forskellige opgaver der kræves af equalizerens software, er det valgt at opbygge er simpelt operativt system.
 Operativsystemet stiller funktionalitet til rådighed, som gør signalbehandling, kommunikation med brugeren igennem en shell og visning af information i et LCD display lettere at implementere. En oversigt over den valgte arkitektur kan ses i figur \ref{fig:eq_os}.\\
 
-I det nederste lag findes den hardware specifikke funktionalitet, som primært består i opsætning og konfiguration af den valgte MCUs periferienheder, som fx. ADC, Timer, sysTick etc.\\
+I det nederste lag findes den hardware specifikke funktionalitet, som primært består i opsætning og konfiguration af den valgte MCUs periferienheder, som f.eks. ADC, Timer, sysTick etc.\\
  
-Ovenpå findes der et udvalg af kernefunktionaliteter til at servicere systemet. Heri findes 
+Ovenpå findes der et udvalg af kernefunktionaliteter til at servicere systemet. Heri findes,
 \begin{itemize}[noitemsep,nolistsep]
 	\item UART til seriel kommunikation (SHELL).
-	\item DSP funktionalitet til at lave beregninger for filtre.
-	\item Scheduler som søger for at håndtere alle tasks for operativ systemet.
+	\item DSP funktionalitet til at lave beregninger for filtrere.
+	\item Scheduler som sørger for at håndtere alle tasks for operativ systemet.
 	\item Equalizer modul til at håndtere equalizer funktionalitet samt håndtering af profiler. 
 \end{itemize}
 Derudover er der servicemoduler som LCD driver, queues og debug funktionalitet.\\
@@ -26,7 +26,7 @@ Signal behandlingen er også lagt på dette niveau, da lyden godt kan anses for 
 
 Selv om systemet kan fremstilles som en lagdelt model, vil den nok mest kunne beskrives til at have en monolitisk struktur.
 Dette skyldes at funktionalitet er meget tæt koblet.
-Der er til opbygningen heller ikke valgt at bruge et mere standardiseret indlejret operativ system som fx freeRTOS eller lignende.
+Der er til opbygningen heller ikke valgt at bruge et mere standardliseret indlejret operativ system som f.eks. freeRTOS eller lignende.
 Hele systemet er opbygget løbende i udviklingsforløbet og sideløbende med undervisningsforløbet i embedded programmering.  
 
 
