@@ -3,13 +3,16 @@
 \subsection{Formål}
 Analog til digital konverteren sampler ved en vis frekvens. Det er derfor vigtigt, ifølge Nyquist’s sætning, at begrænse indgangssignalet til halvdelen af denne samplingsfrekvens. Dette udelukker støj ved højere frekvenser.\\
 
-Dette kan realiseres ved hjælp af et anti aliasing filter (herefter AA filter). Samplingsfrekvensen af sat til 44.1kHz, det vil derfor være ideelt at påføre et AA filter med en betydelig dæmpning ved 22.5kHz.\\
+Dette kan realiseres ved hjælp af et anti aliasing filter (refererers herefter som AA filter). Samplingsfrekvensen af sat til 44.1kHz, det vil derfor være ideelt at påføre et AA filter med en betydelig dæmpning ved 22.5kHz.\\
+\Kenneth{Argument for knækfrekvens ved 22.5 kHz}
 \subsection{Overvejelser}
-Når der arbejdes med lydsignaler er det vigtigt at overveje gruppeløbetiden. Denne beskriver hvor stor en forsinkelse forskellige frekvenser har i forhold til gengivelsen. Ud fra dette blev der indledningsvis valgt et bessel filter, da denne type filter har en konstant gruppeløbetid op til knækfrekvensen. Senere på forløbet blev afklaret at forsinkelsen skulle ligge i millisekund før det var tydelig hørbart. Der blev derfor taget en beslutning om at skifte til Butterworth filtre, da disse har en stejlere dæmpnings hældning og kræver færre komponenter.\\
+Når der arbejdes med lydsignaler er det vigtigt at overveje gruppeløbetiden. Den beskriver hvor stor en forsinkelse forskellige frekvenser har i forhold til gengivelsen. Ud fra dette blev der indledningsvis valgt et bessel filter, da denne type filter har en konstant gruppeløbetid op til knækfrekvensen. Senere på forløbet blev det afklaret at forsinkelsen skulle ligge i millisekund før det var tydelig hørbart. Der blev derfor taget en beslutning om at skifte til Butterworth filtre, da de har en stejlere dæmpnings hældning og kræver færre komponenter.
+\Kenneth{Noget omformulering ved valg af butterworth frem for bessel}
 \subsection{Parametre, udregning og Sallen Key}\label{sec::anfilter_sallenpara}
 Butterworth filteret blev valgt som det endelige filter. 
-Det vælges at knækfrekvensen skal ligge ved 17kHz med en dæmpning på -3dB. Ved hjælp af Matlab (der refereres til bilag \ref{void}) udregnes at amplituden ved 22.5kHz kan dæmpes med -12dB med at 5. ordens butterworth filter.\\
+Det vælges at knækfrekvensen skal ligge ved 17kHz med en dæmpning på -3dB. Denne frekvens vælges da en mindre dæmpning ved den øvre del af frekvensspektrumet kan accepteres, og giver mulighed for en betydelig dæmpning af signalet efter 22.5kHz. Ved hjælp af Matlab (der refereres til bilag \ref{void}) udregnes at amplituden ved 22.5kHz kan dæmpes med -12dB med at 5. ordens butterworth filter.\\
 Der ønskes tre overføringsfunktioner på formen som vist i ligning \ref{eq::anfilter_standardeq}.
+\Kenneth{Argumenter for valg af størrelserne}
 \begin{equation}
 	H(s) = \dfrac{1}{s^2+b_1\cdot s + b_0}\label{eq::anfilter_standardeq}
 \end{equation}
@@ -38,9 +41,9 @@ Et 5. ordens filter kan realiseres aktivt ved at kaskadekoble et 1. ordens filte
 For at simplificere udregningerne vil alle operationsforstærkere anses for at være ideelle og arbejde i den lineær region, hvilket medfører $V_+ = V_-$.
 
 \subsubsection{Trin 1} 
-Det første trin i filteret er et 1. ordens butterworth filter og det designes ud fra ligning \ref{filter_trin1},
+Det første trin i filteret er et 1. ordens butterworth filter og det designes ud fra ligning \ref{eq::filter_trin1},
 \begin{equation}
-	f_c = \dfrac{1}{2\cdot\pi\cdot R C} \label{filter_trin1}
+	f_c = \dfrac{1}{2\cdot\pi\cdot R C} \label{eq::filter_trin1}
 \end{equation} 	
 hvor knækfrekvensen, $f_c$, er sat ved $17kHz$.
 R1 vælges til $10K\Omega$ og C1 udregnes til $940pF$.
@@ -96,42 +99,25 @@ Ud fra den ønskede form (ligning \ref{eq::anfilter_standardeq}), udledes $b_0$ 
 \begin{equation}
 	 b_0 = C2(R1+R2) = \dfrac{1}{w_0\cdot Q} \hspace{1cm} b_1 = C1 \cdot C2 \cdot R1 \cdot R2 = \dfrac{1}{w_0^2} \nonumber
 \end{equation}
-hvor $Q = \dfrac{\sqrt{b_0}}{b_1}$ og $w_0 = \sqrt{b_0}$, og komponenterne R1 og R2 vælges til $32K\Omega$. Ud fra to ligninger med to ubekendte, udregnes C1 til at være $90pF$, og C2 udregnes til $940pF$.
+hvor $Q = \dfrac{\sqrt{b_0}}{b_1}$ og $w_0 = \sqrt{b_0}$, og komponenterne R1 og R2 vælges til $32\si{\kilo\ohm}$. Ud fra to ligninger med to ubekendte, udregnes C1 til at være $90 \si{\pico\farad}$, og C2 udregnes til $940\si{\pico\farad}$.
 \Kenneth{Hvilke komponenter er det? Vi skal matche dem med dem fra schematics.}
 \subsection{Trin 3}
-Ud fra formel \ref{eq::SallenKey} udregnes også trin 3. Her vælges R2 til at være $150k\Omega$ og C2 til at være $940pF$, C1 udregnes til at være $95pF$ og R1 til $6K\Omega$. 
+Ud fra formel \ref{eq::SallenKey} udregnes også trin 3. Her vælges R2 til at være $150\si{\kilo\ohm}$ og C2 til at være $940\si{\pico\farad}$, C1 udregnes til at være $95\si{\pico\farad}$ og R1 til $6 \si{\kilo\ohm} $. 
 
-%\begin{figure}[h]
-%	\centering
-%	\subbottom[]{%
-%		\includegraphics[width=3cm]{./billeder/stage2.png}
-%		\label{fig::anfilter_restage2}}
-%	\subbottom[]{%
-%		\includegraphics[width=3cm]{./billeder/stage3.png}
-%		\label{fig::anfilter_restage3}}
-%	\caption{\ref{fig::anfilter_restage2}: Stage 2 filter. \hspace{4cm} \ref{fig::anfilter_restage3}: Stage 3 filter.
-%\end{figure}
-%\FloatBlock
-
-\Kenneth{De to billeder side om side}
-\begin{figure}[h!]
+\begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.3]{./billeder/stage23}
-	\caption{Trin 2 og 3 filter opbygning.}
-	\label{fig::filter_stage2}
+	\subbottom[]{%
+		\includegraphics[width=0.47\textwidth]{./billeder/stage2.png}
+		\label{fig::anfilter_restage2}}
+	\subbottom[]{%
+		\includegraphics[width=0.47\textwidth]{./billeder/stage3.png}
+		\label{fig::anfilter_restage3}}
+	\caption{(a) Trin 2 filter. (b) Trin 3 filter.}
 \end{figure}
 \FloatBlock
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.4]{./billeder/stage3}
-	\caption{Trin 3 filter.}
-	\label{fig::filter_stage3}
-\end{figure}
-\FloatBlock
-
+\Kenneth{Figur 3.6 - Tydligere linjer}
 \subsection{Simulering}
-Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{fig::aa_sim}, findes en dæmpning på -3dB ved 17kHz og en dæmpning på -12dB ved 22.5kHz. Forskellen i gruppeløbetiden er maksimalt $18 \mu s$.
+Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{fig::aa_sim}, findes en dæmpning på -3dB ved 17kHz og en dæmpning på -12dB ved 22.5kHz. Forskellen i gruppeløbetiden er maksimalt $18 \si{\micro \second}$.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.2]{./billeder/aa_sim1}
@@ -150,7 +136,7 @@ Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to kompleks
 \FloatBlock
 \section{Rekonstruktions filter}
 \subsection{Formål}
-I et system med både analog og digitale signaler, bruges et rekonstruktions filter (eller anti image filter) til at genererer et glat analog signal fra udgangssignalet fra bla. en DAC. Et digitalt lyd signal har en trappetrin type bølgeform som indeholder en del højfrekvent energi kaldet "images". Et rekonstruktions filter konstruerer en mere jævn version af det originale signal.
+I et system med både analoge og digitale signaler, bruges et rekonstruktionsfilter (også kaldet anti image filter) til at generere et "glat" analogt signal ud fra for eksemplet en DACs udgangssignal. Et digitalt lyd signal har bølgeform som et trappetrin og indeholder en del højfrekvent komposanter, også kaldet "images". Et rekonstruktionsfilter konstruerer en mere udglattet version af det originale signal.
 \subsection{Parametre og udregning}
 Det er almindelig praksis at benytte et filter til rekonstruktion, magen til det filter der anvendes til antialiasing. For udregninger henvises til afsnit \ref{sec::anfilter_sallenpara}.
 
@@ -164,3 +150,14 @@ På figur \ref{fig::anfilter_recon} ses udgangssignalet fra DAC (gul), og det re
 \end{figure}
 \FloatBlock
 
+\subsection{Højfrekvens filtrering}
+Det kan ses på figur \ref{fig::anfilter_recon} at signalet fra rekonstruktions filteret indeholder højfrekvens støj. Dette kan skyldes kommunikation mellem tiva boardet og dac. \\
+Dette kan løses ved at lave et højfrekvent lavpas filter, så tæt på udgangen som muligt. Der vælges et RC-led med en knækfrekvens på $1\si{\mega\hertz}$. Ligning \ref{eq::filter_trin1} benyttes, R sættes lig $88\si{\kilo\ohm}$ og $f_c = 1\si{\mega\hertz}$. C udregnes til $1.8\si{\pico\farad}$. I figur \ref{fig::anfilter_hf} ses signalet før og efter filteret.
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale = 0.4]{./billeder/hf.png}
+	\caption{Udgangssignal før (blå) og efter (grøn) højfrekvens filter.}
+	\label{fig::anfilter_hf}
+\end{figure}
