@@ -34,7 +34,7 @@ Under disse parametre var der en del forskellige ting der skulle tages højde fo
 Derudover blev der opstillet en "kode-test" hvor der blev beregnet filtre som alle havde samme egenskaber, uanset om dette var et peak, high shelf eller et low shelf. Dette var for at eftervise om DSP koden var konsistent i alle typer filtre. \\
 
 \section{Udførelse}
-For at måle overføringsfunktionen sættes Bode 100'ens output til indgangen på equalizeren. CH1 sættes også til indgangen. CH2 sættes til udgangen og målingen foretages for samtlige af ovenstående presets. \\
+For at måle overføringsfunktionen sættes Bode 100'ens output til indgangen på equalizeren. CH1 sættes også til indgangen. CH2 sættes til udgangen og målingen foretages for samtlige af ovenstående presets. Bodens udgangslevel sættes til $-4\decibel\milli$, for at undgå overstyring uanset profil. CH1 og CH2's dæmpning sættes til $0\decibel$ og der måles fra $20\hertz$ til $20\kilo\hertz$ da dette er det normale lydområde.\\
 
 
 \begin{figure}[h!]\label{fig:bode_setup}
@@ -47,7 +47,7 @@ For at måle overføringsfunktionen sættes Bode 100'ens output til indgangen p�
 
 \section{Resultater}
 I dette afsnit vil resultaterne af målingerne blive vist, og der vil herefter drages til delkonklusion, hvor teorien stilles op mod praktis.
-Det første resultat på figur \ref{fig:eq_off1}, viser en graf hvor den digitale del er slået fra, og selve equalizeren er deaktiveret. Det er altså kun de analoge filtre der dominerer. Da der hovedsageligt testes om profilerne fungerer, altså om DSP koden er korrekt, trækkes denne "afvigelse" fra målingerne, så disse bliver så tæt på teorien som muligt. Det teoretiske AA-filter ses til sammenligning på figur \ref{fig::afilter_aasim}, hvor det stemmer overens med målingen. \\ 
+Det første resultat på figur \ref{fig:eq_off1}, viser en graf hvor den digitale del er slået fra, og selve equalizeren er deaktiveret. Det er altså kun de analoge filtre der dominerer. Da der hovedsageligt testes om profilerne fungerer, altså om DSP koden er korrekt, trækkes denne "afvigelse" fra målingerne, så disse bliver så tæt på teorien som muligt. Det teoretiske AA-filter ses til sammenligning på figur \ref{fig::afilter_aasim}, hvor det stemmer overens med målingen.
 
 \begin{figure}[h!]
 	\centering
@@ -58,62 +58,64 @@ Det første resultat på figur \ref{fig:eq_off1}, viser en graf hvor den digital
 
 Den vigtige del at eftervise, er hvor equalizeren er slået til. 
 Udfra forberedelsen, skulle 3 parametre testes - amplituden, båndbredden og frekvensen. 
-Da der blev målt første gang, viste det sig, at både frekvensen og båndbredden afvigede med ca. en faktor 2, hvorfor der blev lavet en måling med korrigerede parametre. Amplituden afvigede i det positive spektrum med ca. 1.75, og i det negative med ca. 3.75, hvilket også blev korrigeret. \\
-
+Da der blev målt første gang, viste det sig, at både frekvensen og båndbredden afvigede med ca. en faktor 2, hvorfor der blev lavet en måling med korrigerede parametre. Amplituden afvigede i det positive spektrum med ca. 1.75, og i det negative med ca. 3.75, hvilket også blev korrigeret. Disse faktorer blev fundet ved hjælp af "trial and error"-metoden (læs: prøve-fejl-metode) ved de forskellige profiler. \\
 De teoretiske beregninger og resultater stilles op ved siden af hinanden.
-Dette ses for hhv. for hver parameter i figur: \ref{fig:gain}, \ref{fig:bw} og \ref{fig:frek}. 
+Dette ses for hhv. hver parameter i figur: \ref{fig:gain}, \ref{fig:bw} og \ref{fig:freq}. 
 Her ses tydeligt den afvigende amplitude og båndbredde. På figur \ref{fig:korr} ses de korrigerede målinger. 
 
 \subsection{Målinger}
 
 \begin{figure}[h!]
+	\vspace*{-0.3 cm}
 	\centering
 	\subbottom[]{%
-	\includegraphics[width=7cm]{billeder/Gain_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/Gain_uden_hotfix}
 	\label{fig:gain_uden_hotfix}}
 	\subbottom[]{%
-	\includegraphics[width=7cm]{billeder/Gain_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/Gain_uden_hotfix}
 	\label{fig:gain_teori}}
-  	\caption{Målingsresultat af hhv. gain $5\si{\dB}$, $7\si{\dB}$, $-5\si{\dB}$ og $-7\si{\dB}$ uden korrigering}
+  	\caption{Målingsresultat af gain ($\pm5\decibel$ og $\pm7\decibel$, figur \ref{fig:gain_uden_hotfix}) sammenlignet med teorien (\ref{fig:gain_teori})}
 	\label{fig:gain}
 \end{figure}
 
 \begin{figure}[h!]
+	\vspace*{-0.3 cm}
 	\centering
 	\subbottom[]{%
-	\includegraphics[width=7cm]{billeder/Bandwith_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/Bandwith_uden_hotfix}
 	\label{fig:bandwidth_uden_hotfix}}
 	\subbottom[]{%
-	\includegraphics[width=7cm]{billeder/Bandwith_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/Bandwith_uden_hotfix}
 	\label{fig:bandwidth_teori}}
-  	\caption{Målingsresultat af bandwidth med hhv. 100hz, 500hz og 1000hz.}
+  	\caption{Målingsresultat af forskellig bandwidth (hhv. $100\hertz$, $500\hertz$ og $1\kilo\hertz$, figur \ref{fig:bandwidth_uden_hotfix}), sammenlignet med teorien (\ref{fig:bandwidth_teori}.}
 	\label{fig:bw}
 \end{figure}
 
 \begin{figure}[h!]
+	\vspace*{-0.3 cm}
 	\centering
 	\subbottom[]{%
-	\includegraphics[width=7cm]{billeder/Frekvensplacering_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/Frekvensplacering_uden_hotfix}
 	\label{fig:freq_uden_hotfix}}
 	\subbottom[]{%
-	\includegraphics[width=7cm]{billeder/Frekvensplacering_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/Frekvensplacering_uden_hotfix}
 	\label{fig:freq_teori}}
-  	\caption{Målingsresultat af frekvensen i hhv. 100hz og 5kHz}
-	\label{fig:frek}
+  	\caption{Målingsresultat af forskellig frekvens (hhv. $100\hertz$ og $5\kilo\hertz$, figur \ref{fig:freq_uden_hotfix}), sammenlignet med teorien (\ref{fig:freq_teori}.}
+	\label{fig:freq}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\subbottom[]{%
-	\includegraphics[width=7cm]{billeder/Gain_Med_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/Gain_Med_hotfix}
 	\label{fig:gain_med_hotfix}}
 	\subbottom[]{%
-	\includegraphics[width=7cm]{billeder/Bandwidth_Med_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/Bandwidth_Med_hotfix}
 	\label{fig:bandwidth_med_hotfix}}
 	\subbottom[]{%
-	\includegraphics[width=7cm]{billeder/Frekvensplacering_Med_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/Frekvensplacering_Med_hotfix}
 	\label{fig:frekvensplacering_med_hotfix}}
-  	\caption{Her ses de korrigerede værdier for hhv. gain (\ref{fig:gain_med_hotfix}), bandwidth (\ref{fig:bandwidth_med_hotfix}) og frekvens (\ref{fig:frekvensplacering_med_hotfix}).}
+  	\caption{Her ses de korrigerede målinger for hhv. gain (\ref{fig:gain_med_hotfix}), bandwidth (\ref{fig:bandwidth_med_hotfix}) og frekvens (\ref{fig:frekvensplacering_med_hotfix}).}
 	\label{fig:korr}
 \end{figure}
 
