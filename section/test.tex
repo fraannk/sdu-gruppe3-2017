@@ -52,8 +52,6 @@ Den vigtige del at eftervise, er hvor equalizeren er slået til.
 Udfra forberedelsen, skulle 3 parametre testes - amplituden, båndbredden og frekvensen. 
 Da der blev målt første gang, viste det sig, at både frekvensen og amplituden afvigede med ca. en faktor 2, hvorfor der blev lavet en måling med korrigerede parametre. 
 
-\subsection{Målinger}
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.8]{matlabdemo/test/test_eq_off.png}  
@@ -61,44 +59,63 @@ Da der blev målt første gang, viste det sig, at både frekvensen og amplituden
 	\label{fig:eq_off1}
 \end{figure}
 
-\begin{figure}[h!]\label{fig:Gain_uden_hotfix}
+\subsection{Målinger}
+
+\begin{figure}[h!]
 	\centering
-	\includegraphics[scale = 0.8]{billeder/Gain_uden_hotfix}
-	\caption{Målingsresultat af hhv. gain $5\si{\dB}$, $7\si{\dB}$, $-5\si{\dB}$ og $-7\si{\dB}$ uden korrigering}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Gain_uden_hotfix}
+	\label{fig:gain_uden_hotfix}}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Gain_uden_hotfix}
+	\label{fig:gain_teori}}
+  	\caption{Målingsresultat af hhv. gain $5\si{\dB}$, $7\si{\dB}$, $-5\si{\dB}$ og $-7\si{\dB}$ uden korrigering}
+	\label{fig:gain}
 \end{figure}
 
-\begin{figure}[h!]\label{fig:Bandwith_uden_hotfix}
+\begin{figure}[h!]
 	\centering
-	\includegraphics[scale = 0.8]{billeder/Bandwith_uden_hotfix}
-	\caption{Målingssetup med Bode 100}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Bandwith_uden_hotfix}
+	\label{fig:bandwidth_uden_hotfix}}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Bandwith_uden_hotfix}
+	\label{fig:bandwidth_teori}}
+  	\caption{Målingsresultat af bandwidth med hhv. 100hz, 500hz og 1000hz.}
+	\label{fig:gain}
 \end{figure}
 
-\begin{figure}[h!]\label{fig:Frekvensplacering_uden_hotfix}
+\begin{figure}[h!]
 	\centering
-	\includegraphics[scale = 0.8]{billeder/Frekvensplacering_uden_hotfix}
-	\caption{Målingssetup med Bode 100}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Frekvensplacering_uden_hotfix}
+	\label{fig:freq_uden_hotfix}}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Frekvensplacering_uden_hotfix}
+	\label{fig:freq_teori}}
+  	\caption{Målingsresultat af frekvensen i hhv. 100hz og 5kHz}
+	\label{fig:gain}
 \end{figure}
 
-\begin{figure}[h!]\label{fig:Gain_med_hotfix}
+\begin{figure}[h!]
 	\centering
-	\includegraphics[scale = 0.8]{billeder/Gain_Med_hotfix}
-	\caption{Målingssetup med Bode 100}
-\end{figure}
-
-\begin{figure}[h!]\label{fig:Bandwith_med_hotfix}
-	\centering
-	\includegraphics[scale = 0.8]{billeder/Bandwidth_Med_hotfix}
-	\caption{Målingssetup med Bode 100}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Gain_Med_hotfix}
+	\label{fig:gain_med_hotfix}}
+	\subbottom[]{%
+	\includegraphics[width=7cm]{billeder/Bandwidth_Med_hotfix}
+	\label{fig:bandwidth_med_hotfix}}
+  	\caption{Her ses de korrigerede værdier}
+	\label{fig:gain}
 \end{figure}
 
 \begin{figure}[h!]\label{fig:Frekvensplacering_med_hotfix}
 	\centering
-	\includegraphics[scale = 0.8]{billeder/Frekvensplacering_Med_hotfix}
+	\includegraphics[width=7cm]{billeder/Frekvensplacering_Med_hotfix}
 	\caption{Målingssetup med Bode 100}
 \end{figure}
 
 \section{Delkonklusion}
-
 
 
 
