@@ -3,13 +3,16 @@
 \subsection{Formål}
 Analog til digital konverteren sampler ved en vis frekvens. Det er derfor vigtigt, ifølge Nyquist’s sætning, at begrænse indgangssignalet til halvdelen af denne samplingsfrekvens. Dette udelukker støj ved højere frekvenser.\\
 
-Dette kan realiseres ved hjælp af et anti aliasing filter (herefter AA filter). Samplingsfrekvensen af sat til 44.1kHz, det vil derfor være ideelt at påføre et AA filter med en betydelig dæmpning ved 22.5kHz.\\
+Dette kan realiseres ved hjælp af et anti aliasing filter (refererers herefter som AA filter). Samplingsfrekvensen af sat til 44.1kHz, det vil derfor være ideelt at påføre et AA filter med en betydelig dæmpning ved 22.5kHz.\\
+\Kenneth{Argument for knækfrekvens ved 22.5 kHz}
 \subsection{Overvejelser}
-Når der arbejdes med lydsignaler er det vigtigt at overveje gruppeløbetiden. Denne beskriver hvor stor en forsinkelse forskellige frekvenser har i forhold til gengivelsen. Ud fra dette blev der indledningsvis valgt et bessel filter, da denne type filter har en konstant gruppeløbetid op til knækfrekvensen. Senere på forløbet blev afklaret at forsinkelsen skulle ligge i millisekund før det var tydelig hørbart. Der blev derfor taget en beslutning om at skifte til Butterworth filtre, da disse har en stejlere dæmpnings hældning og kræver færre komponenter.\\
+Når der arbejdes med lydsignaler er det vigtigt at overveje gruppeløbetiden. Den beskriver hvor stor en forsinkelse forskellige frekvenser har i forhold til gengivelsen. Ud fra dette blev der indledningsvis valgt et bessel filter, da denne type filter har en konstant gruppeløbetid op til knækfrekvensen. Senere på forløbet blev det afklaret at forsinkelsen skulle ligge i millisekund før det var tydelig hørbart. Der blev derfor taget en beslutning om at skifte til Butterworth filtre, da de har en stejlere dæmpnings hældning og kræver færre komponenter.
+\Kenneth{Noget omformulering ved valg af butterworth frem for bessel}
 \subsection{Parametre, udregning og Sallen Key}\label{sec::anfilter_sallenpara}
 Butterworth filteret blev valgt som det endelige filter. 
 Det vælges at knækfrekvensen skal ligge ved 17kHz med en dæmpning på -3dB. Ved hjælp af Matlab (der refereres til bilag \ref{void}) udregnes at amplituden ved 22.5kHz kan dæmpes med -12dB med at 5. ordens butterworth filter.\\
 Der ønskes tre overføringsfunktioner på formen som vist i ligning \ref{eq::anfilter_standardeq}.
+\Kenneth{Argumenter for valg af størrelserne}
 \begin{equation}
 	H(s) = \dfrac{1}{s^2+b_1\cdot s + b_0}\label{eq::anfilter_standardeq}
 \end{equation}
@@ -129,7 +132,7 @@ Ud fra formel \ref{eq::SallenKey} udregnes også trin 3. Her vælges R2 til at v
 	\label{fig::filter_stage3}
 \end{figure}
 \FloatBlock
-
+\Kenneth{Figur 3.6 - Tydligere linjer}
 \subsection{Simulering}
 Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{fig::aa_sim}, findes en dæmpning på -3dB ved 17kHz og en dæmpning på -12dB ved 22.5kHz. Forskellen i gruppeløbetiden er maksimalt $18 \mu s$.
 \begin{figure}[h!]
@@ -150,7 +153,7 @@ Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to kompleks
 \FloatBlock
 \section{Rekonstruktions filter}
 \subsection{Formål}
-I et system med både analog og digitale signaler, bruges et rekonstruktions filter (eller anti image filter) til at genererer et glat analog signal fra udgangssignalet fra bla. en DAC. Et digitalt lyd signal har en trappetrin type bølgeform som indeholder en del højfrekvent energi kaldet "images". Et rekonstruktions filter konstruerer en mere jævn version af det originale signal.
+I et system med både analoge og digitale signaler, bruges et rekonstruktionsfilter (også kaldet anti image filter) til at generere et "glat" analogt signal ud fra for eksemplet en DACs udgangssignal. Et digitalt lyd signal har bølgeform som et trappetrin og indeholder en del højfrekvent komposanter, også kaldet "images". Et rekonstruktionsfilter konstruerer en mere udglattet version af det originale signal.
 \subsection{Parametre og udregning}
 Det er almindelig praksis at benytte et filter til rekonstruktion, magen til det filter der anvendes til antialiasing. For udregninger henvises til afsnit \ref{sec::anfilter_sallenpara}.
 
