@@ -48,12 +48,13 @@ csvwrite('p_h7.dat',out);
 out = [transpose(f), transpose(20*log10(amp(8,:)))];
 csvwrite('p_h8.dat',out);
 
-plot(f,20*log10(amp))
+semilogx(f,20*log10(amp))
 title('Individuelle Bånd')
 ylabel('[dB]')
 xlabel('Hz')
+xlim([20 fs/2])
 subplot(212)
-plot(f(1,:),20*log10(H_res))
+semilogx(f(1,:),20*log10(H_res))
 title('Resulterende H(z)')
 ylabel('[dB]')
 xlabel('Hz')
