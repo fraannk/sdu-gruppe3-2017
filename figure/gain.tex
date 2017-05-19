@@ -1,0 +1,48 @@
+\input{../config/tikzpreample}
+
+\begin{document}
+	
+
+
+\begin{tikzpicture}
+\newcommand{\plotlinewidth}{1pt}
+\begin{semilogxaxis}[
+	xlabel=$f$ ($Hz$), % \hertz requires SIunits
+	ylabel=$h$ ($dB$),
+    xmin = 0,
+    xmax = 20000,
+	title={Low Shelf filtre med varierende G},
+	grid=both,
+	minor grid style={gray!25},
+	major grid style={gray!25},
+	width=0.9\linewidth,
+    height=9cm,
+	no marks]
+    \addplot[line width=\plotlinewidth,solid,color=red] %
+	table[x=20,y=0.369227047960019, col sep=comma]{../matlabdemo/test/Maalinger/Uden_hotfix/Gain/gain_5dB_bw_100hz.csv};
+\addlegendentry{$$G = 1 (dB)$$};
+%    \addplot[line width=\plotlinewidth,solid,color =cyan] %
+%	table[col sep=comma]{../matlabdemo/ls_h2.dat};
+%\addlegendentry{$$G = 2.5 (dB)$$};
+%    \addplot[line width=\plotlinewidth,solid,color=orange] %
+%	table[col sep=comma]{../matlabdemo/ls_h3.dat};
+%\addlegendentry{$$G = 5 (dB)$$};
+%    \addplot[line width=\plotlinewidth,solid,color=yellow] %
+%	table[col sep=comma]{../matlabdemo/ls_h4.dat};
+%\addlegendentry{$$G = 7.5 (dB)$$};
+%    \addplot[line width=\plotlinewidth,solid,color=brown] %
+%	table[col sep=comma]{../matlabdemo/ls_h5.dat};
+%\addlegendentry{$$G = -1 (dB)$$};
+%    \addplot[line width=\plotlinewidth,solid,color=blue] %
+%	table[col sep=comma]{../matlabdemo/ls_h6.dat};
+%\addlegendentry{$$G = -2.5 (dB)$$};
+%    \addplot[line width=\plotlinewidth,solid,color=green] %
+%	table[col sep=comma]{../matlabdemo/ls_h7.dat};
+%\addlegendentry{$$G = -5 (dB)$$};
+%    \addplot[line width=\plotlinewidth,solid,color=black] %
+%	table[col sep=comma]{../matlabdemo/ls_h8.dat};
+%\addlegendentry{$$G = -7.5 (dB)$$};
+\end{semilogxaxis}
+\end{tikzpicture}
+
+\end{document}
