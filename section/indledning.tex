@@ -43,7 +43,7 @@ Formålet med dette projekt, er at formidle de opnåede fagligheder fra 4. semes
 %Projektet går ud på at designe en parametrisk equalizer, der kan efterbehandle et lydsignal. Den skal realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller som er platformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd som brugeren frit kan modulere.
 %}
 Ud fra formålet for projektet, er der blevet valgt at fremstille et produkt, hvori alle fagligheder kan anvendes. 
-Produktet der ønskes realiseret, er konstruktionen af en digital parametrisk equalizer. 
+Produktet der ønskes realiseret, er konstruktionen af en digital parametrisk\footnote{Uddybende forklaring om forskellen mellem parametrisk og grafisk equalizer sker i kapitel \ref{kap:equalizer}.} equalizer. 
 Denne parametriske equalizer, skal realiseres ved en mikrocontroller af samme type, der anvendes som platformen i faget embedded programmering.
 Equalizeren skal have nogle såkaldte "bånd" med justerbarer parametre, som fx frekvens og forstærkning. 
 Ud fra fagbeskrivelsen, kan dette relateres i et så bredt omfang, at formålet opfyldes. 
@@ -72,24 +72,25 @@ Der træffes endvidere valget om at gøre den parametrisk, for bedre fleksibilit
 Følgende medtages ikke i rapporten og afgrænser projektet:
 \begin{itemize}[noitemsep]
 	\item Equalizeren bliver udviklet som prototype og ikke et produktionsklart produkt.
-	\item Der tages ikke højde for ledningsteori, da dette pensum blev fremlagt for sent i projektforløbet.
+	\item Der vil blive lagt vægt på at kunne eftervise funktionaliteten af signalbehandlingen og ikke hvor god HiFi kvalitet det endelige produkt lever op til.
 \end{itemize}
 
 \section{Kravspecifikation} \label{afs:kravspecifikation}
-I dette afsnit fremstår de opsatte krav for projektet, der er fastsat dels ud fra kravet til selve projektbeskrivelsen, men også ud fra de studerende selv med henblik på at efterligne den virkelige ingeniørverden.
+I dette afsnit fremstår de opsatte krav for projektet.
+Disse er fastsat dels ud fra kravet til selve projektbeskrivelsen og dels for at efterligne den virkelige ingeniørverden.
 
 \begin{itemize}[noitemsep]
-	\item Prototypen udvikles på Tiva™ C Series TM4C123G LaunchPad Evaluation Kit.
-	\item Tiva™ TM4C123G serie Microcontroller anvendes.
+	\item Prototypen udvikles på Tiva™ C Series TM4C123G LaunchPad Evaluation Kit \cite{spmt281a}.
+	\item Tiva™ TM4C123G serie Microcontroller anvendes \cite{spmu296}.
 	\item Kildekoden er en del af produktet og skal overholde \textit{EMP C Code Standard}\cite{emp-c}.
-	\item Equalizeren skal virke som parametrisk equalizer.
+	\item Equalizeren skal fungere som parametrisk equalizer.
 	\item Det skal være muligt at ændre frekvensprofiler på equalizeren.
-	\item Indgangs- og udgangssignaler skal overholde line-level standard på, nominal $-10 dBV$, $0,894 V_{pp}$ (Forbruger elektronik line-signal).
-	\item Tilgængelige filtertyper i frekvensprofiler - Højpass, Lavpass, Båndpass og Båndstop.
+	\item Indgangs- og udgangssignaler skal overholde line-signal standard på, nominal $-10 dBV$, $0,894 V_{pp}$ (Forbruger elektronik line-signal).
+	\item Tilgængelige filtertyper i frekvensprofiler - Highshelf, Lowshelf, Peek- og Notchfilter.
 	\item Equalizerparametre skal omfatte - Frekvens, båndbredde og gain.
-	\item Equalizerens funktionalitet og effektivitet efterprøves med et velbeskrevet test-signal.
+	\item Equalizerens funktionalitet og effektivitet efterprøves.
 \end{itemize}
-\jj{Henvisning til signal standard.}
+
 
 \section{Løsningsmodel}
 %Løsningsmodellen som ses på figur \ref{fig:losningsmodel}, er den overordnede arbejdsproces faget digital signalbehandling, hvoraf meget af stoffet bliver hentet fra. Modellen gør det nemmere at dele arbejdet op, da det er et blokdiagram.
