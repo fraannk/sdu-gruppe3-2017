@@ -1,20 +1,20 @@
 \section{Hardware laget og konfiguration af periferienheder}
-I det kommende afsnit vil den valgte hardware konfiguration gennemgås. 
-Den dybere tekniske beskrivelse i forhold til produkt specifikke registre eller anden speciel arkitektur, vil ikke i detaljer beskrives, med mindre det er en vigtig del af argumentationen for valget.
+I det kommende afsnit vil den valgte hardware konfiguration blive gennemgået. 
+Den dybere tekniske beskrivelse i forhold til fx. produkt specifikke registre eller anden speciel arkitektur, vil ikke i detaljer blive beskrevet, medmindre det er en vigtig del af argumentationen for valget.
 Det komplette hardware modul findes i \emph{hardware.c}.
 
 \subsection{Valg af hardware profil}
 For at kunne håndtere de forskellige opsætninger af hardware i udviklingsforløbet af equalizerens software, er der lavet forskellige hardware opsætninger, således at det er nemt kan skiftes mellem dem.
 \\
 
-I \textit{global.h} filen, findes to compilere \textbf{\#define} direktiver til makro definitionerne \textbf{EMP} og \textbf{DAC}.
+I \textit{global.h} filen, findes to compilere \textbf{\#define} direktiver til makro definitionerne \texttt{EMP} og \texttt{DAC}.
 Sammenhængen mellem profilerne ses i figur \ref{fig:hardware_profiler}. 
-Således kan softwaren testes på EMP printet\footnote{Komponenterne til mikrofonindgang og hovedtelefonudgang skal være monteret}, ved at vælge \textbf{EMP} profilen.
-Fravælges \textbf{EMP} profilen, skifter softwaren over til at bruge projekt printet.
+Softwaren kan således testes på EMP printet\footnote{Komponenterne til mikrofonindgang og hovedtelefonudgang skal være monteret \cite{emp-diagram}.}, ved at vælge \texttt{EMP} profilen.
+Fravælges \texttt{EMP} profilen, skifter softwaren over til at bruge projekt printet.
 Her kan der vælges imellem DAC eller PWM som udgangssignal.  
 Den tilhørende pin-konfiguration for de valgte hardware profiler kan ses i bilag \ref{bilag:pinmap}.
 
-\subsection{CPU clock frekvens}
+\subsection{CPU'ens clock frekvens}
 \begin{wrapfigure}[20]{r}{5cm}
 	\centering
 	\includegraphics[width=4.5cm]{billeder/hardware_profiles.png}
@@ -22,25 +22,26 @@ Den tilhørende pin-konfiguration for de valgte hardware profiler kan ses i bila
 	\label{fig:hardware_profiler}
 \end{wrapfigure}
 For at kunne opnå så mange beregninger som muligt i sekundet, opsættes MCU'en til den maksimale clock frekvens.
-Den valgte MCU (TM4C123GH6PM) er en $80\si{\mega\hertz}$ mikrokontroller, og den ønskede clock frekvens sættes i funktionen \texttt{set\_80Mhz\_clock()} i hardwaremodulet \textit{hardware.c} til $F_{CPU} = 80\si{\mega\hertz}$.\\
+Den valgte MCU (TM4C123GH6PM) er en $80\si{\mega\hertz}$ mikrokontroller, og den ønskede clock frekvens sættes i funktionen \texttt{set\_80Mhz\_clock();} i hardwaremodulet \textit{hardware.c} til $F_{CPU} = 80\si{\mega\hertz}$.\\
 Ved denne frekvens og den valgte samplefrekvens $F_s$, kan et mål for antallet af CPU cycles imellem hver sample findes.
 \begin{align}
 N_{CPU cycles} = \frac{F_{CPU}}{F_s}  =  \frac{80\si{\mega\hertz}}{44,1\si{\kilo\hertz}}  = 1814,06 \si{\cycles}
 \end{align}
 
 \subsection{ADC}
-Til sampling af audiosignalet anvendes en analog til digital konverter (ADC). 
-De tre vigtigste faktorer der skal findes frem til er - hvornår der bliver samplet, hvor længe det varer før værdien er tilgængelig og hvor nøjagtig den den samplede værdi er.
-ADC'en omsætter det analoge lydsignal til en digital repræsentation, i dette tilfælde med en 12 bits opløsning.
-Opløsningen på det indgående signal kan bestemmes til $V_{LSb} = (V_{ref+} - V_{ref-} ) / 4096 $, hvor $V_{ref+}$ og $V_{ref-}$ er henholdsvis den positive og negative referencespænding.
+Til sampling af lydsignalet anvendes en analog til digital konverter (ADC). 
+De tre vigtigste faktorer der skal findes frem til er - hvornår der bliver samplet, hvor længe det varer før værdien er tilgængelig og hvor nøjagtig den den samplede værdi er.\\
+
+ADC'en omsætter det analoge lydsignal til en digital repræsentation, i dette tilfælde med en 12 bits opløsning\footnote{Stadard ADC opløsning på \textit{M4C123GH6PM} MCU'en \cite[s. 797]{tm4c123gh6pm}}.\\
+Opløsningen på det indgående lydsignal kan bestemmes til $V_{LSb} = (V_{ref+} - V_{ref-} ) / 4096 $, hvor $V_{ref+}$ og $V_{ref-}$ er henholdsvis den positive og negative referencespænding.
 I den konkrete løsning, forsynes MCU'en med en single-supply på $V_{DD} = 3,3\si{\volt}$.
 Derved bliver den mindste målbare spændingsændring på indgangen,
 \begin{align}
 V_{LSb} = \frac{V_{DD}}{4096} = 8,06\si{\milli\volt\per\LSb}
 \end{align}
 
-For et komplet billede af det samplede signal, fremgår det i databladet \cite[afsnit 24.14 s. 1383]{tm4c123gh6pm} for MCU'en, at
-den samlede, ikke korrigerede fejl er $E_T = \pm 30\si{\LSb}$ som maksimum.
+For et komplet billede af nøjagtigheden på det samplede signal, fremgår det i databladet \cite[afsnit 24.14 s. 1383]{tm4c123gh6pm} for MCU'en, at
+den samlede, ikke korrigerede maksimale fejl er $E_T = \pm 30\si{\LSb}$.
 
 Den samplede digitale spænding $V_{d}$, kan således angives med en usikkerhed i forhold til den analoge spænding $V_{a}$ på,
 \begin{align}
@@ -48,20 +49,20 @@ V_{d} = V_{a} \pm \V_{LSb} \cdot E_T = V_{a} \pm   8,06\si{\milli\volt\per\LSb} 
 \end{align} 
 
 Den i projektet anvendte MCU tilbyder en lang række funktionaliteter for ADC periferienheden.
-Det er dog kun nødvendigt at fortage én sample for hver lyd kanal\footnote{Når software anvedner EMP profil bruges der kun én ADC kanal}, én gang for hver sampleperiode $T_s$.
-Derfor anvendes en \textbf{Once Mode}, der bliver styret af interrupt service rutinen \textit{sample\_handler()}. Denne ISR og timingen af ADC'en vil blive uddybet i afsnittet om interrupt (se side \pageref{subsec:interrupt}).
+Det er dog kun nødvendigt at fortage én lydsampling for hver lyd kanal\footnote{Når software anvender EMP profil bruges der kun én ADC kanal}, én gang for hver sampleperiode $T_s$.
+Derfor anvendes en \textbf{Once Mode}\cite[afsnit 13.3.7.2, s. 812]{tm4c123gh6pm}, der bliver styret af interrupt service rutinen \texttt{sample\_handler();}. Denne ISR og timingen af ADC'en vil blive uddybet i afsnittet om interrupt (se side \pageref{subsec:interrupt}).\\
 
-Samplingen af ADC'ens indgangssignalet påbegyndes manuelt af equalizerens software.
-Samplingen sker ved successiv approksimation (SAR) i ADC'en og ud fra databladet er sampletiden angivet som $T_C = 2$ ADC clock cycles. 
-I implementeringen, er ADC clocken sat til at køre $16 \si{\mega\hertz}$ og giver derved en samplingstid på $T_C = \num{1,25E-7}\si{\second}$.  
+Samplingen ved ADC'en på lydsignalet påbegyndes manuelt af equalizerens software.
+ADC'en bruger successiv approksimation (SAR) og ud fra databladet er sampletiden angivet som $T_C = 2$ ADC clock cycles. 
+Implementeringen af ADC har en clock-frekvens sat til $16 \si{\mega\hertz}$ som giver en samplingstid på $T_C = \num{1,25E-7}\si{\second}$.  
 
 \subsection{PWM - Pulse Width Modulation}
 I begyndelsen af udviklingen, var der overvejelser om hvordan lydsignalet skulle genskabes efter den digitale behandling var foregået.
-Ud fra de indbyggede periferienheder, som den valgte MCU stiller til rådighed, faldt valget på et PWM generet lyd signal.
-Det viste sig dog under udviklingen af de analoge filtre, som er gennemgået i foregående kapitel, at opnåelsen af en tilfredsstillende lydkvalitet samt at kunne eftervise equalizerens funktionalitet, ikke kunne opnås med et PWM generet udgangssignal. 
-\\
+Ud fra de indbyggede periferienheder, som den valgte MCU stiller til rådighed, faldt valget på et PWM generet lydsignal.
+Det viste sig dog under udviklingen af de analoge filtre ( som blev gennemgået i foregående kapitel ), at en tilfredsstillende lydkvalitet samt at kunne eftervise equalizerens funktionalitet, ikke kunne opnås med et PWM generet lydsignal. \\
+Der vil dog stadig laves en gennemgang af PWM'ens opsætning og funktionalitet i hardware delen, da denne bruges i \texttt{EMP} profilen.\\
 
-Som udgangspunkt er det anvendte EMP print udstyret med en mikrofonindgang og en hovedtelefonudgang \footnote{Henholdsvis \textbf{Microphone Preamp} og \textbf{Headphone Output} i diagram \cite{emp-diagram}}, som fra designerens udgangspunkt er forbundet med henholdsvis en af MCU'ens analoge indgange og en GPIO pin hvor PWM er mulig.
+Som udgangspunkt er det anvendte EMP print udstyret med en mikrofonindgang og en hovedtelefonudgang \footnote{Henholdsvis \textbf{Microphone Preamp} og \textbf{Headphone Output} i diagram \cite{emp-diagram}}. Disse er fra designerens side, blevet forbundet med henholdsvis en af MCU'ens analoge indgange og en GPIO pin hvor PWM er mulig\footnote{Forbindelserne kan ses i \cite{emp-diagram} og i pinmapping tabellen i bilag \ref{bilag:pinmap}}.
 
 \begin{figure}[h!]
 	\centering
@@ -70,25 +71,28 @@ Som udgangspunkt er det anvendte EMP print udstyret med en mikrofonindgang og en
 	\label{fig:pwm}
 \end{figure}
 
-Der vælges at bruge PWM i fase korrekte modus, som kan ses et eksempel af i figur \ref{fig:pwm}.
-I fase korrekt modus skal PWM tælleren starte på 0, og tælle både op til \textbf{LOAD} værdien og ned igen, inden næste PWM cyklus begyndes.
-Ved en PWM frekvens, $F_{PWM}$, der er den samme som samplingsfrekvensen $F_s$, vil $\textbf{LOAD} = N_{CPU cycles} / 2$.
+Der vælges at bruge PWM i fase korrekte modus, hvor et eksempel ses i figur \ref{fig:pwm}.
+I fasekorrekt modus skal PWM tælleren starte på 0 og tælle både op til \textbf{LOAD} værdien og ned igen, inden næste PWM cyklus påbegyndes.
+Ved en PWM frekvens $F_{PWM}$, der er den samme som samplingsfrekvensen $F_s$, vil $\textbf{LOAD} = N_{CPU cycles} / 2$.
 
-Da udgangssignalet kan variere mellem $ 0 \si{\volt}$ og $V_{DD} = 3,3 \si{\volt}$, hvor middelværdien er $V_{DD}/2 = 1,65 \si{\volt}$, kan opløsningen på udgangssignalet beregnes til,
+Da udgangssignalet kan variere mellem $ 0 \si{\volt}$ og $V_{DD} = 3,3 \si{\volt}$, hvor middelværdien er $V_{DD}/2 = 1,65 \si{\volt}$, kan opløsningen på udgangssignalet beregnes til.
 
 \begin{align}
 \Delta V_{PWM} = \frac{V_{DD} \cdot 2K}{N_{CPU cycles}} = \frac{3,3\si{\volt} \cdot 2}{1814} =  3,638\si{\milli\volt}
 \end{align}
 
-for et vilkårligt forhold, ($K$), mellem samplefrekvens og PWM frekvens. 
-Da der ønskes PWM frekvens der er 10 gange større end samplingsfrekvensen ($K=10$) ses det, at opløsningen på udgangen ligeledes falder med en faktor 10 til $\Delta V_{PWM} = 36,38\si{\milli\volt}$.\\
+Her angiver $K$ et vilkårligt forhold mellem samplingsfrekvens og PWM frekvens.\\
 
-Opsætning af PWM findes i \texttt{init\_PWM( INT16U cycles )} i hardware modulet \textit{hardware.c}. Funktionen tager $N_{CPU cycles}$ som parameter, således at hardwaren kan opsættes til andre samplingsfrekvenser end $F_s = 44,1\si{\kilo\hertz}$.
+Da der ønskes en PWM frekvens der er 10 gange større end samplingsfrekvensen $[K=10]$ ses det, at opløsningen på udgangen ligeledes falder med en faktor 10 til $\Delta V_{PWM} = 36,38\si{\milli\volt}$.\\
+
+Det er således ikke hensigtsmæssigt at anvende et PWM genereret lydsignal på udgangen.
+Derfor blev der sidste i udviklingen skiftet til en DAC som der kommes nærmere ind på i næste afsnit.\\
+
+Opsætning af PWM findes i \texttt{init\_PWM( INT16U cycles );} i hardware modulet \textit{hardware.c}. 
+Funktionen tager $N_{CPU cycles}$ som parameter, således at hardwaren kan opsættes til andre samplingsfrekvenser end $F_s = 44,1\si{\kilo\hertz}$.
 Afhængig af den valgte hardware profil, sættes pin konfigurationen ud fra tabellen i bilag \ref{bilag:pinmap}.  
 
 \FloatBlock
-
-\jj{Mangler overgang til DAC}
 
 \subsection{DAC}
 Til at genere udgangssignalet fra MCU'en vælges en ekstern DAC kreds, da MCU'en ikke råder over denne funktionalitet.
