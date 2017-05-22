@@ -30,6 +30,7 @@ H(z)=\sum\limits_{k=0}^{N-1}h(k)z^{-1} \label{FIR_transfer}
 
 \section{Design metoder} \label{sec:fir_design}
 Herunder redegøres der for 2 forskellíge design metoder, til beregning af filter koefficienter.
+\husk{Søren}{skal de lige nævnes?}
 \subsection{Frekvenssampling}
 Ved frekvenssampling approksimeres det ønskede frekvensrespons ved, at sample det $N$ antal gange, med samme interval imellem samplingspunkterne. Der kan derved opnås et interpolateret frekvens respons.
 Pointen med frekvenssampling er at filterkoefficienter kan beregnes udfra specificerede størrelser i forhold det ønskede filter respons uniformt i frekvensdomænet.
@@ -61,9 +62,8 @@ h(n)=\frac{1}{2M+1}\left[ H_{0}+2\sum_{k=1}^{M} \left( \frac{2\pi k(n-M)}{2M+1} 
 
 hvor $h(k)$ for $k=0,1,\text{ ... },2M$, repræsenterer filterkoefficienternes størrelser, der bruges til at specificere det ønskede filterrespons med samplingslængden $\Omega_{k}=\frac{2\pi k}{(2M+1)}$.
 
-Design proceduren opskrives:
+Design proceduren opskrives:\\
 \Kenneth{\cite[Side. 263]{}.}
-\\
 \begin{enumerate}[noitemsep,nolistsep]
 \item Ud fra filterlængden $2M+1$, angives størrelsen af frekvensresponset for det normaliserede filter gående fra $0$ til $\pi$.
 \begin{equation}
