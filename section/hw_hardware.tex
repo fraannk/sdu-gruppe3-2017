@@ -28,7 +28,7 @@ Ved denne frekvens og den valgte samplefrekvens $F_s$, kan et mål for antallet 
 N_{CPU cycles} = \frac{F_{CPU}}{F_s}  =  \frac{80\si{\mega\hertz}}{44,1\si{\kilo\hertz}}  = 1814,06 \si{\cycles}
 \end{align}
 
-\subsection{ADC}
+\subsection{ADC}\label{subsec:adc}
 Til sampling af lydsignalet anvendes en analog til digital konverter (ADC). 
 De tre vigtigste faktorer der skal findes frem til er - hvornår der bliver samplet, hvor længe det varer før værdien er tilgængelig og hvor nøjagtig den den samplede værdi er.\\
 
@@ -56,7 +56,7 @@ Samplingen ved ADC'en på lydsignalet påbegyndes manuelt af equalizerens softwa
 ADC'en bruger successiv approksimation (SAR) og ud fra databladet er sampletiden angivet som $T_C = 2$ ADC clock cycles. 
 Implementeringen af ADC har en clock-frekvens sat til $16 \si{\mega\hertz}$ som giver en samplingstid på $T_C = \num{1,25E-7}\si{\second}$.  
 
-\subsection{PWM - Pulse Width Modulation}
+\subsection{PWM - Pulse Width Modulation}\label{subsec:pwm}
 I begyndelsen af udviklingen, var der overvejelser om hvordan lydsignalet skulle genskabes efter den digitale behandling var foregået.
 Ud fra de indbyggede periferienheder, som den valgte MCU stiller til rådighed, faldt valget på et PWM generet lydsignal.
 Det viste sig dog under udviklingen af de analoge filtre ( som blev gennemgået i foregående kapitel ), at en tilfredsstillende lydkvalitet samt at kunne eftervise equalizerens funktionalitet, ikke kunne opnås med et PWM generet lydsignal. \\
@@ -96,18 +96,21 @@ Afhængig af den valgte hardware profil, sættes pin konfigurationen ud fra tabe
 
 \subsection{DAC}
 Til at genere udgangssignalet fra MCU'en vælges en ekstern DAC kreds, da MCU'en ikke råder over denne funktionalitet.
-Valget blev en \texttt{MCP4922E/P}\footnote{Microchip MCP4922E/P 12-Bit Dual Voltage Output Digital-to-Analog Converter with SPI Interface \cite{mcp4922} } 12bit DAC IC, således at opløsningen på udgangen bliver den samme som på indgangen.
+Valget blev en \texttt{MCP4922E/P}\footnote{Microchip MCP4922E/P 12-Bit Dual Voltage Output Digital-to-Analog Converter with SPI Interface \cite{mcp4922} } som er en 12bit DAC IC.
+Derved er opløsningen på udgangen den samme som på indgangen (se afsnit om ADC på side \pageref{subsec:adc}).\\
+
 Spændingsdifferencen vil for den mindst betydende bit være $ V_{LSb} = V_{ref} / 4096 \approx \num{0,8}\si{\milli\volt} $, ved en ekstern reference spænding på $V_{ref} = 3,3\si{\volt}$.
-Derudover har den valgte DAC en maksimal indsvingningstid på $t_{settling} = \num{4.5}\si{\micro\second}$, hvilket passer fint til samplingsperioden på $23\si{\micro\second}$. 
+Derudover har den valgte DAC en maksimal indsvingningstid på $t_{settling} = \num{4.5}\si{\micro\second}$, hvilket passer fint til samplingsperioden på $T_s = 23\si{\micro\second}$. 
 
 \subsection{SPI}
 Den valgte DAC forbindes direkte til MCU'en gennem en SPI bus, hvor de valgte pins er beskrevet i bilag \ref{bilag:pinmap}.
-Ifølge databladet er datakommunikation op til $20\si{\mega\hertz}$ muligt, men SPI port konfigurationen på MCU'en sættes til $10\si{\mega\hertz}$.
-For at sætte den ønskede udgangsspænding på DAC'en, er en 16 bit kommando nødvendig. 
-I figur \ref{fig:dac12bit_writecmd} ses den nødvendige bitsekvens.
-En SPI clock på $10\si{\mega\hertz}$, giver således en overføringstid $t_{cmd}$ SPI kommandoen for begge lydkanaler på minimum på 
+Ifølge databladet er datakommunikation op til $20\si{\mega\hertz}$ mulig, men SPI port konfigurationen på MCU'en sættes til $10\si{\mega\hertz}$.
+For at sætte den ønskede udgangsspænding på DAC'en, er en 16 bit kommando nødvendig\footnote{En komplet beskrivelse af SPI protokollen findes i \cite[s. 23]{mcp4922}.}. 
+I figur \ref{fig:dac12bit_writecmd} ses den nødvendige kommando-bitsekvens med tilhørende timingsdiagram for \textbf{CS}, \textbf{SCK} og \textbf{LDAC}  .\\
+
+En SPI clock på $F_{SCK} = 10\si{\mega\hertz}$, giver således en transmissionstid $t_{cmd}$ af SPI kommandoen for begge lydkanaler på minimum på 
 \begin{align}
-	t_{cmd} = \frac{N_{kanal} \cdot 16bit}{F_{CLK}} = \frac{2 \cdot 16}{10\si{\mega\hertz}} = 3\si{\micro\second}
+	t_{cmd} = \frac{N_{kanal} \cdot 16bit}{F_{SCK}} = \frac{2 \cdot 16}{10\si{\mega\hertz}} = 3\si{\micro\second}
 \end{align}
 
 \begin{figure}[h!]
@@ -117,7 +120,7 @@ En SPI clock på $10\si{\mega\hertz}$, giver således en overføringstid $t_{cmd
 	\label{fig:dac12bit_writecmd}
 \end{figure}
 
-I overensstemmelse med databladene for DAC'en og MCU'en, bruges SPI Freescale Fame formatet \footnote{Se afsnit 15.3.4 \cite[s. 954]{tm4c123gh6pm}} i \textbf{Mode 0,0}.
+I overensstemmelse med databladene for DAC'en og MCU'en, bruges \emph{SPI Freescale Fame} formatet\footnote{Se afsnit 15.3.4 \cite[s. 954]{tm4c123gh6pm}} i \textbf{Mode 0,0}.
 
 \begin{figure}[h!]
 	\centering
@@ -126,15 +129,16 @@ I overensstemmelse med databladene for DAC'en og MCU'en, bruges SPI Freescale Fa
 	\label{fig:dac_dataframe}
 \end{figure}
 
-Konfigurationen af SPI laves i \texttt{spi\_init()} i modulet \textit{hardware.c}  
+Konfigurationen af SPI findes i \texttt{spi\_init();} i modulet \textit{hardware.c}  
 
 \FloatBlock
 
 \subsection{Interrupt}\label{subsec:interrupt}
-\Kenneth{Kringlet afsnit}
-Det er som tidligere  kaldet til \texttt{sample\_handler();} ISR'en der ligger til grund for hele timing af lydsampling med mere.
-Det er dog ikke så vigtigt hvilken interrupt vektor der får opgaven.
-I dette system er det valgt at bruge \textbf{zero reload event} på PWM'en, som \textit{interrupt trigger}.\\
+Som det tidligere er blevet forklaret, er det et kald til \texttt{sample\_handler();} ISR'en der ligger til grund for hele timingen af lydsamplingen.
+Det er dog ikke vigtigt hvilken interrupt vektor der får denne opgave.\\
+
+I dette system er det valgt at bruge \textbf{zero reload event} på PWM'en, som \textit{interrupt trigger}.
+Således bliver samplingstiden, som PWM'en er sat op efter (se afsnit om PWM på side \pageref{subsec:pwm}), indirekte overført til både ADC'en og DAC'en.\\ 
 
 Konfiguration af \textbf{NVIC}'en kan findes i modulet \textit{tm4c123gh6pm\_startup\_ccs\_gcc.c} og funktionen \texttt{init\_PWM(INT16U cycles);} i hardware modulet \textit{hardware.c}
 
@@ -152,14 +156,13 @@ Standard opsætningen for seriel kommunikation er
 Opsætningen af UART'en findes i \texttt{uart0\_init(...);} i uart modulet \textit{uart.c}
 
 \subsection{LCD}
-\Kenneth{Udvikling af debug information?}
-LCD displayet der er monteret på EMP printet, er primært brugt under udvikling til debug information og derfor bliver det brugt på samme måde på projekt printet.
-Information som VU-meter, equalizerens tilstand, valgt equalizer profil navn, CPU belastning samt en simpel repræsentation af equalizerens frekvens spektrum kan aflæses på LCD displayet.
+LCD displayet der er monteret på EMP printet, er primært brugt under udvikling til at vise debug information. På samme måde bliver det derfor  brugt på projekt printet.
+Information som VU-meter, equalizerens tilstand, valgt equalizer profil navn, CPU belastning samt en simpel repræsentation af equalizerens frekvens spektrum kan aflæses på LCD displayet.\\
 
 LCD modulet er sammensat af et driver API sammen med en \texttt{LCD\_buffer\_task(...);} der sørger for at opdatere selve LCD'en.
-Skrivning til LCD displayet sker således ikke direkte, da
-API'et skriver i en shared-memory buffer, som bliver brugt af LCD buffer tasken, se figur \ref{fig:eq-taskmodel}. 
-I figur \ref{fig:lcd_task} ses state diagrammet for LCD tasken, hvor \textbf{State N} repræsenterer alle de mellemliggende states.
+Skrivning til LCD displayet sker ikke direkte, da API'et skriver i en shared-memory buffer, som bliver brugt af LCD buffer tasken, se figur \ref{fig:eq-taskmodel}.\\
+ 
+I figur \ref{fig:lcd_task} ses state diagrammet for LCD tasken. State variablen er en direkte afspejling af offset positionen i memory bufferen. \textbf{State N} repræsenterer alle de mellemliggende states.
 
 \begin{figure}[h!]
 	\centering
@@ -167,7 +170,6 @@ I figur \ref{fig:lcd_task} ses state diagrammet for LCD tasken, hvor \textbf{Sta
 	\caption{LCD buffer task state diagram.}
 	\label{fig:lcd_task}
 \end{figure}
-
 
 LCD displayet bliver initialiseret fra modulet \textit{emp\_lcd1602.c} i  \texttt{lcd\_init();}
   
