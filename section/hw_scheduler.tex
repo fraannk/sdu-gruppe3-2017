@@ -6,7 +6,7 @@
 	\caption{Task model af equalizerens operativ system.}
 	\label{fig:eq-taskmodel}
 \end{figure}
-\Kenneth{Hvorfor er der valgt en variant af FreeRTOS?}
+
 Det er valgt at bruge en variant af RTCS (Run To Completion Scheduler)\footnote{RTCS blev introduceret i faget embedded programmering.}. 
 Den valgte model for task schedulering er ikke preemtive, således vil task der bliver sat i kø til udførelse forblive aktive indtil de afslutter sig selv.
 \textbf{sysTick} tiden for scheduleringen er sat til $1\si{\milli\second}$.\\

@@ -1,10 +1,10 @@
 \section{Det vigtigste er lyden}
-Den absolut primære funktion af equalizeren er at behandle lydsignalet således at lyden behandles i \textit{real time}.
+Den absolut primære funktion af equalizeren er behandling af lydsignalet og, at lyden behandles i \textit{real time}.
 For at opnå dette, bør to generelle regler derfor overholdes.
 \begin{itemize}[noitemsep]
-\item At der er konstant tid imellem hver gang mikrokontrolleren sampler lydsignalet.
-\item At den latency der vil opstå imellem sampling og gengivelse er konstant.
+\item At der er konstant tid imellem hver sampling mikrocontrolleren udfører på lydsignalet.
+\item At den \textit{latency} der vil opstå imellem sampling og gengivelse er konstant.
 \end{itemize}
 
-Disse design regler har indflydelse på rigtigt mange aspekter af designet af equalizerens software.
-I de kommende afsnit, hvor system designet forklares, spiller de ovenstående designregler især en stor faktor i afsnittene om operativ systemmet, schedulering og interrupt.
+Disse designpunkter har indflydelse på rigtigt mange aspekter for designet af equalizerens software.
+I de kommende afsnit, hvor systemdesignet forklares, spiller de ovenstående designpunkter især en stor faktor i afsnittene om operativ systemmet, schedulering og interrupt.
