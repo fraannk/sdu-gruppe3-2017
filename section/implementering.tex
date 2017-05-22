@@ -1,17 +1,7 @@
 \section{Implementering af DSP modul}\label{sec:implementering_dsp}
 DSP modulet har til opgave at beregne koefficienter, beregne amplitude (til lcd'en), udføre det 
 digitale filter på de samples der modtages mm.. 
-Modulet består af \textit{dsp.c}, \textit{dsp.h} som kan findes i kildekoden.
-
-%På figur \ref{fig:dsp_flow_diag} illuteres data flow'et 
-%som kommunikerer med equalizer modulet.
-%
-%\begin{figure}[h]
-%\centering
-%\includegraphics[scale = 0.3]{billeder/dsp_flowdiagram}
-%\caption{Flowdiagram af dsp modulet.}
-%\label{fig:dsp_flow_diag}
-%\end{figure}
+Modulet består af \textit{dsp.c}, \textit{dsp.h} som kan findes i kildekoden. 
 
 
 \subsection{API oversigt}
@@ -41,7 +31,7 @@ Beregner en logaritmisk inddelt frekvens array på \texttt{size} elementer. \\
 \texttt{FP32 dsp\_filter\_amplitude( INT16U frequency );}\\
 Beregner amplituden af den aktive equalizer ved en given frekvens. Returnerer resultatet i $dB$. \\
 
-Data structur:\\
+Data structur til at holde koefficienterne:\\
 \lstset{language=C,
 	frame=sigle,
 	basicstyle=\ttfamily\small,
@@ -68,7 +58,20 @@ typedef struct coef{
 
 
 
+\begin{figure}[ht]
+\centering
+\includegraphics[scale = 0.3]{billeder/finalflow_dsp}
+\caption{Blokdiagram der illustrerer dataflowet.}
+\label{fig:data_flow_imp}
+ \end{figure}
 
+
+
+\section{Delkonklusion}
+
+\note{
+	Test af CPU og hvordan det er at implementere
+}
 
 
 
