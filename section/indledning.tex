@@ -43,7 +43,7 @@ Formålet med dette projekt, er at formidle de opnåede fagligheder fra 4. semes
 %Projektet går ud på at designe en parametrisk equalizer, der kan efterbehandle et lydsignal. Den skal realiseres ved hjælp af en Tiva™ TM4C123GH6PM Microcontroller som er platformen i faget Embedded Programmering. Equalizeren skal have nogle forudbestemte bånd, og samtidig have et bånd som brugeren frit kan modulere.
 %}
 Ud fra formålet for projektet, er der blevet valgt at fremstille et produkt, hvori alle fagligheder kan anvendes. 
-Produktet der ønskes realiseret, er konstruktionen af en digital parametrisk equalizer. 
+Produktet der ønskes realiseret, er konstruktionen af en digital parametrisk\footnote{Uddybende forklaring om forskellen mellem parametrisk og grafisk equalizer sker i kapitel \ref{kap:equalizer}.} equalizer. 
 Denne parametriske equalizer, skal realiseres ved en mikrocontroller af samme type, der anvendes som platformen i faget embedded programmering.
 Equalizeren skal have nogle såkaldte "bånd" med justerbarer parametre, som fx frekvens og forstærkning. 
 Ud fra fagbeskrivelsen, kan dette relateres i et så bredt omfang, at formålet opfyldes. 
@@ -54,7 +54,7 @@ Herunder ønskes en brugerflade, som interagerer med systemet.
 Denne brugerflade skal kunne håndtere equalizerserens båndprofiler.\\
 
 Der ønskes herudover svar på følgende problemstillinger:
-\begin{itemize}[noitemsep,nolistsep]
+\begin{itemize}[noitemsep]
 	\item Hvilke digitale signalbehandlingsmetoder er bedst til fremstilling af en digital equalizer?
 	\item Hvordan kan et analogt filter anvendes på en digital equalizer?
 	\item Hvordan anvendes digital signalbehandling, til at give de ønskede båndspecifikationer?
@@ -72,27 +72,28 @@ Der træffes endvidere valget om at gøre den parametrisk, for bedre fleksibilit
 Følgende medtages ikke i rapporten og afgrænser projektet:
 \begin{itemize}[noitemsep]
 	\item Equalizeren bliver udviklet som prototype og ikke et produktionsklart produkt.
-	\item Der tages ikke højde for ledningsteori, da dette pensum blev fremlagt for sent i projektforløbet.
+	\item Der vil blive lagt vægt på at eftervise funktionaliteten af signalbehandlingen og ikke hvor god lydkvalitet det endelige produkt lever op til.
+	\item Koden som er anvendt til equalizeren, er så vidt muligt af eget design. Enkelte steder er kode fra 3. part anvendt, herunder moduler og kode eksempler fra undervisningen.
 \end{itemize}
 
 \section{Kravspecifikation} \label{afs:kravspecifikation}
-I dette afsnit fremstår de opsatte krav for projektet, der er fastsat dels ud fra kravet til selve projektbeskrivelsen, men også ud fra de studerende selv med henblik på at efterligne den virkelige ingeniørverden.
+I dette afsnit fremstår de opsatte krav for projektet.
+Disse er fastsat dels ud fra kravet til selve projektbeskrivelsen og dels for at efterligne den virkelige ingeniørverden.
 
 \begin{itemize}[noitemsep]
-	\item Prototypen udvikles på Tiva™ C Series TM4C123G LaunchPad Evaluation Kit.
-	\item Tiva™ TM4C123G serie Microcontroller anvendes.
+	\item Prototypen udvikles på Tiva™ C Series TM4C123G LaunchPad Evaluation Kit \cite{spmt281a}.
+	\item Tiva™ TM4C123G serie Microcontroller anvendes \cite{spmu296}.
 	\item Kildekoden er en del af produktet og skal overholde \textit{EMP C Code Standard}\cite{emp-c}.
-	\item Equalizeren skal virke som parametrisk equalizer.
+	\item Equalizeren skal fungere som parametrisk equalizer.
 	\item Det skal være muligt at ændre frekvensprofiler på equalizeren.
-	\item Indgangs- og udgangssignaler skal overholde line-level standard på, nominal $-10 dBV$, $0,894 V_{pp}$ (Forbruger elektronik line-signal).
-	\item Tilgængelige filtertyper i frekvensprofiler - Højpass, Lavpass, Båndpass og Båndstop.
-	\item Equalizerparametre skal omfatte - Frekvens, båndbredde og gain.
-	\item Equalizerens funktionalitet og effektivitet efterprøves med et velbeskrevet test-signal.
+	\item Indgangs- og udgangssignaler skal overholde line-signal standard på, nominal $-10 dBV$, $0,894 V_{pp}$ (Forbruger elektronik line-signal).
+	\item Tilgængelige filtertyper i frekvensprofiler - Highshelf, Lowshelf, Peek- og Notchfilter.
+	\item Equalizerparametre skal omfatte - Frekvens, båndbredde og forstærkning.
+	\item Equalizerens funktionalitet og effektivitet skal kunne efterprøves.
 \end{itemize}
-\jj{Henvisning til signal standard.}
+
 
 \section{Løsningsmodel}
-%Løsningsmodellen som ses på figur \ref{fig:losningsmodel}, er den overordnede arbejdsproces faget digital signalbehandling, hvoraf meget af stoffet bliver hentet fra. Modellen gør det nemmere at dele arbejdet op, da det er et blokdiagram.
 
 \begin{figure}[h]
 	\centering
@@ -102,10 +103,14 @@ I dette afsnit fremstår de opsatte krav for projektet, der er fastsat dels ud f
 \end{figure}
 
 Løsningsmodellen som ses på figur \ref{fig:losningsmodel}, er delt op i tre hovedemner. Denne model gør det nemt at dele emnerne som indgår i rapporten op. Som første emne er der filtrene - altså både indgangs- og udgangsfiltret. Efter indgangsfiltret går man ind i hardware-blokken, som blandt andet indeholder den analoge til digitale konverter samt den digitale til analoge konverter. Til sidst er der emnet som indeholder den digitale signalbehandling, hvor de fs
+\husk{Søren}{afsnit forklarer ikke modellen, og afsluttes noget hårdt}
+
 
 \section{Proces- og arbejdsmetode}
 %\note{Metodebeskrivelse: Hvordan vil det blive gjort? (Opgaven bygger på den-og-den litteratur samt interviews med dem og dem. Først undersøger vi dét, og så undersøger vi dét. Derefter …)}
 Denne rapport er bygget op på baggrund af den faglige undervisning, hvor alle fag har spillet en væsentlig rolle. Dertilhørende litteratur er brugt til at studere nærmere specifikke omstændigheder, og ekspertviden er blevet hentet fra underviserne, med bedre forståelse for det faglige indhold. Der er arbejdet ud fra emneopdeling, hvor gruppen er blevet delt i 3, og har fået tildelt arbejdsopgaver ud fra dette. Der er så vidt muligt holdt statusmøder, hvor gruppen har diskuteret hver deres problemer. Der er derudover fulgt en overordnet tidsplan, hvor enkelte deadlines har været opretholdt. Der har været en del miskommunikation imellem gruppen igennem projektperioden, hvilket har gjort at tidsplan mm. har skredet. Der blev dog fundet en fornuftig løsning i samarbejde med gruppens vejleder.
+
+\jj{Section skal rette lidt til, fyldeord skal fjernes}
 
 %Gennemarbejdningen med denne rapport vil tage udgangspunkt i undervisningen med dertilhørende litteratur. Ekspertviden vil blive hentet fra underviserne, med henblik på bedre forståelse af stoffet. Rapporten er bygget op omkring signalvejen igennem equalizeren. Det kan derved lette forståelsen for, hvordan signalet ændres løbende igennem systemet.
 %\husk{Kenneth}{Tage udgangspunkt i signalvejen - men bedre ord for det}

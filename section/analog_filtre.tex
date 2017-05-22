@@ -110,6 +110,19 @@ Ud fra formel \ref{eq::SallenKey} udregnes også trin 3. Her vælges R16 til at 
 	\caption{(a) Trin 2 filter. (b) Trin 3 filter.}
 \end{figure}
 \FloatBlock
+
+\subsection{DC Offset}
+Da microcontrolleren ikke kan registrere negative signaler er det hensigtsmæssigt af påføre indgangssignalet et DC Offset. Arbejdspunktet vælges til at være halvdelen af forsyningsspændingen. Dette opnås ved hjælp af kredsløbet på figur \ref{fig::anfilter_off}. \\
+Dette DC offset betyder også at operationsforstærkerene i det analoge filter kun behøver en positiv forsyningsspænding. \\
+På udgangen af rekonstruktionsfilteret sættes to kondensatore for at eliminere DC offsetet og få et arbejdspunkt ved 0V.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale = 0.4]{./billeder/offset.png}
+	\caption{Kredsløbet for DC offset}
+	\label{fig::anfilter_off}
+\end{figure}
+
 \subsection{Simulering}
 Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{fig::anfilter_aasim}, findes en dæmpning på -3dB ved 17kHz og en dæmpning på -12dB ved 22.5kHz. Forskellen i gruppeløbetiden er maksimalt $18 \si{\micro \second}$.
 \begin{figure}[h!]

@@ -6,10 +6,10 @@ Det komplette hardware modul findes i \emph{hardware.c}.
 \subsection{Valg af hardware profil}
 For at kunne håndtere de forskellige opsætninger af hardware i udviklingsforløbet af equalizerens software, er der lavet forskellige hardware opsætninger, således at det er nemt kan skiftes mellem dem.
 \\
-\Kenneth{Nedestående linje er lidt kringlet}
+
 I \textit{global.h} filen, findes to compilere \textbf{\#define} direktiver til makro definitionerne \textbf{EMP} og \textbf{DAC}.
 Sammenhængen mellem profilerne ses i figur \ref{fig:hardware_profiler}. 
-Således kan man teste softwaren på EMP printet, med den monterede mikrofonindgang og hovedtelefonudgang, ved at vælge \textbf{EMP} profilen.
+Således kan softwaren testes på EMP printet\footnote{Komponenterne til mikrofonindgang og hovedtelefonudgang skal være monteret}, ved at vælge \textbf{EMP} profilen.
 Fravælges \textbf{EMP} profilen, skifter softwaren over til at bruge projekt printet.
 Her kan der vælges imellem DAC eller PWM som udgangssignal.  
 Den tilhørende pin-konfiguration for de valgte hardware profiler kan ses i bilag \ref{bilag:pinmap}.
@@ -22,9 +22,8 @@ Den tilhørende pin-konfiguration for de valgte hardware profiler kan ses i bila
 	\label{fig:hardware_profiler}
 \end{wrapfigure}
 For at kunne opnå så mange beregninger som muligt i sekundet, opsættes MCU'en til den maksimale clock frekvens.
-Den valgte MCU (TM4C123GH6PM) er en $80\si{\mega\hertz}$ mikrokontroller, og den ønskede clock frekvens sættes i funktionen \texttt{set\_80Mhz\_clock()} i hardwaremodulet \textit{hardware.c} til $F_{CPU} = 80\si{\mega\hertz}$. 
-\Kenneth{Nedestående linje kringlet}
-Ved denne frekvens kan der på baggrund af den valgte samplefrekvens $F_s$, et mål for hvor mange CPU cycles der er imellem hver sample beregnes til,
+Den valgte MCU (TM4C123GH6PM) er en $80\si{\mega\hertz}$ mikrokontroller, og den ønskede clock frekvens sættes i funktionen \texttt{set\_80Mhz\_clock()} i hardwaremodulet \textit{hardware.c} til $F_{CPU} = 80\si{\mega\hertz}$.\\
+Ved denne frekvens og den valgte samplefrekvens $F_s$, kan et mål for antallet af CPU cycles imellem hver sample findes.
 \begin{align}
 N_{CPU cycles} = \frac{F_{CPU}}{F_s}  =  \frac{80\si{\mega\hertz}}{44,1\si{\kilo\hertz}}  = 1814,06 \si{\cycles}
 \end{align}
@@ -50,8 +49,8 @@ V_{d} = V_{a} \pm \V_{LSb} \cdot E_T = V_{a} \pm   8,06\si{\milli\volt\per\LSb} 
 
 Den i projektet anvendte MCU tilbyder en lang række funktionaliteter for ADC periferienheden.
 Det er dog kun nødvendigt at fortage én sample for hver lyd kanal\footnote{Når software anvedner EMP profil bruges der kun én ADC kanal}, én gang for hver sampleperiode $T_s$.
-Derfor anvendes en \textbf{Once Mode}, der bliver styret af interrupt service rutinen \textit{sample\_handler()}. Denne ISR og timingen af ADC'en vil blive uddybet i afsnittet om interrupt.
-\Kenneth{Referenec til afsnittet om interrupts}
+Derfor anvendes en \textbf{Once Mode}, der bliver styret af interrupt service rutinen \textit{sample\_handler()}. Denne ISR og timingen af ADC'en vil blive uddybet i afsnittet om interrupt (se side \pageref{subsec:interrupt}).
+
 Samplingen af ADC'ens indgangssignalet påbegyndes manuelt af equalizerens software.
 Samplingen sker ved successiv approksimation (SAR) i ADC'en og ud fra databladet er sampletiden angivet som $T_C = 2$ ADC clock cycles. 
 I implementeringen, er ADC clocken sat til at køre $16 \si{\mega\hertz}$ og giver derved en samplingstid på $T_C = \num{1,25E-7}\si{\second}$.  
@@ -102,8 +101,7 @@ Den valgte DAC forbindes direkte til MCU'en gennem en SPI bus, hvor de valgte pi
 Ifølge databladet er datakommunikation op til $20\si{\mega\hertz}$ muligt, men SPI port konfigurationen på MCU'en sættes til $10\si{\mega\hertz}$.
 For at sætte den ønskede udgangsspænding på DAC'en, er en 16 bit kommando nødvendig. 
 I figur \ref{fig:dac12bit_writecmd} ses den nødvendige bitsekvens.
-\Kenneth{Hvad er en kommando overførringsfunktion?}
-En $10\si{\mega\hertz}$ giver således en kommando overføringstid på $t_{cmd}$ for begge lydkanaler på minimum 
+En SPI clock på $10\si{\mega\hertz}$, giver således en overføringstid $t_{cmd}$ SPI kommandoen for begge lydkanaler på minimum på 
 \begin{align}
 	t_{cmd} = \frac{N_{kanal} \cdot 16bit}{F_{CLK}} = \frac{2 \cdot 16}{10\si{\mega\hertz}} = 3\si{\micro\second}
 \end{align}
@@ -128,7 +126,7 @@ Konfigurationen af SPI laves i \texttt{spi\_init()} i modulet \textit{hardware.c
 
 \FloatBlock
 
-\subsection{Interrupt}
+\subsection{Interrupt}\label{subsec:interrupt}
 \Kenneth{Kringlet afsnit}
 Det er som tidligere  kaldet til \texttt{sample\_handler();} ISR'en der ligger til grund for hele timing af lydsampling med mere.
 Det er dog ikke så vigtigt hvilken interrupt vektor der får opgaven.
@@ -139,9 +137,8 @@ Konfiguration af \textbf{NVIC}'en kan findes i modulet \textit{tm4c123gh6pm\_sta
 \subsection{UART}\label{subsec:uart}
 Det er muligt at tilgå Shell'en i equalizeren via seriel kommunikation.
 I task modellen (figur \ref{fig:eq-taskmodel}) ses kommunikationen mellem \textbf{UART RX/TX} task'ene og Shell tasken.
-Grundet hastighedsforskellen imellem scheduleringen af shell'en tasken og den meget langsommere serielle kommunikation, er \textbf{RX/TX queues} implementeret med asymmetrisk størrelse. 
-\Kenneth{xx bytes?}
-\textbf{TX queue} er således 1KB og \textbf{RX queue} er kun  xx bytes.
+Grundet hastighedsforskellen imellem scheduleringen af shell'en tasken og den meget langsommere serielle kommunikation, er \textbf{RX/TX queues} implementeret med asymmetrisk størrelse. 	
+\textbf{TX queue} er således 1KB og \textbf{RX queue} er kun  250 bytes.
 
 Standard opsætningen for seriel kommunikation er
 \begin{center}
@@ -179,8 +176,7 @@ Derudover er der på printet også monteret 2 trykknapper (\textbf{SW1 / SW2}) o
 
 \subsection{FPU}
 For at kunne gøre brug af FPU'en (floating point unit) på den valgte MCU, kræver den en produkt specifik aktivering.
-\Kenneth{Som følger, følgende eller? (nedestående sætning)}
-Ifølge \cite[afsnit 3.1.5.7 s. 132]{tm4c123gh6pm} er den implementeret som følger i hardware modulet \textit{hardware.c}.
+Ifølge \cite[afsnit 3.1.5.7 s. 132]{tm4c123gh6pm} er den implementeret som følgende i hardware modulet \textit{hardware.c}.
 
 \lstset{language=C,
 	frame=sigle,

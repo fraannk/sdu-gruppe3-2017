@@ -28,3 +28,8 @@ rapport.synctex.gz(busy)
 *.bib.bak
 *.bak
 *.sav
+*.fls
+*.fdb_latexmk
+*.bib.save
+*.tex.swp
+*.bib.swp
