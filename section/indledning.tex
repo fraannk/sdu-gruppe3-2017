@@ -44,16 +44,16 @@ Formålet med dette projekt, er at formidle de opnåede fagligheder fra 4. semes
 %}
 Ud fra formålet for projektet, er der blevet valgt at fremstille et produkt, hvori alle fagligheder kan anvendes. 
 Produktet der ønskes realiseret, er konstruktionen af en digital parametrisk\footnote{Uddybende forklaring om forskellen mellem parametrisk og grafisk equalizer sker i kapitel \ref{kap:equalizer}.} equalizer. 
-Denne parametriske equalizer, skal realiseres ved en mikrocontroller af samme type, der anvendes som platformen i faget embedded programmering.
+Denne parametriske equalizer, skal realiseres ved en mikrocontroller af samme type, der anvendes som platformen i faget "Embedded programmering".
 Equalizeren skal have nogle såkaldte "bånd" med justerbarer parametre, som fx frekvens og forstærkning. 
 Ud fra fagbeskrivelsen, kan dette relateres i et så bredt omfang, at formålet opfyldes. 
 Problemformuleringen forlyder sig derfor som følgende: \\
 
 En digital parametrisk equalizer ønskes realiseret ved en mikrocontroller hvor der anvendes digital signalbehandling og analog filterteori. 
 Herunder ønskes en brugerflade, som interagerer med systemet. 
-Denne brugerflade skal kunne håndtere equalizerserens båndprofiler.\\
+Denne brugerflade skal kunne håndtere equalizerens båndprofiler.\\
 
-Der ønskes herudover svar på følgende problemstillinger:
+Der ønskes herudover svar på følgende problemstillinger.
 \begin{itemize}[noitemsep]
 	\item Hvilke digitale signalbehandlingsmetoder er bedst til fremstilling af en digital equalizer?
 	\item Hvordan kan et analogt filter anvendes på en digital equalizer?
@@ -67,7 +67,7 @@ Der ønskes herudover svar på følgende problemstillinger:
 	%Det er meget almindeligt, at problemformulering og metoderedegørelse simpelthen er en del af indledningen, men så bør de normalt være markeret med underrubrikker (under-overskrifter) for overskuelighedens skyld. Hvis du er uddannelsessøgende, så tjek, om skolen eller institutionen (eller din vejleder) har særlige krav på det punkt.}
 
 En equalizer kan realiseres både analogt og digitalt.
-I projektet vil den blive realiseret digitalt, da faget embedded programmering skal indgå. 
+I projektet vil den blive realiseret digitalt, da faget "Embedded programmering" skal indgå. 
 Der træffes endvidere valget om at gøre den parametrisk, for bedre fleksibilitet. 
 Følgende medtages ikke i rapporten og afgrænser projektet:
 \begin{itemize}[noitemsep]
@@ -87,7 +87,7 @@ Disse er fastsat dels ud fra kravet til selve projektbeskrivelsen og dels for at
 	\item Equalizeren skal fungere som parametrisk equalizer.
 	\item Det skal være muligt at ændre frekvensprofiler på equalizeren.
 	\item Indgangs- og udgangssignaler skal overholde line-signal standard på, nominal $-10 dBV$, $0,894 V_{pp}$ (Forbruger elektronik line-signal).
-	\item Tilgængelige filtertyper i frekvensprofiler - Highshelf, Lowshelf, Peek- og Notchfilter.
+	\item Tilgængelige filtertyper i frekvensprofiler - Highshelf, Lowshelf, Peak- og Notchfilter.
 	\item Equalizerparametre skal omfatte - Frekvens, båndbredde og forstærkning.
 	\item Equalizerens funktionalitet og effektivitet skal kunne efterprøves.
 \end{itemize}
@@ -102,8 +102,7 @@ Disse er fastsat dels ud fra kravet til selve projektbeskrivelsen og dels for at
 	\label{fig:losningsmodel}
 \end{figure}
 
-Løsningsmodellen som ses på figur \ref{fig:losningsmodel}, er delt op i tre hovedemner. Denne model gør det nemt at dele emnerne som indgår i rapporten op. Som første emne er der filtrene - altså både indgangs- og udgangsfiltret. Efter indgangsfiltret går man ind i hardware-blokken, som blandt andet indeholder den analoge til digitale konverter samt den digitale til analoge konverter. Til sidst er der emnet som indeholder den digitale signalbehandling, hvor de fs
-\husk{Søren}{afsnit forklarer ikke modellen, og afsluttes noget hårdt}
+Løsningsmodellen som ses på figur \ref{fig:losningsmodel}, er delt op i tre hovedemner. Denne model gør det nemt at dele emnerne som indgår i rapporten op. Figuren kan ses i starten af hvert hovedkapitel, så man nemt kan danne et overblik over hvilken del der tages hånd om. Som første emne er der filtrene - altså både indgangs- og udgangsfiltret. Efter indgangsfiltret går man ind i hardware-blokken, som blandt andet indeholder den analoge til digitale konverter samt den digitale til analoge konverter. Til sidst er der emnet som indeholder den digitale signalbehandling, hvor de matematiske udregninger samt implementering af signalbehandling i C bliver dækket. 
 
 
 \section{Proces- og arbejdsmetode}

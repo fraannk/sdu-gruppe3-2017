@@ -4,6 +4,14 @@ digitale filter på de samples der modtages mm..
 Modulet består af \textit{dsp.c}, \textit{dsp.h} som kan findes i kildekoden. 
 
 
+\begin{figure}[ht]
+\centering
+\includegraphics[scale = 0.3]{billeder/finalflow_dsp}
+\caption{Blokdiagram der illustrerer dataflowet.}
+\label{fig:data_flow_imp}
+ \end{figure}
+
+
 \subsection{API oversigt}
 De funktionaliteter DSP modulet stiller til rådighed er følgende:
 
@@ -56,14 +64,6 @@ typedef struct coef{
 \end{lstlisting}
 \end{tabular}
 
-
-
-\begin{figure}[ht]
-\centering
-\includegraphics[scale = 0.3]{billeder/finalflow_dsp}
-\caption{Blokdiagram der illustrerer dataflowet.}
-\label{fig:data_flow_imp}
- \end{figure}
 
 
 
