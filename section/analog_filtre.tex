@@ -102,6 +102,8 @@ Herefter sættes
 	$s = j2\pi f$, $f_c = \dfrac{1}{2\pi \sqrt{R1R2C1C2}}$ og $Q = \dfrac{\sqrt{R1R2C1C2}}{R1C1 + R2C1}$
 \end{center}
 
+\husk{Søren}{Skal disse måske gøres en smule pænere eller er det bare mig}
+
 
 
 
@@ -148,6 +150,7 @@ Ligeledes vil kondensatoren placeret efter rekonsutruktions filteret, sammen med
 
 \subsection{Simulering}
 Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{fig::anfilter_aasim}, findes en dæmpning på -3dB ved 17kHz og en dæmpning på -12dB ved 22.5kHz. Forskellen i gruppeløbetiden er maksimalt $18 \si{\micro \second}$.
+\husk{Søren}{ltspice fodnote}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.5]{./billeder/aa_sim1}
@@ -156,6 +159,7 @@ Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{f
 \end{figure}
 \FloatBlock
 Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to komplekse poler i stage 2 og to komplekse poler i stage 3. Disse kan ses i figur \ref{fig::anfilter_pol}.
+\husk{Søren}{bredde skal fikses}
 
 \begin{figure}[h!]
 	\centering
@@ -166,7 +170,7 @@ Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to kompleks
 \FloatBlock
 \section{Rekonstruktions filter}
 \subsection{Formål}
-I et system med både analoge og digitale signaler, bruges et rekonstruktionsfilter (også kaldet anti image filter) til at generere et "glat" analogt signal ud fra for eksemplet en DACs udgangssignal. Et digitalt lyd signal har bølgeform som et trappetrin og indeholder en del højfrekvent komposanter, også kaldet "images". Et rekonstruktionsfilter konstruerer en mere udglattet version af det originale signal.
+I et system med både analoge og digitale signaler, bruges et rekonstruktionsfilter (også kaldet anti image filter) til at generere et "glat" analogt signal ud fra f.eks. en DAC's udgangssignal. Et digitalt lydsignal har bølgeform som et trappetrin og indeholder en del højfrekvente komposanter, også kaldet "images". Et rekonstruktionsfilter konstruerer en mere udglattet version af det originale signal.
 \subsection{Parametre og udregning}
 Det er almindelig praksis at benytte et filter til rekonstruktion, magen til det filter der anvendes til antialiasing. For udregninger henvises til afsnit \ref{sec::anfilter_sallenpara}.
 
@@ -181,10 +185,11 @@ På figur \ref{fig::anfilter_recon} ses udgangssignalet fra DAC (gul), og det re
 \FloatBlock
 
 \subsection{Højfrekvens filtrering}
-Det kan ses på figur \ref{fig::anfilter_recon} at signalet fra rekonstruktions filteret indeholder højfrekvens støj. Dette kan skyldes kommunikation mellem tiva boardet og dac\footnote{Se afsnit om SPI i afsnit 4.6}. \\
+Det kan ses på figur \ref{fig::anfilter_recon} at signalet fra rekonstruktions filteret indeholder højfrekvens støj. Dette kan skyldes kommunikation mellem Tiva-boardet og DAC'en\footnote{Se afsnit om SPI i afsnit 4.6}. \\
 Dette kan løses ved at lave et højfrekvent lavpas filter, så tæt på udgangen som muligt. Der vælges et RC-led med en knækfrekvens på $1\si{\mega\hertz}$. Ligning \ref{eq::filter_trin1} benyttes, R sættes lig $88\si{\kilo\ohm}$ og $f_c = 1\si{\mega\hertz}$. C udregnes til $1.8\si{\pico\farad}$. I figur \ref{fig::anfilter_hf} ses signalet før og efter filteret.
 
 hw hardware
+\husk{Søren}{hw hardware?}
 
 
 \begin{figure}[h!]
