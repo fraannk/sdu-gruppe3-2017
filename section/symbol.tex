@@ -48,10 +48,6 @@ $V_a$ &[\si{\volt}] & Analog spænding. \\
 $V_{DD}$ & [\si{\volt}] & Forsyningsspænding. \\
 $V_d$ & [\si{\volt}]& Samplede digitale spænding.\\
 $V_{LSb}$ & [\si{\volt}] & Mindst betydende spænding. \\
-$V_{ref},V_{-ref},V_{+ref}$ & [\si{\volt}] & ADC Referencespænding. \\
-$W_{ki}$\tnote{*}	    &   			& Statebuffer til $K$ 2. ordens filtre.\\
-$X(z)$\tnote{*}	    &		            & Ufiltreret samples i  z-domænet.	\\
-$x(n)$\tnote{*}	    &		            & Ufiltreret samples i diskret tid.	\\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -64,7 +60,7 @@ $x(n)$\tnote{*}	    &		            & Ufiltreret samples i diskret tid.	\\
 %------------------------------- Tabel 2 ---------------------------------
 
 
-\begin{table}[h!]
+\begin{table}[ht]
 \centering
 \caption{Symbolforklaring fortsat}
 \label{tab:symboler2}
@@ -75,7 +71,10 @@ $x(n)$\tnote{*}	    &		            & Ufiltreret samples i diskret tid.	\\
 \multicolumn{1}{l}{Enhed}        &
 \multicolumn{1}{l}{Beskrivelse}  \\ 
 \midrule
-$Y(z)$\tnote{*}	    &		            & Filtreret samples i z-domænet.	\\
+$V_{ref},V_{-ref},V_{+ref}$ & [\si{\volt}] & ADC Referencespænding. \\
+$W_{ki}$\tnote{*}	    &   			& Statebuffer til $K$ 2. ordens filtre.\\
+$X(z)$\tnote{*}	    &		            & Ufiltreret samples i  z-domænet.	\\
+$x(n)$\tnote{*}	    &		            & Ufiltreret samples i diskret tid.	\\
 $y(n)$\tnote{*}	    &		            & Filtreret samples i diskret tid.	\\
 $z$\tnote{*}		&					& Variable til z-transformeret overføringsfunktioner.\\
 $\alpha$\tnote{*},$\beta$\tnote{*}	    &   			& Variable der afhænger af parametrene til at beregne koefficienter.\\
