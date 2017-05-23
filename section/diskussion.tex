@@ -1,55 +1,65 @@
 \chapter{Diskussion og vurdering}\label{kap:diskussion}
+\vspace*{.5cm}
 
+% Linear fasedrejning i forhold til minimum fasedrejning. (DSP og analog)
+% Årsag til valg af butterworth frem for bessel. 
 
-
-
-* Linear fasedrejning i forhold til minimum fasedrejning. (DSP og analog)
-* Årsag til valg af butterworth frem for bessel. 
-
-Linear fasedrejning var først antaget til at være den ideelle løsning for lyd, da der ikke er forskel på forsinkelserne i hele frekvensspektrummet. Derfor blev et Bessel-filter valgt, da denne har en konstant gruppeløbetid. 
-Dette blev senere opdaget at en sådan fasedrejning normalt ikke er hørbar, men er mere et subjektivt emne. 
+Lineær fasedrejning var først antaget til at være den ideelle løsning for lyd, da der ikke er forskel på forsinkelserne i frekvensspektrummet. Derfor blev et Bessel-filter valgt, da denne har en konstant gruppeløbetid. 
+Det blev senere opdaget at en sådan fasedrejning normalt ikke er hørbar, men er et mere subjektivt emne. \\
 For at forsinkelsen er hørbar skal den i de lavere frekvenser være over 2ms. 
 I de øvre frekvenser er skal forsinkelsen være over 3ms.
 Grundet disse omstændigheder blev filtertypologien ændret til Butterworth, da dette også ville kræve færre komponenter. 
-Udover de årsager der er nævnt i afsnit \ref{sec:dec_filter} blev dette også et argument for valget af et IIR-filter. 
+Udover de årsager der er nævnt i afsnit \ref{sec:dec_filter} blev dette også et argument for valget af et IIR-filter. \\
+
+% Beregningstyngden af de to filtertyper i forhold til hardwarefunktionalitet og cpu-load. 
+
+IIR-filtret viste sig også at være det primære valg med hensyn til beregningskompleksitet når DSP-beregningerne skulle implementeres i softwaren.
+I floating point enheden udnyttes MAC-operationer (Multiply Accumulate) med de valgte optimeringsindstillinger, som både IIR- og FIR-filtre kan udnytte.
+Det skal dog nævnes at den anvendte mikrocontrollerarkitektur råder over en del hardware DSP funktionaliteter, som bl.a. giver mulighed for at bruge SIMD (Single Instruction Multiple Data), der muligvis vil forøge effektiviteten når et FIR-filter anvendes. \\
+
+% Ulinear fejl i amplituden.
+% Fejl ved båndbredde grundet bilinear transformation 
+
+Der blev fundet fejl i equalizerens bånd i forbindelse med testene. 
+Fejlene bestod af afvigelser i hhv. amplitude, centerfrekvens og båndbredde. 
+Centerfrekvensen og båndbredden blev fordoblet, mens amplituden havde en ulineær fejl. 
+En formodning for amplitudefejlen er at den bilineære transformation i kilden ikke blev udledt med $2/T_s$ hvilket kan vise sig som en skaleringsfejl.\\
+
+% Forskel i målt og teoretisk fasedrejning i det samlede analoge filtersystem
+
+Sammenlignes simuleringen og Bode-testen af det samlede analoge filtersystem, ses en stor forskel i fasedrejningen. 
+En stor del af denne afvigelse skyldes de forsinkelser som opstår i softwaren, SPI kommunikationen til DAC'en og dennes indsvingningstid. 
+Samles disse forsinkelser og medtages i simuleringen, vil en stor del af afvigelsen mellem test og simuleringsresultat blive elimineret. 
+Der resterer stadig en mindre fejl, der på nuværende tidspunkt ikke kan redegøres for. \\
 
 
-* Forskel i målt og teoretisk fasedrejning i det samlede analoge filtersystem
-Sammenlignes simuleringen og bodetesten af det samlede analoge filtersystem, ses en stor forskel i fasedrejningen. En stor del af denne afvigelse skyldes de forsinkelser som tiva boardet, kommunikation til DAC og selve DAC'en påfører systemet. 
-Tiva boardet skal bruge en samplingsperiode, SPI kommunikationen til DAC tager 3uS, og DAC'en skal bruge 4.5uS. Samles disse forsinkelser og simuleres med, vil en stor del af afvigelsen mellem test og simulering blive elimineret. Det resterer stadig en mindre fejl som der endnu ikke kan redegøres for. 
+% Forskel mellem PWM og DAC generede lyd-signaler, og hvordan de analoge filtre bliver påvirket af PWM signalet.
+
+Ved brugen af et udgangsignal genereret af PWM'en, er det nødvendigt at udglatte PWM-pulserne. 
+Da det ikke var muligt at opnå en tilstrækkelig høj PWM frekvens i størrelsesorden af en faktor 10, blev den nødvendige knækfrekvens så lav at den samlede overføringsfunktion for rekonstruktionsfiltret blev ødelagt. 
+Således var det med stor fordel at anvende en DAC, hvor anvendelsen af et rekonstruktionsfilter er tiltænkt. 
+Seriekoblingen af PWM'ens lavpasfilter med rekonstruktionsfiltret har vist sig at være forkert. 
+Anvendelsen af PWM-genereret lyd med \textit{kun} et lavpasfilter er ikke afprøvet.\\
 
 
-* Fejl ved båndbredde grundet bilinear transformation 
+% Muligheden for fejl ved missede systicks i RTCS
+% Fordele ved at anvende hurtigere og større mikrocontrollere
 
-Der blev fundet fejl i equalizerens bånd i forbindelse med testene. Fejlene bestod af afvigelser i hhv. amplitude, centerfrekvens og båndbredde. Centerfrekvensen og båndbredden blev fordoblet, mens amplituden havde en ulineær fejl. Centerfrekvens og båndbredde fejlene var nemt løst ved at halvere de 
+Som tidligere nævnt er det anvendte operativsystem ikke preemptive. Heraf kan der opstå situationer hvor RTCS-scheduleringen misser et eller flere sysTicks. Denne situation opstår let ved at overbelaste equalizeren med for mange bånd. Resultatet af dette giver sig til udtryk i uforudsigelig opførelse af equalizeren. 
+Et preemptive operativsystem sammen med en hurtigere mikrocontroller give mulighed for bedre stabilitet og skalerbarhed af ydeevnen. 
 
-* Ulinear fejl i amplituden.
-* Forskel mellem PWM og DAC generede lyd-signaler, og hvordan de analoge filtre bliver påvirket af PWM signalet.
-* Indgangs- og udgangsimpedans, linjestandarder, større afvigelse inden for audio-verdenen, mange subjektive holdninger
-* Muligheden for fejl ved missede systicks i RTCS
-* Beregningstyngden af de to filtertyper i forhold til hardwarefunktionalitet og cpu-load. 
-* Fordele ved at anvende hurtigere og større mikrocontrollere
-
-
-
-Før equalizeren blev testet, blev der diskuteret hvilke målinger, der var nødvendige at foretage, for at få de mest beskrivende resultater af hvordan alle funktionaliterne i det samlede system virkede.
-Det ønskedes at finde ud af, om koden til DSP modulet stemte overens med de teoretisk beregnede filtre i Matlab. 
-Heraf blev der dannet grundlag for, hvilke målinger der ønskedes målt.
-De første målinger stemte ikke overens med de teoretiske, hvorfor metoden "trial-and-error" blev anvendt. 
-Heraf blev offset fejlen manuelt korrigeret.
-Dette beviste dog ikke, om koden i DSP modulet var korrekt ift. teorien.
-Der blev da diskuteret om koefficienterene i DSP modulet var korrekte, hvilket førte til sammenligning med de teoretiske.
-Det viste sig, at koden var korrekt og stemte overens med teorien - den endelige fejl blev da yderligere diskuteret.
-Hardwaren blev da sat i fokus, men der blev aldrig vurderet om dette var den endelig fejl.
+%Før equalizeren blev testet, blev der diskuteret hvilke målinger, der var nødvendige at foretage, for at få de mest beskrivende resultater af hvordan alle funktionaliterne i det samlede system virkede.
+%Det ønskedes at finde ud af, om koden til DSP modulet stemte overens med de teoretisk beregnede filtre i Matlab. 
+%Heraf blev der dannet grundlag for, hvilke målinger der ønskedes målt.
+%De første målinger stemte ikke overens med de teoretiske, hvorfor metoden "trial-and-error" blev anvendt. 
+%Heraf blev offset fejlen manuelt korrigeret.
+%Dette beviste dog ikke, om koden i DSP modulet var korrekt ift. teorien.
+%Der blev da diskuteret om koefficienterene i DSP modulet var korrekte, hvilket førte til sammenligning med de teoretiske.
+%Det viste sig, at koden var korrekt og stemte overens med teorien - den endelige fejl blev da yderligere diskuteret.
+%Hardwaren blev da sat i fokus, men der blev aldrig vurderet om dette var den endelig fejl.
 
 
 
 
 
  
-
-
-\begin{itemize}
-\item Fixed point beregning.
-\item Assembler optimerede funktioner.
-\end{itemize}

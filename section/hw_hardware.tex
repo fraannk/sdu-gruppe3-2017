@@ -209,8 +209,10 @@ NVIC_CPAC_R = reg;    // 	CP10 and CP11 coprocessors
 __asm__("DSB");       // Data Synchronisation Barrier
 __asm__("ISB");       // Instruction Synchronisation Barrier
 \end{lstlisting}
-\end{tabular}
+\end{tabular}\\
 
-%\subsection{Timers og sysTick}
+Derudover er der til GNU compileren anvendt optimeringsindstillingen til en level 1 optimering [\textit{Optimize} \textbf{-O1}]. 
+Denne indstilling vil blandt andet optimere koden til at bruge, den i option \textbf{-mfpu=fpv4-sp-d16}\footnote{For uddybende information om GCC ARM options \url{https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html}} anførte fpu-arkitektur, samt aktivere en række andre compiler options\footnote{GCC optimize options - \url{https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html}}.
+
 
  
