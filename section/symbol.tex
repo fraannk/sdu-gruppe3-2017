@@ -22,8 +22,9 @@ $f_c$				&	[\si{\hertz}]	& Knækfrekvens.	\\
 $f_s$				&	[\si{\hertz}]	& Samplingsfrekvens.	\\
 $\omega_0$			&	$[\frac{\si{\radian}}{\si{\second}}]$	& Centervinkelfrekvens.	\\
 $\Delta \omega$		&	$[\frac{\si{\radian}}{\si{\second}}]$	& Båndbredde vinkelfrekvens.	\\
-$\Omega$\tnote{*}	&					& Normalizeret frekvens.	\\
-$\Omega_0$\tnote{*}	&					& Normalizeret centerfrekvens.	\\
+$\Omega$	&	[$\frac{\si{\radian}}{cycle}$]				& Normalizeret frekvens.	\\
+$\Omega_0$	&	[$\frac{\si{\radian}}{cycle}$]				& Normalizeret centerfrekvens.	\\
+$\Delta \Omega$	&	[$\frac{\si{\radian}}{cycle}$]				& Normalizeret Båndbredde.	\\
 $z$\tnote{*}		&					& Variable til z-transformeret overføringsfunktioner.\\
 $s$\tnote{*}		&					& Variable til laplace-transformeret overføringsfunktioner.\\
 $H(s)$\tnote{*}	    &		            & Overføringsfunktion i s-domænet.	\\
@@ -53,18 +54,18 @@ $K$ & & Filter længde\\
 $V_{ref},V_{-ref},V_{+ref}$ & [\si{\volt}] & ADC Referencespænding. \\
 $V_{DD}$ & [\si{\volt}] & Forsyningsspænding. \\
 $V_{LSb}$ & [\si{\volt}] & Mindst betydende spænding. \\
-$V_a$ &[\si{\volt}] & \\
-$V_d$ & [\si{\volt}]& \\
+$V_a$ &[\si{\volt}] & Analog spænding. \\
+$V_d$ & [\si{\volt}]& Samplede digitale spænding.\\
 $T_s$ & [\si{\second}] & Samplingstid. \\
-$T_C$ &[\si{\second}] & \\
-$t_{setling}$ &[\si{\second}] & \\
-$t_{cmd}$ & [\si{\second}] & \\
-$E_T$ & & \\
-$\Delta PWM$ & & \\
+$T_C$ &[\si{\second}] & ADC's sampletid. \\
+$t_{setling}$ &[\si{\second}] & Indsvingningstid. \\
+$t_{cmd}$ & [\si{\second}] & Transmissions tid af SPI kommando for DAC.\\
+$E_T$ & [\si{\volt}] & Ikke korrigerede maksimal fejl i ADC. \\
+$\Delta PWM$ & [\si{\volt}] & Opløsning på PWM genereret udgangssignal. \\
 $F_{CPU}$ & [\si{\hertz}] & CPU'ens clockfrekvens. \\
-$F_{SCK}$ & [\si{\hertz}] & \\
-$N_{kanal}$ & & \\
-$N_{CPU,cycles}$ & & \\
+$F_{SCK}$ & [\si{\hertz}] & SPI clockfrekvens.\\
+$N_{kanal}$\tnote{*} & & Antal kanaler. \\
+$N_{CPU,cycles}$ & & Antal cycles per sample \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
