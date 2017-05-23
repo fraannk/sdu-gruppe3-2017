@@ -110,7 +110,7 @@ Ud fra formel \ref{eq::SallenKey} udregnes også trin 3. Her vælges R16 til at 
 \FloatBlock
 
 \subsection{DC Offset}
-Da microcontrolleren ikke kan registrere negative signaler er det hensigtsmæssigt af påføre indgangssignalet et DC offset. Arbejdspunktet vælges til at være halvdelen af forsyningsspændingen. Dette opnås ved hjælp af kredsløbet på figur \ref{fig::anfilter_off}. \\
+Da microcontrolleren ikke kan registrere negative signaler er det hensigtsmæssigt at påføre indgangssignalet et DC offset. Arbejdspunktet vælges til at være halvdelen af forsyningsspændingen. Dette opnås ved hjælp af kredsløbet på figur \ref{fig::anfilter_off}. \\
 Dette DC offset betyder også at operationsforstærkerne i det analoge filter kun behøver en positiv forsyningsspænding. \\
 På udgangen af rekonstruktionsfilteret placereres en kondensator pr. kanal for at eliminere dette DC offset og få et arbejdspunkt ved 0V.\\
 I offset kredsløbet vil C3 og R3 generere et højpas filter. C3 udregnes, ud fra ligning \ref{eq::filter_trin1}, således at højpas filteret har en knækfrekvens ved 15Hz. C3 udregnes til at være $318\si{\nano\farad}$\\
@@ -185,4 +185,4 @@ Dette kan løses ved at lave et højfrekvent lavpas filter, så tæt på udgange
 \FloatBlock
 
 \subsection{Delkonkussion}
-Det kan ses ud fra simuleringer at udregningerne af filtret har været tilfredstillende. De parametre der blev sat i afsnit \ref{sec::anfilter_sallenpara} er blevet overholdt. Efter realisering på pcb board kan der  ydermere konstateres at lydsignalet går igennem uden nævneværdige tab i øvre og lavere del af frekvensspektrumet. Test af filtrene kan ses i kapitel 6. Her ses det at amplituden passer overens med simulering, men at fasedrejningen er omkring $100 \si{\celsius}$ forkert. En stor del af denne fejl er grundet forsinkelser genereret af microcontrolleren, kommunikation til DAC og selve DAC'en. Dette diskuteres yderligere i kapitel \ref{kap:diskussion}.
+Det kan ses ud fra simuleringer at udregningerne af filtret har været tilfredstillende. De parametre der blev sat i afsnit \ref{sec::anfilter_sallenpara} er blevet overholdt. Efter realisering på pcb board kan der  ydermere konstateres at lydsignalet går igennem uden nævneværdige tab i øvre og lavere del af frekvensspektrumet. Test af filtrene kan ses i kapitel 6. Her ses det at amplituden passer overens med simulering, men at fasedrejningen er omkring $100^o$ forkert. En stor del af denne fejl er grundet forsinkelser genereret af microcontrolleren, kommunikation til DAC og selve DAC'en. Dette diskuteres yderligere i kapitel \ref{kap:diskussion}.
