@@ -2,6 +2,8 @@
 For at finde det rigtige filter at realisere, vil der i dette afsnit blive set på begge filtertypers fordele og ulemper, hvoraf en vurdering vil blive lavet, som danner grundlag for valg af filtertype til realisering. \\
 For at overskueliggøre sammenligning er fordelene og ulemperne for IIR og FIR filtrene sat op side om side i tabel \ref{tab:pros_cons}.
 
+På baggrund af tabel \ref{tab:pros_cons} vælges der at gå videre med IIR implementeringen, grundet lav filterorden (lav beregningskompleksistet) og bedre dokumenteret løsning af koefficient beregninger.
+
 \begin{table*}[ht]
 \caption{Fordele og ulemper for IIR og FIR}
 \centering
@@ -12,7 +14,7 @@ IIR &  &FIR & \\
 \midrule 
 Anvender tidligere input og output samples & - & Anvender nuværende og tidligere input samples til at opnå nuværende sample output værdi. & + \\
 & & & \\
-Dimensioneres efter analoge filtre, hvilket har den konsekvens, at faseresponset er ulineær. & - & Har generelt højere orden end orden end IIR, og heraf højere beregningskompleksitet. & - \\ 
+Dimensioneres efter analoge filtre, hvilket har den konsekvens, at faseresponset er ulineær. & - & Har generelt højere orden end IIR, og heraf højere beregningskompleksitet. & - \\ 
 & & & \\
 Filteret er altid kausalt. & + & Grundet den højere orden, er FIR filteret derfor også mere præcis. & + \\	
 & & & \\
@@ -22,16 +24,14 @@ På grund af BLT, vil der være fejl med amplituderesponset. & - & Længere diff
 & & & \\
 Da filteret kommer af det analoge design vil dets orden være væsentlig mindre hvilket medfører lavere beregningskompleksitet. & + & Længden af FIR filterets blokke er designmæssigt vigtigt for kausaliteten i filteret. & ? \\
 & & & \\
-& & Lineær faserespons, hvilket gør gruppeløbetiden konstant. & + \\
+Veldokumenteret løsningsmodel. & + & Lineær faserespons, hvilket gør gruppeløbetiden konstant. & + \\
 & & & \\
 \bottomrule	
 \end{tabular}
 \end{table*}
 \FloatBlock
 
-På baggrund af tabel \ref{tab:pros_cons} vælges der at gå videre med IIR implementeringen, grundet 
 
-\husk{Kenneth og Dennis}{Supplerende tekst. Uddybning}
 
 %\begin{itemize}[noitemsep,nolistsep]
 %	\item FIR filtre bruger nuværende og tidligere input samples til at opnå nuværende sample output værdi. Det bruger ikke tidligere output signaler, hvorimod IIR filtre har brug for både tidligere indput og output sample værdier.

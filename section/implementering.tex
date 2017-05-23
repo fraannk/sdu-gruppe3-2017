@@ -68,12 +68,6 @@ typedef struct coef{
 
 
 \section{Delkonklusion}
-
-\note{
-	Test af CPU og hvordan det er at implementere
-}
-
-
-
-
-
+Der er blevet overvejet valg af filtertype, hvor IIR blev set som den bedste kandidat, mest grundet lav beregningskompleksitet og lav fasedrejning. IIR filteret er af 2. orden. De individuelle filtre realiseres i "direkte form 2", hvorefter de kaskadekobles for, at opnå den ønskede filterkarakteristik. Der er blevet opstillet formler for high-shelf, low-shelf, peak og notch filtre.\\
+\husk{Søren}{direkte form 2?}
+DSP modulet er implementeret som en API, der stiller funktionalitet til rådighed for det resterende program. Der er endvidere designet en amplitudeberegning for at visualisere filterkarakteristikken.
