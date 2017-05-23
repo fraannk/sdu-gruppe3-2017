@@ -11,25 +11,24 @@ Derefter z-transformeres ligning \ref{fir_ligning}. For at opskrive FIR filteret
 H(z)=\frac{Y(z)}{X(z)}=b_{0}+b_{1}z^{-1}+...+b_{K}^{-1} \label{fir_transfer}
 \end {equation}
 
-Input og output signalet er givet ved foldning og er opskrevet i ligning,
-\Kenneth{Ved ikke om den skal med?}
+Input og output signalet er givet ved foldning og er opskrevet i ligning \ref{FIR_foldning},
 \begin {equation} 
-y(n) = \sum\limits_{i=0}^{N-1} h(k)x(n-k) 
+y(n) = \sum\limits_{i=0}^{N-1} h(k)x(n-k) \label{FIR_foldning}
 \end {equation}
 hvor $h(k)$ er impulsresponset. Modsat IIR filterne, har FIR en endelig længde, $N$, antal værdier. FIR filterets impulsrespons er et sæt af filter koefficienter. Sendes en impuls ind i filteret bestående af et $"1"$ efterfulgt af mange $"0"$er, bliver filterets output det sæt af koefficienter $"1"$-samplen kører igennem. 
 
 
-FIR filterets overføringsfunktion er givet ved ligning \ref{FIR_transfer}
-
-\begin {equation}
-H(z)=\sum\limits_{k=0}^{N-1}h(k)z^{-1} \label{FIR_transfer}
-\end {equation}
+%FIR filterets overføringsfunktion er givet ved ligning \ref{FIR_transfer}
+%
+%\begin {equation}
+%H(z)=\sum\limits_{k=0}^{N-1}h(k)z^{-1} \label{FIR_transfer}
+%\end {equation}
 
 \section{Design metoder} \label{sec:fir_design}
 Herunder redegøres der for 2 forskellíge design metoder, til beregning af filter koefficienter; Frekvenssampling og windowsmetoden.
-\husk{Søren}{skal de lige nævnes?}
 \subsection{Frekvenssampling}
 Ved frekvenssampling approksimeres det ønskede frekvensrespons ved, at sample det $N$ antal gange, med samme interval imellem samplingspunkterne. Der kan derved opnås et interpolateret frekvens respons.
+\husk{Søren}{Interpoleret?}
 Pointen med frekvenssampling er at filterkoefficienter kan beregnes udfra specificerede størrelser i forhold det ønskede filter respons uniformt i frekvensdomænet.
 
 Filterkoefficienterne kan beregnes udfra definitionen af den inverse DFT (IDFT) fra litteratur \cite[Side. 262]{Tan2013}:
@@ -40,7 +39,7 @@ hvor
 \begin {equation}
 W_{N}=e^{j\frac{2\pi}{N}} \hspace{1cm}\text{og} \hspace{1cm} H_{d}(k)=h(e^{j\Omega_{k}}) \nonumber
 \end {equation}
-Der antages lineær fase og at antallet af samplingspunkt er $N=2M+1$.
+Der antages lineær fase og at antallet af samplingspunkter er $N=2M+1$.
 
 
 \begin{figure}[h]
@@ -123,8 +122,8 @@ Efter valget af hvilken filtertype der skal anvendes, findes det nødvendige vin
 Fremgangsmetoden for windowsmetoden ses i de følgende 5 trin:
 \begin{enumerate}[noitemsep,nolistsep]
 	\item Ud fra de ønskede filterspecifikationer, bestemmes filterordenen og knækfrekvensen. Der vælges en vinduesfunktion og ligning \ref{fir_cutoff} anvendes.
-	\item Beregn impulssekvensen $h(n)$ ved hjælp af Fourier transformations metoden.
-	\item Multiplicer det genererede filter koefficienter $h(n)$ i trin 2 med det valgte vindue, for at at opnå impulssekvensen for vinduet $h_w(n)$.
-	\item Forsink vinduesimpulsen $h_w(n)$ med M samples for at få det kausale filters koefficienterne $b_n = h_w(n-M)$ med ligning \ref{b_n-window}.
+	\item Beregn impulssekvensen $h(n)$ ved hjælp af Fouriertransformations metoden.
+	\item Multiplicer de genererede filter koefficienter $h(n)$ i trin 2 med det valgte vindue, for at at opnå impulssekvensen for vinduet $h_w(n)$.
+	\item Forsink vinduesimpulsen $h_w(n)$ med M samples for at få det kausale filters koefficienter $b_n = h_w(n-M)$ med ligning \ref{b_n-window}.
 	\item Overføringsfunktionen plottes, og hvis kravene til frekvensspecifikationer ikke er opfyldt, øges filterets orden og proceduren gentages.
 \end{enumerate}
