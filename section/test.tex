@@ -69,10 +69,10 @@ Her ses tydeligt den afvigende amplitude og båndbredde, som beskrevet tidligere
 	\vspace*{-0.3 cm}
 	\centering
 	\subbottom[]{%
-	\includegraphics[width=0.47\textwidth]{billeder/Gain_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/gain_meas}
 	\label{fig:gain_uden_hotfix}}
 	\subbottom[]{%
-	\includegraphics[width=0.47\textwidth]{billeder/Gain_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/gain_teori}
 	\label{fig:gain_teori}}
   	\caption{Målingsresultat af gain ($\pm5\decibel$ og $\pm7\decibel$, figur \ref{fig:gain_uden_hotfix}) sammenlignet med teorien (\ref{fig:gain_teori})}
 	\label{fig:gain}
@@ -82,10 +82,10 @@ Her ses tydeligt den afvigende amplitude og båndbredde, som beskrevet tidligere
 	\vspace*{-0.3 cm}
 	\centering
 	\subbottom[]{%
-	\includegraphics[width=0.47\textwidth]{billeder/Bandwith_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/bandwidth_meas}
 	\label{fig:bandwidth_uden_hotfix}}
 	\subbottom[]{%
-	\includegraphics[width=0.47\textwidth]{billeder/Bandwith_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/bandwidth_teori}
 	\label{fig:bandwidth_teori}}
   	\caption{Målingsresultat af forskellig bandwidth (hhv. $100\hertz$, $500\hertz$ og $1\kilo\hertz$, figur \ref{fig:bandwidth_uden_hotfix}), sammenlignet med teorien (\ref{fig:bandwidth_teori}.}
 	\label{fig:bw}
@@ -95,26 +95,25 @@ Her ses tydeligt den afvigende amplitude og båndbredde, som beskrevet tidligere
 	\vspace*{-0.3 cm}
 	\centering
 	\subbottom[]{%
-	\includegraphics[width=0.47\textwidth]{billeder/Frekvensplacering_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/frekvensplacering_meas}
 	\label{fig:freq_uden_hotfix}}
 	\subbottom[]{%
-	\includegraphics[width=0.47\textwidth]{billeder/Frekvensplacering_uden_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/frekvensplacering_teori}
 	\label{fig:freq_teori}}
   	\caption{Målingsresultat af forskellig frekvens (hhv. $100\hertz$ og $5\kilo\hertz$, figur \ref{fig:freq_uden_hotfix}), sammenlignet med teorien (\ref{fig:freq_teori}.}
 	\label{fig:freq}
 \end{figure}
-\husk{Søren}{fix billeder}
 
 \begin{figure}[h!]
 	\centering
 	\subbottom[]{%
-	\includegraphics[width=0.47\textwidth]{billeder/Gain_Med_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/gain_meas_med_hotfix}
 	\label{fig:gain_med_hotfix}}
 	\subbottom[]{%
-	\includegraphics[width=0.47\textwidth]{billeder/Bandwidth_Med_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/bandwidth_meas_med_hotfix}
 	\label{fig:bandwidth_med_hotfix}}
 	\subbottom[]{%
-	\includegraphics[width=0.47\textwidth]{billeder/Frekvensplacering_Med_hotfix}
+	\includegraphics[width=0.47\textwidth]{billeder/frekvensplacering_meas_med_hotfix}
 	\label{fig:frekvensplacering_med_hotfix}}
   	\caption{Her ses de korrigerede målinger for hhv. gain (\ref{fig:gain_med_hotfix}), bandwidth (\ref{fig:bandwidth_med_hotfix}) og frekvens (\ref{fig:frekvensplacering_med_hotfix}).}
 	\label{fig:korr}
@@ -129,11 +128,7 @@ Her ses tydeligt den afvigende amplitude og båndbredde, som beskrevet tidligere
 Ved hjælp af disse tests kan, der konkluderes at de forskellige parametre som indstilles i koden kommer til at passe på udgangene. Der blev også bevist at de matematiske beregninger, altså DSP implementeringen, passer med teorien og at filtrene opfører sig som forventet. \\
 
 Disse tests var derudover med til at finde nogle enkelte småfejl/offsets som gjorde at frekvensen, båndbredden samt amplituden ikke lå helt hvor de skulle. Disse faktorer blev fundet ved at sammenligne Bode 100 målingerne med de teoretiske beregninger, og derefter bruge "trial and error"-metoden til at finde de korrekte værdier. Årsagen til dette offset kendes endnu ikke, men tests'ene beviste at de ikke lå i matematikken, men andetsteds. 
-Beviset for dette, er gjort ved at bruge de beregnede koefficienter fra DSP modulet, og implementere dem i matlab. 
-Her viste matlab at teorien var korrekt. 
-\husk{Søren}{de to sidste sætninger?}
-
-
+Beviset for dette, er gjort ved at bruge de beregnede koefficienter fra Matlab, og implmentere dem i DSP modulet. Dette viste de samme målinger efterfølgende, og det kan dermed konkluderes at teorien er korrekt.
 
 
 
