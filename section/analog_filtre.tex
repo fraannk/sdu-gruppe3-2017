@@ -46,27 +46,20 @@ Det første trin i filteret er et 1. ordens butterworth filter og det designes u
 \end{equation} 	
 hvor knækfrekvensen, $f_c$, er sat ved $17kHz$.
 R9 vælges til $10K\Omega$ og C8 udregnes til $940pF$.
-\begin{figure}[h!]
+
+\begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.4]{./billeder/stage1a.png}
-	\caption{Trin 1 filter opbygning.}
-	\label{fig::stage1}
+	\subbottom[]{%
+		\includegraphics[width=6cm]{billeder/stage1a.png}
+		\label{Trin 1 filter opbygning.}}
+	\subbottom[]{%
+		\includegraphics[width=6cm]{billeder/komp_udregn.png}
+		\label{fig::anfilter_gensallen}}
+	\caption{(a) Trin 1, filter opbygning. (b) Trin 2, Standard Sallen-Key filter.}
 \end{figure}
 
 \subsection{Trin 2}\label{sec::stage2}
-Hvis kredsløbet på figur \ref{fig::anfilter_gensallen} betragtes, ses det at\\
-\begin{equation}
-	V_+ = V1\dfrac{Z3}{Z2+Z3}\\
-	\vspace*{5mm}
-\end{equation}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale = 0.4]{./billeder/komp_udregn}
-	\caption{Standard Sallen-Key filter}
-	\label{fig::anfilter_gensallen}
-\end{figure}
-\FloatBlock
+Hvis kredsløbet på figur \ref{fig::anfilter_gensallen} betragtes, ses det at $V_+ = V1\dfrac{Z3}{Z2+Z3}$.
 
 Ved Kirchoff's spændingslov findes\\
 \begin{equation}
@@ -96,12 +89,6 @@ H(s) = \dfrac{1}{s^2(C11C10R11R12)+s(C10R11+C10R12))+1}
 \label{eq::SallenKey}
 \end{equation}
  
-
-\husk{Søren}{Skal disse måske gøres en smule pænere eller er det bare mig}
-
-
-
-
 Ud fra standard ligningen \ref{eq::anfilter_stndHS}, udledes,
 
 \begin{equation}
@@ -114,10 +101,10 @@ Ud fra formel \ref{eq::SallenKey} udregnes også trin 3. Her vælges R16 til at 
 \begin{figure}[h]
 	\centering
 	\subbottom[]{%
-		\includegraphics[width=0.47\textwidth]{./billeder/stage2a.png}
+		\includegraphics[width=0.4\textwidth]{./billeder/stage2a.png}
 		\label{fig::anfilter_restage2}}
 	\subbottom[]{%
-		\includegraphics[width=0.47\textwidth]{./billeder/stage3a.png}
+		\includegraphics[width=0.4\textwidth]{./billeder/stage3a.png}
 		\label{fig::anfilter_restage3}}
 	\caption{(a) Trin 2 filter. (b) Trin 3 filter.}
 \end{figure}
@@ -155,7 +142,6 @@ Simuleringen af AA filteret er udført med LTspice. Som det ses på figur \ref{f
 \FloatBlock
 Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to komplekse poler i stage 2 og to komplekse poler i stage 3. Disse kan ses i figur \ref{fig::anfilter_pol}.
 \husk{Søren}{bredde skal fikses}
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.35]{./billeder/pzmap}
