@@ -58,7 +58,7 @@ Implementeringen af ADC har en clock-frekvens sat til $16 \si{\mega\hertz}$ som 
 
 \subsection{PWM - Pulse Width Modulation}\label{subsec:pwm}
 I begyndelsen af udviklingen, var der overvejelser om hvordan lydsignalet skulle genskabes efter den digitale behandling var foregået.
-Ud fra de indbyggede periferienheder, som den valgte MCU stiller til rådighed, faldt valget på et PWM generet lydsignal.
+Ud fra de indbyggede periferienheder, som den valgte MCU stiller til rådighed, faldt valget på et PWM genereret lydsignal.
 Det viste sig dog under udviklingen af de analoge filtre ( som blev gennemgået i foregående kapitel ), at en tilfredsstillende lydkvalitet samt at kunne eftervise equalizerens funktionalitet, ikke kunne opnås med et PWM generet lydsignal. \\
 Der vil dog stadig laves en gennemgang af PWM'ens opsætning og funktionalitet i hardware delen, da denne bruges i \texttt{EMP} profilen.\\
 
@@ -95,7 +95,7 @@ Afhængig af den valgte hardware profil, sættes pin konfigurationen ud fra tabe
 \FloatBlock
 
 \subsection{DAC}
-Til at genere udgangssignalet fra MCU'en vælges en ekstern DAC kreds, da MCU'en ikke råder over denne funktionalitet.
+Til at generere udgangssignalet fra MCU'en vælges en ekstern DAC kreds, da MCU'en ikke råder over denne funktionalitet.
 Valget blev en \texttt{MCP4922E/P}\footnote{Microchip MCP4922E/P 12-Bit Dual Voltage Output Digital-to-Analog Converter with SPI Interface \cite{mcp4922} } som er en 12bit DAC IC.
 Derved er opløsningen på udgangen den samme som på indgangen (se afsnit om ADC på side \pageref{subsec:adc}).\\
 
@@ -134,10 +134,10 @@ Konfigurationen af SPI findes i \texttt{spi\_init();} i modulet \textit{hardware
 \FloatBlock
 
 \subsection{Interrupt}\label{subsec:interrupt}
-Som det tidligere er blevet forklaret, er det et kald til \texttt{sample\_handler();} ISR'en der ligger til grund for hele timingen af lydsamplingen.
+Som det tidligere er blevet forklaret, er der et kald til \texttt{sample\_handler();} ISR'en der ligger til grund for hele timingen af lydsamplingen.
 Det er dog ikke vigtigt hvilken interrupt vektor der får denne opgave.\\
 
-I dette system er det valgt at bruge \textbf{zero reload event} på PWM'en, som \textit{interrupt trigger}.
+I dette system er der valgt at bruge \textbf{zero reload event} på PWM'en, som \textit{interrupt trigger}.
 Således bliver samplingstiden, som PWM'en er sat op efter (se afsnit om PWM på side \pageref{subsec:pwm}), indirekte overført til både ADC'en og DAC'en.\\ 
 
 Konfiguration af \textbf{NVIC}'en kan findes i modulet \textit{tm4c123gh6pm\_startup\_ccs\_gcc.c} og funktionen \texttt{init\_PWM(INT16U cycles);} i hardware modulet \textit{hardware.c}
