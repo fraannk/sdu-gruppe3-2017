@@ -17,13 +17,19 @@ Udover de årsager der er nævnt i afsnit \ref{sec:dec_filter} blev dette også 
 * Forskel i målt og teoretisk fasedrejning i det samlede analoge filtersystem
 
 
-
+* Ulinear fejl i amplituden.
 * Fejl ved båndbredde grundet bilinear transformation 
 
-Der blev fundet fejl i equalizerens bånd i forbindelse med testene. Fejlene bestod af afvigelser i hhv. amplitude, centerfrekvens og båndbredde. Centerfrekvensen og båndbredden blev fordoblet, mens amplituden havde en ulineær fejl. Centerfrekvens og båndbredde fejlene var nemt løst ved at halvere de 
+Der blev fundet fejl i equalizerens bånd i forbindelse med testene. Fejlene bestod af afvigelser i hhv. amplitude, centerfrekvens og båndbredde. Centerfrekvensen og båndbredden blev fordoblet, mens amplituden havde en ulineær fejl. 
+En formodning for amplitudefejlen er at den bilineære transformation i kilden ikke blev udledt med $2/T_s$ hvilket kan vise sig som en skaleringsfejl.
 
-* Ulinear fejl i amplituden.
+
+
+
 * Forskel mellem PWM og DAC generede lyd-signaler, og hvordan de analoge filtre bliver påvirket af PWM signalet.
+
+
+
 * Indgangs- og udgangsimpedans, linjestandarder, større afvigelse inden for audio-verdenen, mange subjektive holdninger
 * Muligheden for fejl ved missede systicks i RTCS
 * Beregningstyngden af de to filtertyper i forhold til hardwarefunktionalitet og cpu-load. 
