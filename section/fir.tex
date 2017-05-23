@@ -6,8 +6,7 @@ y(n)=\sum\limits_{i=0}^{K}b_{i}x(n-i) \label{fir_ligning}
 \end {equation}
 Her repræsenterer $b_{i}$ filterets koefficienter og $K+1$ er filterets længde. Nuværende og tidligere sampleværdier bliver brugt til at beregne den næste output sample, og det har den fordel, at filtreringen kan ske i real-tid.
 \\
-Derefter z-transformeres ligning \ref{fir_ligning}. For at opskrive FIR filterets overføringsfunktion, faktoriseres $X(z)$ ud på højre side af den z-transformerede ligning \ref{fir_ligning} og derefter dividere igennem med $X(z)$ fås ligning \ref{fir_transfer}. Udledningen kan ses i litteratur \cite[Side. 218]{Tan2013}.
-\Kenneth{Overføringsfunktion}
+Derefter z-transformeres ligning \ref{fir_ligning}. For at opskrive FIR filterets overføringsfunktion, faktoriseres $X(z)$ ud på højre side af den z-transformerede ligning \ref{fir_ligning} og derefter dividere igennem med $X(z)$ fås FIR overføringsfunktionen, ligning \ref{fir_transfer}. Udledningen kan ses i litteratur \cite[Side. 218]{Tan2013}.
 \begin {equation}
 H(z)=\frac{Y(z)}{X(z)}=b_{0}+b_{1}z^{-1}+...+b_{K}^{-1} \label{fir_transfer}
 \end {equation}
@@ -15,7 +14,7 @@ H(z)=\frac{Y(z)}{X(z)}=b_{0}+b_{1}z^{-1}+...+b_{K}^{-1} \label{fir_transfer}
 Input og output signalet er givet ved foldning og er opskrevet i ligning,
 \Kenneth{Ved ikke om den skal med?}
 \begin {equation} 
-\sum\limits_{i=0}^{N-1} h(k)x(n-k) 
+y(n) = \sum\limits_{i=0}^{N-1} h(k)x(n-k) 
 \end {equation}
 hvor $h(k)$ er impulsresponset. Modsat IIR filterne, har FIR en endelig længde, $N$, antal værdier. FIR filterets impulsrespons er et sæt af filter koefficienter. Sendes en impuls ind i filteret bestående af et $"1"$ efterfulgt af mange $"0"$er, bliver filterets output det sæt af koefficienter $"1"$-samplen kører igennem. 
 
@@ -28,7 +27,6 @@ H(z)=\sum\limits_{k=0}^{N-1}h(k)z^{-1} \label{FIR_transfer}
 
 \section{Design metoder} \label{sec:fir_design}
 Herunder redegøres der for 2 forskellíge design metoder, til beregning af filter koefficienter; Frekvenssampling og windowsmetoden.
-\husk{Søren}{skal de lige nævnes?}
 \subsection{Frekvenssampling}
 Ved frekvenssampling approksimeres det ønskede frekvensrespons ved, at sample det $N$ antal gange, med samme interval imellem samplingspunkterne. Der kan derved opnås et interpolateret frekvens respons.
 Pointen med frekvenssampling er at filterkoefficienter kan beregnes udfra specificerede størrelser i forhold det ønskede filter respons uniformt i frekvensdomænet.
