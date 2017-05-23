@@ -26,7 +26,7 @@ hvor $h(k)$ er impulsresponset. Modsat IIR filterne, har FIR en endelig længde,
 
 \section{Design metoder} \label{sec:fir_design}
 Herunder redegøres der for 2 forskellíge design metoder, til beregning af filter koefficienter; Frekvenssampling og windowsmetoden.
-\husk{Søren}{skal de lige nævnes?}
+
 \subsection{Frekvenssampling}
 Ved frekvenssampling approksimeres det ønskede frekvensrespons ved, at sample det $N$ antal gange, med samme interval imellem samplingspunkterne. Der kan derved opnås et interpolateret frekvens respons.
 Pointen med frekvenssampling er at filterkoefficienter kan beregnes udfra specificerede størrelser i forhold det ønskede filter respons uniformt i frekvensdomænet.
@@ -45,7 +45,9 @@ Der antages lineær fase og at antallet af samplingspunkt er $N=2M+1$.
 \begin{figure}[h]
 \centering
 \includegraphics[width=.90\textwidth]{billeder/fir_frekvenssampling.png}\label{fig:fir_frekvenssampling}
-\caption{Ønskede filterrespons og samplede filterrespons.}
+\caption{Ønskede filterrespons og samplede filterrespons. 
+\cite[Side. 262]{Tan2013}
+}
 \end{figure}
 \FloatBlock
 
@@ -62,18 +64,18 @@ Design proceduren kan findes i litteratur \cite[Side. 263]{Tan2013} og opskrives
 \begin{equation}
 	H_k \text{ ved } \Omega_{k} = \frac{2 \pi k}{2M+1} \hspace{1cm} \text{for} \hspace{1cm} k=0,1,\text{ ... , } M
 \end{equation}
-\item Udregn FIR koefficienterne
+\item Udregning af FIR koefficienterne
 \begin{equation}
 b_n = h(n)=\frac{1}{2M+1}\left[ H_{0}+2\sum_{k=1}^{M} \left( \frac{2\pi k(n-M)}{2M+1} \right) \right] \hspace{1cm} \text{for} \hspace{1 cm} n=0,1,\text{ ... },2M
 \end{equation}
-\item Anvend symmetri (heraf krav om lineær fase) til at finde resten af keofficienterne.
+\item Anvendelse af symmetri (heraf krav om lineær fase) til at finde resten af keofficienterne.
 \begin{equation}
 	h(n) = h(2M-n) \hspace{1cm} \text{for} \hspace{1cm} n=M+1 \text{, ..., } 2M
 \end{equation}
 \end{enumerate}
 
 \subsection{Windowsmetoden}
-Den grundlæggende tilgang til windowsmetoden er baseret på at det ideelle lavpas-, højpas-, båndpas-, og båndstop filter, bestående af den følgende ikke-kausale impulsrespons på $-\infty < n < \infty$. Windowsmetoden bygger på Fourier Transformationen, hvor det gælder om at fjerne de uønskede Gibbs oscilleringer i pas- og stopbåndet, som finder sted under trunkeringen. Anvendes windowsmetoden på filterkoefficienterne fås ligning \ref{window_function},
+Den grundlæggende tilgang til windowsmetoden er baseret på at det ideelle lavpas-, højpas-, båndpas-, og båndstop filter, bestående af den følgende ikke-kausale impulsrespons på $-\infty < n < \infty$. Windowsmetoden bygger på Fourier Transformationen, hvor det gælder om at fjerne de uønskede Gibbs oscilleringer i pas- og stopbåndet, som finder sted under trunkering. Anvendes windowsmetoden på filterkoefficienterne fås ligning \ref{window_function},
 \begin{equation}
 	h_w(n) = h(n)*w(n) \hspace{1cm}\text{,} \hspace{1cm}n=-M,\text{ ... },0, 1,\text{ ... , }M	
 	\label{window_function}

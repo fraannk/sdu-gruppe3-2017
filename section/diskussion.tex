@@ -1,20 +1,36 @@
-
 \chapter{Diskussion og vurdering}\label{kap:diskussion}
-\emph{I dette kapitel vil udvalgte elementer i rapporten blive diskuteret}
 
-\subsection{Analoge filtre}
 
-\subsection{Hardware og operativ system}
 
-\subsection{Digital signalbehandling}
 
-\begin{itemize}
-\item Fixed point beregning.
-\item Assembler optimerede funktioner.
-\end{itemize}
-\subsection{Equalizer test}
+* Linear fasedrejning i forhold til minimum fasedrejning. (DSP og analog)
+* Årsag til valg af butterworth frem for bessel. 
 
-\husk{Søren}{diskussion ang. faktorer og trial-and-error}
+Linear fasedrejning var først antaget til at være den ideelle løsning for lyd, da der ikke er forskel på forsinkelserne i hele frekvensspektrummet. Derfor blev et Bessel-filter valgt, da denne har en konstant gruppeløbetid. 
+Dette blev senere opdaget at en sådan fasedrejning normalt ikke er hørbar, men er mere et subjektivt emne. 
+For at forsinkelsen er hørbar skal den i de lavere frekvenser være over 2ms. 
+I de øvre frekvenser er skal forsinkelsen være over 3ms.
+Grundet disse omstændigheder blev filtertypologien ændret til Butterworth, da dette også ville kræve færre komponenter. 
+Udover de årsager der er nævnt i afsnit \ref{sec:dec_filter} blev dette også et argument for valget af et IIR-filter. 
+
+
+* Forskel i målt og teoretisk fasedrejning i det samlede analoge filtersystem
+
+
+
+* Fejl ved båndbredde grundet bilinear transformation 
+
+Der blev fundet fejl i equalizerens bånd i forbindelse med testene. Fejlene bestod af afvigelser i hhv. amplitude, centerfrekvens og båndbredde. Centerfrekvensen og båndbredden blev fordoblet, mens amplituden havde en ulineær fejl. Centerfrekvens og båndbredde fejlene var nemt løst ved at halvere de 
+
+* Ulinear fejl i amplituden.
+* Forskel mellem PWM og DAC generede lyd-signaler, og hvordan de analoge filtre bliver påvirket af PWM signalet.
+* Indgangs- og udgangsimpedans, linjestandarder, større afvigelse inden for audio-verdenen, mange subjektive holdninger
+* Muligheden for fejl ved missede systicks i RTCS
+* Beregningstyngden af de to filtertyper i forhold til hardwarefunktionalitet og cpu-load. 
+* Fordele ved at anvende hurtigere og større mikrocontrollere
+
+
+
 Før equalizeren blev testet, blev der diskuteret hvilke målinger, der var nødvendige at foretage, for at få de mest beskrivende resultater af hvordan alle funktionaliterne i det samlede system virkede.
 Det ønskedes at finde ud af, om koden til DSP modulet stemte overens med de teoretisk beregnede filtre i Matlab. 
 Heraf blev der dannet grundlag for, hvilke målinger der ønskedes målt.
@@ -32,3 +48,7 @@ Hardwaren blev da sat i fokus, men der blev aldrig vurderet om dette var den end
  
 
 
+\begin{itemize}
+\item Fixed point beregning.
+\item Assembler optimerede funktioner.
+\end{itemize}
