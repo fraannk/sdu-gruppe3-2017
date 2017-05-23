@@ -14,6 +14,7 @@ I figur \ref{fig:eq-taskmodel} ses task modellen for equalizeren.
 Der er i hele systemet ikke brugt semaphore beskyttelse af \textit{queues} eller buffere, da oprativ systemet er ikke preemtive.
 Alle task der er klar til at blive behandlet af scheduleren, bliver det i den rækkefølge de er oprettet og ligger i \textbf{task pool}. Hver gang \textbf{sysTick} tiden for scheduleringen er gået, bliver et gennemløb af \textbf{task pool}'en sat i gang. Scheduleren er sat til et \textbf{sysTick} på $1\si{\milli\second}$.
 I figur \ref{fig:eq-taskstates} ses state diagrammet over de tilstande en task kan befinde sig i.\\
+\husk{Søren}{preemPtive}
 
 Ud over at scheduleringen forgår sekventielt, er hver task tilknyttet en tidsprioritet. 
 Således vil en task kunne have prioritet lav = 10, mellem = 5 og høj = 1, som angiver hvor mange \textbf{sysTick}'s scheduleren venter før en given task kommer til.

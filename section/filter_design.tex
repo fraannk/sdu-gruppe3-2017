@@ -28,7 +28,7 @@
      \label{eq:iir_bandstop} \\
      H_a (s) &= G_0 H_{NOTCH} (s) + G H_{PEAK} (s) = \dfrac{G_0 (s^2 + \Omega_0^2) + G \alpha s}{s^2 + \alpha s + \Omega_0^2}
      \label{eq:iir_peaknotch}\\
-    G_B &= \dfrac{G_0^2 + G^2}{2} \label{eq:iir_gain}
+    G_B^2 &= \dfrac{G_0^2 + G^2}{2} \label{eq:iir_gain}
     \end{align}
 
     Ved at sætte $s = j \Omega$ i ligning \ref{eq:iir_bandpas} og \ref{eq:iir_bandstop}, og sætte $\big| H(j\omega)\big|^2 = G_B^2$ kan parameteren $\alpha$ findes for de givne specifikationer. $G_B^2$ er defineret ligeledes $G_C$ ved den ønskede centerfrekvens $\Omega_0$.
@@ -85,12 +85,10 @@
     %     H_{LS}(z) = \dfrac{\sqrt{G} \left( \sqrt{G} \Omega^2 + \sqrt{2} \Omega G^{\frac{1}{4}} + 1 \right) +2 \sqrt{G} \left( \sqrt{G} \Omega^2 - 1\right) z^{-1} + \sqrt{G} \left(\sqrt{G} \Omega^2- \sqrt{2} \Omega G^{\frac{1}{4}} + 1 \right) z^{-2}}{\sqrt{G} + \sqrt{2} \Omega G^{\frac{1}{4}} + \Omega^2 + 2 \left( \Omega^2 - \sqrt{G} \right) z^{-1} + \left(\sqrt{G} -\sqrt{2} G^{\frac{1}{4}} + \Omega^2 \right) z^{-2}}
     % \end{align}
 	
-	For at komme fra overføringsfunktionen for peak / notch filteret (\ref{eq:iir_peak_tfz}) til et low shelf filter, sættes $\omega_0 = 0$, for at få de led med $\omega_0$ til at udgå fra ligningen. 
+	For at komme fra overføringsfunktionen for peak / notch filteret (\ref{eq:iir_peak_tfz}) til et low shelf filter, sættes $\omega_0 = 0$, da det vil få peak/notch filtrene til at agere som low shelf. 
 	Forstærkningen ved knækfrekvensen $G_C$ defineres ligeledes $G_B$ i peak/notch filteret.
     Heraf kommer udtrykket for $\beta$, som ses i ligning \ref{eq_iir_beta}.
     \begin{align}
-        H_a (s) &= \dfrac{G_0 s + G \beta}{s + \beta} \nonumber \\
-        |H_a (\Omega)|^2 &= \dfrac{G_0^2 \Omega^2 + G^2 \beta^2}{\Omega^2 + \beta^2} = G_C^2 \nonumber \\
         \beta &= \sqrt{\dfrac{G_C^2 - G_0^2}{G^2 - G_C^2}} \tan \left( \dfrac{\omega_c}{2} \right) \label{eq_iir_beta}
     \end{align}
 	Herefter indsættes $\beta$ i overføringsfunktionen for low shelf filteret og opskrives i ligning \ref{iir_low_shelf}.
@@ -108,14 +106,6 @@
    
      \subsection{High-shelf filter}
 	I et high-shelf filter tages der ligesom i low-helf filteret udgangspunkt i ligning \ref{eq:iir_peak_tfz}. Modsat low-shelf filteret sættes $\omega_0 = \pi$.
-	Overføringsfunktionen for high-shelf filterets opskrives i ligning \ref{iir_hs_tf}.
-     \begin{align}
-        H_a (s) = \dfrac{G_0 + G \beta s}{1 + \beta s} \label{iir_hs_tf}
-     \end{align}
-	I ligning \ref{iir_hs_tf_size} findes størrelsen af amplituderne.
-     \begin{align}
-         |H_a(\Omega)|^2 = \dfrac{G_0^2 + G^2 \beta^2 \Omega^2}{1 + \beta^2 \Omega^2} = G_C^2 \label{iir_hs_tf_size}
-     \end{align}
      For at simplificere udtrykket, laves en omskrivning i ligning \ref{iir_beta_helper}. Her indføres knækfrekvensen $\omega_c = \pi - w_0$ og $\omega_0 = \pi$ hvilket vil sætte centerfrekvensen i $f = \infty$, båndbredden bliver heraf knækfrekvensen til high-shelf filteret.
     \begin{align}
         \beta = \sqrt{\dfrac{G_C^2 - G_0^2}{G^2 - G_C^2}} \tan \left( \dfrac{\omega_c}{2} \right) \label{iir_beta_helper}
@@ -130,13 +120,9 @@
      \begin{align}
      H_{HS}(z) = \dfrac{\left(\dfrac{G_0 + G \beta}{1 + \beta} \right)+ 2 \left(\dfrac{G_0 }{1 +\beta} \right)z^{-1} + \left(\dfrac{ G_0 - G \beta}{1 + \beta }\right) z^{-2}}{1 + 2 \left(\dfrac{1}{1 + \beta}\right)z^{-1} + \left( \dfrac{1 - \beta}{1 + \beta} \right) z^{-2}}\label{iir_hs_tf_z}
      \end{align}
-%
-%
-% \begin{figure}[h]
-%      \centering
-%        \includegraphics[]{figure/iir_hs.pdf}
-%        \caption{High shelf filter med knækfrekvens $f_c = 4kHz$, varierende gain $G$ i intervallet: $[-7.5 ; 7.5]$} \label{fig:iir_high_shelf}
-%   \end{figure}  
+
+     Det skal bemærkes at for high shelf kommer der en fælles faktor i tæller og nævner $1 + z^{-1}$ og i low shelf ligeledes med en faktor $1 - z^{-1}$  
+     som effektivt set forkorter dem til 1. ordens filtre. De holdes på 2. ordens formen som i ligninger for at kunne realiserer dem på samme måde som peak/notch.
 
 
 \begin{figure}[h]
@@ -151,12 +137,13 @@
 \end{figure}
 \FloatBlock
 
-\subsection{Fejl ved Bilinear Transformation}
-\Kenneth{Kan indgå i realiseringsdelen}
 
-\section{Frekvensrepons af Amplituden}
 
-Ved at bruges ligning (\ref{eq:z_to_amp}) hvori amplituden findes fra (\ref{eq:complex_to_amp}).
+\section{Frekvensrepons for amplituden af filteret }
+
+Det ønskes at vise en simpel grafisk illustration af equalizerens filtre på lcd-displayet. 
+Dette er til at hjælpe brugeren med at indstille parametrene.
+Ved at bruge ligning (\ref{eq:z_to_amp}) kan amplituden findes fra (\ref{eq:complex_to_amp}).
 
 \begin{align}
     z= e^{j \Omega} = \cos{\Omega} + j \sin{\Omega}  
@@ -187,8 +174,8 @@ Det resultat der kommer regnes derefter om til $dB$.
 \section{Realisering af filter}
 
 Differensligningen er beskrevet med ligning \ref{eq:iir_diff_lign}, dette kan illustreres vha. et blok diagram figur (\ref{fig:real_diag}). 
-Da $z^{-1}$ svarer til en tidsforsinkelse på 1 sample kan differensligningen. I blogdiagrammet er forsinkelsen 
-(fra tæller- og nævner-polynomiet af overføringsfunktionen) rykket sammen.
+Da $z^{-1}$ svarer til en tidsforsinkelse på 1 sample kan differensligningen. I blokdiagrammet er forsinkelsen 
+(fra tæller- og nævner-polynomiet af overføringsfunktionen) rykket sammen, dette er realisering på direkte form 2. \cite{Tan2013}
 
    \begin{figure}[h]
         \centering
@@ -196,24 +183,24 @@ Da $z^{-1}$ svarer til en tidsforsinkelse på 1 sample kan differensligningen. I
         \caption{Realiserings diagram af 2. ordens iir filter. }    
         \label{fig:real_diag}
     \end{figure}
-\husk{Dennis}{til mig selv: er det type 1 eller 2 realisering}
-   Ud fra blokdiagrammet \ref{fig:real_diag} kan iir-filteret beskrives med ligning \ref{eq_iir_diff_real} 
+
+   Ud fra blokdiagrammet \ref{fig:real_diag} kan iir-filteret beskrives med ligning \ref{eq:iir_diff_real} 
    hvor $b_i$ er filterets tæller koefficienter, $a_i$ er filterets nævner koefficienter og $w$ indeholder 
    værdier fra de tidligere filtrede samples. Efter $y[n]$ er beregnet skubbes værdierne i $w$ variablen  
  således at de passer til det nye filtrede samples. 
     \begin{align}
-        w[0] &=x[n] - w[1] \cdot a_1 - w[2] \cdot a_2 \\
-        y[n] &= w[0] \cdot b_0 + w[1] \cdot b_1 + w[2] \cdot b_2
+        w[0] &=x[n] - w[1] \cdot a_1 - w[2] \cdot a_2  \\
+        y[n] &= w[0] \cdot b_0 + w[1] \cdot b_1 + w[2] \cdot b_2  
         \label{eq:iir_diff_real}
         \\
         w[2] &= w[1] \\
-        w[1] &= w[0]
+        w[1] &= w[0] 
     \end{align}
 
     Da filteret er afhængig af de tidligere værdier skal det filtrere et par samples således at all $w$ variablene 
     har fået tildelt sig en værdi.
 Når de forskellige 2. ordensfiltre skal kaskadekobles. Hvis $x_{1}[n]$ repræsenterer det sample der filtres af det 1. bånd så vil $x_{2}[n] = y_{1}[n]$.
-    Dvs. at ligning \label{eq:iir_diff_real} beregnes per bånd af equalizeren hvor det samlet antal bånd betegnes $K$.\\
+    Dvs. at ligning \ref{eq:iir_diff_real} beregnes per bånd af equalizeren hvor det samlet antal bånd betegnes $K$.\\
 \subsection{Repræsentering af koefficienter}
 
     Koefficienterne haves i $K \times 3$ matricer,
@@ -250,11 +237,3 @@ Når de forskellige 2. ordensfiltre skal kaskadekobles. Hvis $x_{1}[n]$ repræse
 
    Koefficienterne haves i floating point format. For at effektivisere beregningerne aktiveres floating point 
    enheden. 
-
-
-
-\section{Delkonklusion}
-
-\note{
-	Test af CPU og hvordan det er at implementere
-}

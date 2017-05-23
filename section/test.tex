@@ -47,7 +47,7 @@ For at måle overføringsfunktionen sættes Bode 100'ens output til indgangen p�
 
 \section{Resultater}
 I dette afsnit vil resultaterne af målingerne blive vist, og der vil herefter drages til delkonklusion, hvor teorien stilles op mod praktis.
-Det første resultat på figur \ref{fig:eq_off1}, viser en graf hvor den digitale del er slået fra, og selve equalizeren er deaktiveret. Det er altså kun de analoge filtre der dominerer. Da der hovedsageligt testes om profilerne fungerer, altså om DSP koden er korrekt, trækkes denne "afvigelse" fra målingerne, så disse bliver så tæt på teorien som muligt. Det teoretiske AA-filter ses til sammenligning på figur \ref{fig::afilter_aasim}, hvor det stemmer overens med målingen.
+Det første resultat på figur \ref{fig:eq_off1}, viser en graf hvor den digitale del er slået fra, og selve equalizeren er deaktiveret. Det er altså kun de analoge filtre der dominerer. Da der hovedsageligt testes om profilerne fungerer, altså om DSP koden er korrekt, trækkes denne "afvigelse" fra målingerne, så disse bliver så tæt på teorien som muligt. Det teoretiske AA-filter ses til sammenligning på figur \ref{fig::anfilter_sim_total}, hvor det stemmer overens med målingen.
 
 \begin{figure}[h!]
 	\centering
@@ -103,6 +103,7 @@ Her ses tydeligt den afvigende amplitude og båndbredde. På figur \ref{fig:korr
   	\caption{Målingsresultat af forskellig frekvens (hhv. $100\hertz$ og $5\kilo\hertz$, figur \ref{fig:freq_uden_hotfix}), sammenlignet med teorien (\ref{fig:freq_teori}.}
 	\label{fig:freq}
 \end{figure}
+\husk{Søren}{fix billeder}
 
 \begin{figure}[h!]
 	\centering
@@ -119,6 +120,10 @@ Her ses tydeligt den afvigende amplitude og båndbredde. På figur \ref{fig:korr
 	\label{fig:korr}
 \end{figure}
 
+
+
+\husk{dennis}{fejlkilder til amplitude: skalering i bilinear transformation,dac, hvad ellers? }
+
 \section{Delkonklusion}
 
 Ved hjælp af disse tests kan, der konkluderes at de forskellige parametre som indstilles i koden kommer til at passe på udgangene. Der blev også bevist at de matematiske beregninger, altså DSP implementeringen, passer med teorien og at filtrene opfører sig som forventet. \\
@@ -126,6 +131,7 @@ Ved hjælp af disse tests kan, der konkluderes at de forskellige parametre som i
 Disse tests var derudover med til at finde nogle enkelte småfejl/offsets som gjorde at frekvensen, båndbredden samt amplituden ikke lå helt hvor de skulle. Disse faktorer blev fundet ved at sammenligne Bode 100 målingerne med de teoretiske beregninger, og derefter bruge "trial and error"-metoden til at finde de korrekte værdier. Årsagen til dette offset kendes endnu ikke, men tests'ene beviste at de ikke lå i matematikken, men andetsteds. 
 Beviset for dette, er gjort ved at bruge de beregnede koefficienter fra DSP modulet, og implementere dem i matlab. 
 Her viste matlab at teorien var korrekt. 
+\husk{Søren}{de to sidste sætninger?}
 
 
 
