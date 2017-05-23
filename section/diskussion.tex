@@ -15,7 +15,8 @@ Udover de årsager der er nævnt i afsnit \ref{sec:dec_filter} blev dette også 
 
 
 * Forskel i målt og teoretisk fasedrejning i det samlede analoge filtersystem
-
+Sammenlignes simuleringen og bodetesten af det samlede analoge filtersystem, ses en stor forskel i fasedrejningen. En stor del af denne afvigelse skyldes de forsinkelser som tiva boardet, kommunikation til DAC og selve DAC'en påfører systemet. 
+Tiva boardet skal bruge en samplingsperiode, SPI kommunikationen til DAC tager 3uS, og DAC'en skal bruge 4.5uS. Samles disse forsinkelser og simuleres med, vil en stor del af afvigelsen mellem test og simulering blive elimineret. Det resterer stadig en mindre fejl som der endnu ikke kan redegøres for. 
 
 * Ulinear fejl i amplituden.
 * Fejl ved båndbredde grundet bilinear transformation 
