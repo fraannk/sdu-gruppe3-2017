@@ -6,10 +6,9 @@ Der er to hovedgrupper af equalizers: Grafiske equalizere og parametriske equali
 Der er uenighed i definitionerne af de to typer, hvilket medfører forvirring omkring specifikationer af filter. I denne rapport vælges følgende definitioner:
 
 \begin{itemize}
-	\item Grafisk equalizer: Her splittes equalizeren op i forskellige bånd der dækker sine respektive frekvens områder. Som bruger har man forstærkning af det respektive bånd som parameter at ændre på. Båndbredde og center frekvens er fastlagt.
+	\item Grafisk equalizer: Her splittes equalizeren op i forskellige bånd der dækker sine fastlagte frekvens områder. Som bruger har man forstærkning af det respektive bånd som parameter at ændre på. Båndbredde og center frekvens er fastlagt.
 	\item Parametrisk equalizer: Her er båndene vilkårlige således, at brugeren selv kan tilføje og fjerne dem efter behov. I hvert enkelt bånd kan man justere båndbredde, center frekvens og forstærkning ved center frekvensen. Alt efter computer / mikrocontroller er der dog et maksimum antal bånd da equalizerens ellers vil kræve for meget CPU kraft. 
 \end{itemize}  
-\jj{respektive frekvens områder, ville lyde bedre med fastlagte frekvens områder}
 
 \begin{figure}[h]
 	\centering
@@ -29,5 +28,4 @@ Af de to equalizer typer, er den parametriske klart den mest fleksible men også
 Equalizere bruges mange steder hvor lydens "kvalitet" er vigtig. 
 De bruges f.eks. i studio teknik, radio teknik, telefoni, forbruger-lydforstærkerer og til koncerter. 
 Til de forskellige applikationer er der forskellige ind- og udgangsniveauer som skal overholdes. 
-Jo højere dette niveau er, jo højere er "opløsningen" og derfor er kvaliteten bedre. 
-\jj{Hvorfor skulle den sidste være korrekt om opløsning ?, hvad er opløsningen på et analogt signal ?}
+I professionel lyd er linje-signalet f.eks. højere end ved normal forbruger lyd. 
