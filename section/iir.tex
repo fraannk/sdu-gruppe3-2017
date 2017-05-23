@@ -26,12 +26,11 @@ Som løsningsmodel med IIR-filtre anvendes den Bilinear Transformations metode o
 
 
 
-    \subsection{Frekvens-preswarp}
+    \subsection{Frekvens-prewarp}
     Da center frekvensen af filteret vil blive forskudt når der udføres en Bilinear
     transformation er det nødvendigt at prewarp'e (kompensere mod forvrængning), således at center frekvensen passer i det digitale filter.  
     $\Omega_0$ er den analoge centerfrekvens, $\omega_0$ er den ønskede centerfrekvens, $f_s$ er samplingsfrekvensen. 
     Forholdet mellem $\Omega_0$ og $\omega_0$:
-    \husk{Søren}{Preswarp eller prewarp}
   
     \begin{align}
     \omega_0 &= \dfrac{2 \pi f_0}{f_s} \label{eq:freq_warp_w0}\\

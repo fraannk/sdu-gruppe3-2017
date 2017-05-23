@@ -11,9 +11,6 @@
 	Som filter til equalizeren anvendes high-shelf, low-shelf og  peak/notch.
     Der bliver kun anvendt 2. ordens filtre, da der ikke er brug for højere orden inde for audio.
 
-    \husk{Dennis}{skal det her stå her? og hvis ja med kilde reference?}
-
-
      \subsection{Peak/notch filter}
 
     Et peak/notch filter består af et båndpas-, $H_{BP}$, og et båndstopfilter, $H_{BS}$. 
@@ -32,8 +29,8 @@
     \end{align}
 
     Ved at sætte $s = j \Omega$ i ligning \ref{eq:iir_bandpas} og \ref{eq:iir_bandstop}, og sætte $\big| H(j\omega)\big|^2 = G_B^2$ kan parameteren $\alpha$ findes for de givne specifikationer. $G_B^2$ er defineret ligeledes $G_C$ ved den ønskede centerfrekvens $\Omega_0$.
-   I kilde \cite{Orfanidis1996} udledes at udtryk (ud fra ligning \ref{eq:h_a_gb}) for $\alpha$ hvori $\beta$ defines som i ligning \ref{eq:beta_calc}.
-   \husk{Søren}{udledes at udtryk} 
+   I kilde \cite{Orfanidis1996} udledes et udtryk (ud fra ligning \ref{eq:h_a_gb}) for $\alpha$ hvori $\beta$ defines som i ligning \ref{eq:beta_calc}.
+
    % \begin{align}
    %  |H_{a}(j \Omega)| = \dfrac{G_0 (\Omega_0^2- \Omega^2)+ j G \alpha \Omega}{-\Omega^2 + j \alpha \Omega + \Omega_0^2}   
   %  \end{align}
