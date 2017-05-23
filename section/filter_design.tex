@@ -32,7 +32,8 @@
     \end{align}
 
     Ved at sætte $s = j \Omega$ i ligning \ref{eq:iir_bandpas} og \ref{eq:iir_bandstop}, og sætte $\big| H(j\omega)\big|^2 = G_B^2$ kan parameteren $\alpha$ findes for de givne specifikationer. $G_B^2$ er defineret ligeledes $G_C$ ved den ønskede centerfrekvens $\Omega_0$.
-   I kilde \cite{Orfanidis1996} udledes at udtryk (ud fra ligning \ref{eq:h_a_gb}) for $\alpha$ hvori $\beta$ defines som i ligning \ref{eq:beta_calc}. 
+   I kilde \cite{Orfanidis1996} udledes at udtryk (ud fra ligning \ref{eq:h_a_gb}) for $\alpha$ hvori $\beta$ defines som i ligning \ref{eq:beta_calc}.
+   \husk{Søren}{udledes at udtryk} 
    % \begin{align}
    %  |H_{a}(j \Omega)| = \dfrac{G_0 (\Omega_0^2- \Omega^2)+ j G \alpha \Omega}{-\Omega^2 + j \alpha \Omega + \Omega_0^2}   
   %  \end{align}
@@ -91,11 +92,10 @@
     \begin{align}
         \beta &= \sqrt{\dfrac{G_C^2 - G_0^2}{G^2 - G_C^2}} \tan \left( \dfrac{\omega_c}{2} \right) \label{eq_iir_beta}
     \end{align}
-	Herefter indsættes $\beta$ i overføringsfunktionen for low shelf filteret og opskrives i ligning \ref{iir_low_shelf}.
+	Herefter indsættes $\beta$ i overføringsfunktionen for low shelf filteret og opskrives i ligning \ref{iir_low_shelf}. Lowshelf filteret er plottet i figur \ref{fig:iir_low_shelf} med variende gain, $G$.
      \begin{align}
       H_{LS}(z) =  \dfrac{\left(\dfrac{G_0 + G \beta}{1 + \beta} \right)- 2 \left(\dfrac{G_0 }{1 +\beta} \right)z^{-1} + \left(\dfrac{ G_0 - G \beta}{1 + \beta }\right) z^{-2}}{1 - 2 \left(\dfrac{1}{1 + \beta}\right)z^{-1} + \left( \dfrac{1 - \beta}{1 + \beta} \right) z^{-2}} \label{iir_low_shelf}
      \end{align}
-	Lowshelf filteret er plottet i figur \ref{fig:iir_low_shelf} med variende gain, $G$.
 %    \begin{figure}[h]
 %    \centering
 %        \includegraphics{figure/iir_ls.pdf}
@@ -105,7 +105,7 @@
    
    
      \subsection{High-shelf filter}
-	I et high-shelf filter tages der ligesom i low-helf filteret udgangspunkt i ligning \ref{eq:iir_peak_tfz}. Modsat low-shelf filteret sættes $\omega_0 = \pi$.
+	I et high-shelf filter tages der ligesom i low-shelf filteret udgangspunkt i ligning \ref{eq:iir_peak_tfz}. Modsat low-shelf filteret sættes $\omega_0 = \pi$.
      For at simplificere udtrykket, laves en omskrivning i ligning \ref{iir_beta_helper}. Her indføres knækfrekvensen $\omega_c = \pi - w_0$ og $\omega_0 = \pi$ hvilket vil sætte centerfrekvensen i $f = \infty$, båndbredden bliver heraf knækfrekvensen til high-shelf filteret.
     \begin{align}
         \beta = \sqrt{\dfrac{G_C^2 - G_0^2}{G^2 - G_C^2}} \tan \left( \dfrac{\omega_c}{2} \right) \label{iir_beta_helper}
@@ -122,7 +122,7 @@
      \end{align}
 
      Det skal bemærkes at for high shelf kommer der en fælles faktor i tæller og nævner $1 + z^{-1}$ og i low shelf ligeledes med en faktor $1 - z^{-1}$  
-     som effektivt set forkorter dem til 1. ordens filtre. De holdes på 2. ordens formen som i ligninger for at kunne realiserer dem på samme måde som peak/notch.
+     som effektivt set forkorter dem til 1. ordens filtre. De holdes på 2. ordens formen som i ligningerne for at kunne realisere dem på samme måde som peak/notch.
 
 
 \begin{figure}[h]
@@ -141,7 +141,7 @@
 
 \section{Frekvensrepons for amplituden af filteret }
 
-Det ønskes at vise en simpel grafisk illustration af equalizerens filtre på lcd-displayet. 
+Der ønskes at vise en simpel grafisk illustration af equalizerens filtre på LCD-displayet. 
 Dette er til at hjælpe brugeren med at indstille parametrene.
 Ved at bruge ligning (\ref{eq:z_to_amp}) kan amplituden findes fra (\ref{eq:complex_to_amp}).
 
@@ -160,15 +160,13 @@ Da de individuelle filtre (bånd) er af 2. orden kan amplituden beregnes med lig
 \end{align}
 Hvis $H(\Omega)$ deles op i hhv. $N(\Omega)$ tæller, $D(\Omega)$ nævner kan amplituden for en 
 given frekvens $\Omega$ findes ved ligning (\ref{eq:amp_calc}).
+Det resultat der kommer regnes derefter om til $dB$.
 
 \begin{align}
     |H(\Omega)| &= \sqrt{ \dfrac{\Re{(N(\Omega))}^2 + \Im{(N(\Omega))}^2 }{\Re{(D(\Omega))}^2 + \Im{(D(\Omega))}^2 }} \nonumber	\\ 
      &= \prod\limits_{i=0}^{K-1} \dfrac{ \sqrt{\left( b_{i0} + b_{i1} \cos{\Omega} + b_{i2} \cos{2 \Omega} \right)^2 +  \left( b_{i1} \sin{\Omega} + b_{i2} \sin{2 \Omega} \right)^2 } }{ \sqrt{\left( a_{i0} + a_{i1} \cos{\Omega} + a_{i2} \cos{2 \Omega} \right)^2 + \left( a_{i1} \sin{\Omega} + a_{i2} \sin{2 \Omega} \right)^2} }
     \label{eq:amp_calc}
 \end{align}
-
-Det resultat der kommer regnes derefter om til $dB$.
-
 
 
 \section{Realisering af filter}
