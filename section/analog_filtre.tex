@@ -8,7 +8,7 @@ Dette kan realiseres ved hjælp af et AA filter. Samplingsfrekvensen af sat til 
 Når der arbejdes med lydsignaler er det vigtigt at overveje gruppeløbetiden. Gruppeløbetiden beskriver forsinkelsen for forskellige frekvenser. Det vil være hensigtsmæssigt at have en konstant gruppeløbetid, så alle frekvenser har den samme forsinkelse. Ud fra dette blev der indledningsvis valgt et bessel filter, da denne type filter har en konstant gruppeløbetid op til knækfrekvensen. \\
 Senere på forløbet blev det afklaret at for at høre denne forsinkelse skulle forskellen være i millisekunder. Der blev derfor taget en beslutning om at skifte til Butterworth filtre, da denne type filter har en stejlere dæmpnings hældning og kræver færre komponenter.
 \subsection{Parametre, udregning og Sallen Key}\label{sec::anfilter_sallenpara}
-Butterworth filteret blev valgt som det endelige filter. 
+Butterworth filteret blev valgt som det endelige filter. Frekvensspektrumet af interesse spænder fra 20Hz til 20kHz. Dvs. de hørbare frekvenser.\\
 Det vælges at knækfrekvensen skal ligge ved 17kHz med en dæmpning på -3dB. Denne frekvens vælges da en mindre dæmpning ved den øvre del af frekvensspektrumet kan accepteres, og giver mulighed for en betydelig dæmpning af signalet efter 22.5kHz. Ved hjælp af Matlab (der refereres til bilag \ref{void}) udregnes at amplituden ved 22.5kHz kan dæmpes med -12dB med at 5. ordens butterworth filter.\\
 Der ønskes tre overføringsfunktioner på formen som vist i ligning \ref{eq::anfilter_standardeq}.
 \begin{equation}
@@ -164,12 +164,12 @@ Denne kaskade af filtre vil generere 5 poler. En reel pol i stage 1, to kompleks
 \FloatBlock
 \section{Rekonstruktions filter}
 \subsection{Formål}
-I et system med både analoge og digitale signaler, bruges et rekonstruktionsfilter (også kaldet anti image filter) til at generere et "glat" analogt signal ud fra f.eks. en DAC's udgangssignal. Et digitalt lydsignal har bølgeform som et trappetrin og indeholder en del højfrekvente komposanter, også kaldet "images". Et rekonstruktionsfilter konstruerer en mere udglattet version af det originale signal.
+I et system med både analoge og digitale signaler, bruges et rekonstruktionsfilter (også kaldet anti image filter) til at generere et "glat"  analogt signal ud fra f.eks. en DAC's udgangssignal. Et digitalt lydsignal har bølgeform som et trappetrin og indeholder en del højfrekvente komposanter, også kaldet "images". Et rekonstruktionsfilter konstruerer en mere udglattet version af det originale signal.
 \subsection{Parametre og udregning}
 Det er almindelig praksis at benytte et filter til rekonstruktion, magen til det filter der anvendes til antialiasing. For udregninger henvises til afsnit \ref{sec::anfilter_sallenpara}.
 
 \subsection{Test og målinger}
-På figur \ref{fig::anfilter_sim_total} ses amplitude og fase karakteristikken udfærdiget ved simulering af det samlede system. 
+På figur \ref{fig::anfilter_sim_total} ses amplitude og fase karakteristikken udfærdiget ved simulering af det samlede system. Bemærk faldet i amplitude ved lave frekvenser.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale = 0.2]{./billeder/simtot.png}
@@ -199,3 +199,6 @@ Dette kan løses ved at lave et højfrekvent lavpas filter, så tæt på udgange
 	\label{fig::anfilter_hf}
 \end{figure}
 \FloatBlock
+
+\subsection{Delkonkussion}
+Det kan ses ud fra simuleringer at udregningerne af filtret har været tilfredstillende. De parametre der blev sat i afsnit \ref{sec::anfilter_sallenpara} er blevet overholdt. Efter realisering på pcb board kan der  ydermere konstateres at lydsignalet går igennem uden de nævneværdige tab i øvre og lavere del af frekvensspektrumet. Test af filtrene kan ses i kapitel 6 og stemmer overens med teorien. 
