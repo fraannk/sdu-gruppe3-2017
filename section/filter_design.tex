@@ -91,11 +91,10 @@
     \begin{align}
         \beta &= \sqrt{\dfrac{G_C^2 - G_0^2}{G^2 - G_C^2}} \tan \left( \dfrac{\omega_c}{2} \right) \label{eq_iir_beta}
     \end{align}
-	Herefter indsættes $\beta$ i overføringsfunktionen for low shelf filteret og opskrives i ligning \ref{iir_low_shelf}.
+	Herefter indsættes $\beta$ i overføringsfunktionen for low shelf filteret og opskrives i ligning \ref{iir_low_shelf}. Lowshelf filteret er plottet i figur \ref{fig:iir_low_shelf} med variende gain, $G$.
      \begin{align}
       H_{LS}(z) =  \dfrac{\left(\dfrac{G_0 + G \beta}{1 + \beta} \right)- 2 \left(\dfrac{G_0 }{1 +\beta} \right)z^{-1} + \left(\dfrac{ G_0 - G \beta}{1 + \beta }\right) z^{-2}}{1 - 2 \left(\dfrac{1}{1 + \beta}\right)z^{-1} + \left( \dfrac{1 - \beta}{1 + \beta} \right) z^{-2}} \label{iir_low_shelf}
      \end{align}
-	Lowshelf filteret er plottet i figur \ref{fig:iir_low_shelf} med variende gain, $G$.
 %    \begin{figure}[h]
 %    \centering
 %        \includegraphics{figure/iir_ls.pdf}
@@ -160,15 +159,13 @@ Da de individuelle filtre (bånd) er af 2. orden kan amplituden beregnes med lig
 \end{align}
 Hvis $H(\Omega)$ deles op i hhv. $N(\Omega)$ tæller, $D(\Omega)$ nævner kan amplituden for en 
 given frekvens $\Omega$ findes ved ligning (\ref{eq:amp_calc}).
+Det resultat der kommer regnes derefter om til $dB$.
 
 \begin{align}
     |H(\Omega)| &= \sqrt{ \dfrac{\Re{(N(\Omega))}^2 + \Im{(N(\Omega))}^2 }{\Re{(D(\Omega))}^2 + \Im{(D(\Omega))}^2 }} \nonumber	\\ 
      &= \prod\limits_{i=0}^{K-1} \dfrac{ \sqrt{\left( b_{i0} + b_{i1} \cos{\Omega} + b_{i2} \cos{2 \Omega} \right)^2 +  \left( b_{i1} \sin{\Omega} + b_{i2} \sin{2 \Omega} \right)^2 } }{ \sqrt{\left( a_{i0} + a_{i1} \cos{\Omega} + a_{i2} \cos{2 \Omega} \right)^2 + \left( a_{i1} \sin{\Omega} + a_{i2} \sin{2 \Omega} \right)^2} }
     \label{eq:amp_calc}
 \end{align}
-
-Det resultat der kommer regnes derefter om til $dB$.
-
 
 
 \section{Realisering af filter}
