@@ -1,25 +1,23 @@
-\section{Opsummering}
-Der er mange aspekter af det design der ligger til grund for den realiserede equalizer der kunne forbedres.
-Arbejdet og udviklings processen har dog bidraget med en større indsigt i både hvad der har været hensigtsmæssigt at gøre, og hvor problemer er opstået.
-Her har der helt klart været tale om løbende forbedringer og implementering som den viden der skulle til at løse forskellige problemstillinger blev lært eller stillet tilrådighed.\\
+\section{Opsummering og delkonklusion}
+Udviklingen og implementeringen af softwaren til systemet har vist sig at være et omfattende arbejde.
+En stor del af de overvejelser der blev taget undervejs er prøvet gennemgået i det foregående kapitel.
+Det er dog langt fra alle detaljer der har fundet vej hertil.\\
+
+Som en helhedsvurdering virker den fundne løsning tilfredsstillende.
+Overvejelser om designreglerne der lå til grunde for samplingsfrekvens og konstant latency er blevet overholdt og har givet et stabilt og forudsigeligt system, samt aspekter som nøjagtighed er blevet kortlagt.
+Systemets kendte latency er ligeledes blevet synliggjort i foregående kapitel.
+Processen med design og implementering af et operativsystem har været udfordrende, dog har den valgte løsningsmodel vist sig at fungere godt nok i forhold til de stillede krav.\\
+
+Der er mange aspekter af designet der af den realiserede equalizer, der kunne forbedres.
+Arbejdet og udviklingsprocessen har dog bidraget med en større indsigt, både hvad der har været hensigtsmæssigt og hvor problemer kan opstå.\\
 
 Hvis projektet, som produkt skulle videreudvikles, ville de næste trin af udviklingen ligge i retning af
-\begin{itemize}
+\begin{itemize}[noitemsep]
 	\item At udskifte operativsystemet fra det nuværende til et mere robust system som fx FreeRTOS med en preemptive arkitektur.
-	\item Udbygge fleksibiliteten i shell'en således at det kunne være muligt, løbende at konfigurer og definere equalizer profiler
+	\item Udbygge fleksibiliteten i shell'en således at det kunne være muligt, løbende at konfigurere og definere equalizer profiler
 	\item Indbygge fx I2C kommunikation, således at systemet kan bruges som modul i andre og større lydsystemer.
 \end{itemize} 
 
-andre punkter
-\begin{itemize}
-	\item Latency ?
-	\item Nøjagtighed
-	\item Forbedring af udgangssignal i DAC i forhold til PWM
-\end{itemize}
-\husk{JJ}{Færdiggør punkter til opsummering}
-
-\subsection{Delkonklusion}
 Som helhed blev den ønskede implementering opnået.
 Systemet er funktionelt og kan inden for en rimelig fleksibilitet håndtere den korrekte signalbehandling.
-\\
-\Kenneth{Det viste sig også muligt, at eftervise tidsberegningen gennem MCU'en.}
+
