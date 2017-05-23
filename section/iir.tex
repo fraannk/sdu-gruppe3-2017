@@ -31,6 +31,7 @@ Som løsningsmodel med IIR-filtre anvendes den Bilinear Transformations metode o
     transformation er det nødvendigt at prewarp'e (kompensere mod forvrængning), således at center frekvensen passer i det digitale filter.  
     $\Omega_0$ er den analoge centerfrekvens, $\omega_0$ er den ønskede centerfrekvens, $f_s$ er samplingsfrekvensen. 
     Forholdet mellem $\Omega_0$ og $\omega_0$:
+    \husk{Søren}{Preswarp eller prewarp}
   
     \begin{align}
     \omega_0 &= \dfrac{2 \pi f_0}{f_s} \label{eq:freq_warp_w0}\\
@@ -63,8 +64,8 @@ Som løsningsmodel med IIR-filtre anvendes den Bilinear Transformations metode o
     \end{align}
     
     \subsection{Bilinear Transformation}
-    Når det analog filter skal transformeres fra s-plan til z-plan bruges ligning (\ref{eq:s_to_z}). Hvilket giver et 
-    filter i z-planet der har samme orden som det analog filter. Derudover bliver faseresponset af det digitale filter magen til 
+    Når det analoge filter skal transformeres fra s-plan til z-plan bruges ligning (\ref{eq:s_to_z}), hvilket giver et 
+    filter i z-planet der har samme orden som det analoge filter. Derudover bliver faseresponset af det digitale filter magen til 
     det analoge filter, hvilket medfører at der kommer ulineær fasedrejning på filteret. 
     Heraf kommer koefficienterne $a_1, \dots, a_N, b_0,\dots, b_N $. 
     \begin{align}
@@ -78,7 +79,7 @@ Som løsningsmodel med IIR-filtre anvendes den Bilinear Transformations metode o
     
    \subsection{Equalizer}
 
-   En equalizers kan opdeles i en række bånd hvori hvert bånd repræsenterer et 
+   En equalizer kan opdeles i en række bånd hvori hvert bånd repræsenterer et 
    2. ordens filter (biquad). Ved at sætte $G_0 = 1$ ($0 dB$) kan filtrene kaskadekobles hvilket giver 
    et resulterende filter $H_{res}$, som er produktet af de individuelle filtre $H_i$. \\
    Dette kan ses i ligning (\ref{eq:kaskade_iir}) hvor $K$ er antal bånd i equalizeren.  

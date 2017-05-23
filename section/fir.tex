@@ -29,6 +29,7 @@ H(z)=\sum\limits_{k=0}^{N-1}h(k)z^{-1} \label{FIR_transfer}
 Herunder redegøres der for 2 forskellíge design metoder, til beregning af filter koefficienter; Frekvenssampling og windowsmetoden.
 \subsection{Frekvenssampling}
 Ved frekvenssampling approksimeres det ønskede frekvensrespons ved, at sample det $N$ antal gange, med samme interval imellem samplingspunkterne. Der kan derved opnås et interpolateret frekvens respons.
+\husk{Søren}{Interpoleret?}
 Pointen med frekvenssampling er at filterkoefficienter kan beregnes udfra specificerede størrelser i forhold det ønskede filter respons uniformt i frekvensdomænet.
 
 Filterkoefficienterne kan beregnes udfra definitionen af den inverse DFT (IDFT) fra litteratur \cite[Side. 262]{Tan2013}:
@@ -39,7 +40,7 @@ hvor
 \begin {equation}
 W_{N}=e^{j\frac{2\pi}{N}} \hspace{1cm}\text{og} \hspace{1cm} H_{d}(k)=h(e^{j\Omega_{k}}) \nonumber
 \end {equation}
-Der antages lineær fase og at antallet af samplingspunkt er $N=2M+1$.
+Der antages lineær fase og at antallet af samplingspunkter er $N=2M+1$.
 
 
 \begin{figure}[h]
@@ -122,8 +123,8 @@ Efter valget af hvilken filtertype der skal anvendes, findes det nødvendige vin
 Fremgangsmetoden for windowsmetoden ses i de følgende 5 trin:
 \begin{enumerate}[noitemsep,nolistsep]
 	\item Ud fra de ønskede filterspecifikationer, bestemmes filterordenen og knækfrekvensen. Der vælges en vinduesfunktion og ligning \ref{fir_cutoff} anvendes.
-	\item Beregn impulssekvensen $h(n)$ ved hjælp af Fourier transformations metoden.
-	\item Multiplicer det genererede filter koefficienter $h(n)$ i trin 2 med det valgte vindue, for at at opnå impulssekvensen for vinduet $h_w(n)$.
-	\item Forsink vinduesimpulsen $h_w(n)$ med M samples for at få det kausale filters koefficienterne $b_n = h_w(n-M)$ med ligning \ref{b_n-window}.
+	\item Beregn impulssekvensen $h(n)$ ved hjælp af Fouriertransformations metoden.
+	\item Multiplicer de genererede filter koefficienter $h(n)$ i trin 2 med det valgte vindue, for at at opnå impulssekvensen for vinduet $h_w(n)$.
+	\item Forsink vinduesimpulsen $h_w(n)$ med M samples for at få det kausale filters koefficienter $b_n = h_w(n-M)$ med ligning \ref{b_n-window}.
 	\item Overføringsfunktionen plottes, og hvis kravene til frekvensspecifikationer ikke er opfyldt, øges filterets orden og proceduren gentages.
 \end{enumerate}
