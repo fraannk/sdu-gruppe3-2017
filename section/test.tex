@@ -62,8 +62,6 @@ Da der blev målt første gang, viste det sig, at både frekvensen og båndbredd
 De teoretiske beregninger og resultater stilles op ved siden af hinanden.
 Dette ses for hhv. hver parameter i figur: \ref{fig:gain}, \ref{fig:bw} og \ref{fig:freq}. 
 Her ses tydeligt den afvigende amplitude og båndbredde, som beskrevet tidligere. På figur \ref{fig:korr} ses de korrigerede målinger.
-Da der er anvendt bilinær transformation, er det kun centerfrekvensen der er garanteret, at være korrekt.
-Dette ses også i forhold til figur \ref{fig:freq}, hvor båndbredden ses at være mindre i det negative gain. 
 
 \subsection{Målinger}
 
@@ -121,16 +119,15 @@ Dette ses også i forhold til figur \ref{fig:freq}, hvor båndbredden ses at væ
 	\label{fig:korr}
 \end{figure}
 
-
-
-\husk{dennis}{fejlkilder til amplitude: skalering i bilinear transformation,dac, hvad ellers? }
+Da der er anvendt bilinær transformation, er det kun centerfrekvensen der er garanteret, at være korrekt.
+Dette ses også i forhold til figur \ref{fig:freq}, hvor båndbredden ses at være mindre i det negative gain. 
 
 \section{Delkonklusion}
 
 Ved hjælp af disse tests kan, der konkluderes at de forskellige parametre som indstilles i koden kommer til at passe på udgangene. Der blev også bevist at de matematiske beregninger, altså DSP implementeringen, passer med teorien og at filtrene opfører sig som forventet. \\
 
 Disse tests var derudover med til at finde nogle enkelte småfejl/offsets som gjorde at frekvensen, båndbredden samt amplituden ikke lå helt hvor de skulle. Disse faktorer blev fundet ved at sammenligne Bode 100 målingerne med de teoretiske beregninger, og derefter bruge "trial and error"-metoden til at finde de korrekte værdier. Årsagen til dette offset kendes endnu ikke, men tests'ene beviste at de ikke lå i matematikken, men andetsteds. 
-Beviset for dette, er gjort ved at bruge de beregnede koefficienter fra Matlab, og implmentere dem direkte i DSP modulet. Dette viste de samme målinger efterfølgende, og det kan dermed konkluderes at teorien er korrekt.
+Beviset for dette, er gjort ved at bruge de beregnede koefficienter fra MATLAB, og implmentere dem direkte i DSP modulet. Dette viste de samme målinger efterfølgende, og det kan dermed konkluderes at teorien er korrekt.
 
 
 
