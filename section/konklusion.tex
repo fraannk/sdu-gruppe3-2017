@@ -1,15 +1,13 @@
 \chapter{Konklusion} \label{kap:konklusion}
-Hvad var muligt, og hvad viste sig at være for omfattende til tidshorisonten? \\
-Skal vi have en empf?
-\\
-
-Ting der skal besvares fra problemformuleringen. Rækkefølge endnu uvist.
-\begin{itemize}[noitemsep]
-	\item Hvilke digitale signalbehandlingsmetoder er bedst til fremstilling af en digital equalizer?
-	\item Hvordan kan et analogt filter anvendes på en digital equalizer?
-	\item Hvordan anvendes digital signalbehandling, til at give de ønskede båndspecifikationer?
-	\item Hvilke krav er der til de analoge filtre i forhold til den samlede signalbehandling.
-	\item Hvordan fremstilles og designes software der kan håndtere digital sampling og gengivelse af lydsignalet
+Det konkluderes at:
+\begin{itemize}
+	\item En digital equalizer kan realiseres både ved hjælp af FIR og IIR-designmetoder. I dette projekt blev IIR valgt som løsningsmodel.
+	\item De ønskede båndspecifikationer fås ved bilineær transformation.
+	\item Analoge filtre implementeres som anti-aliasingsfilter på indgangen og rekonstruktionsfilter på udgangen. Butterworth-typologien blev valgt som kompromis mellem kompleksitet og krav til fasedrejning.
+	\item Kravene til de analoge filtre er: 
+	\begin{itemize}
+		\item Der skal være tilstrækkelig dæmpning til, at aliasing ikke forekommer. 
+		\item Ændringen af gruppeløbetiden må ikke overstige $2\si{\milli\second}$.
+	\end{itemize}
+	\item Det implementerede realtidsoperativsystem med en lagdelt/monolitisk arkitektur, giver den nødvendige funktionalitet og fleksibilitet der muliggør processering af lydsignalet inden for de stillede krav. 
 \end{itemize}
-
-\husk{Søren}{Noget konkluderende fra tests, ang. offsets/rettelser, mere om den egentlige lydkvalitet, forbedringer/begrænsninger? (diskussion), blev line-level opnået, noget om nøjagtigheden ved de høje frekvenser >17khz}
