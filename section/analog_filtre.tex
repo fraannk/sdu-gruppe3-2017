@@ -9,7 +9,7 @@ Når der arbejdes med lydsignaler er det vigtigt at overveje gruppeløbetiden. G
 Senere på forløbet blev det afklaret at for at høre denne forsinkelse skulle forskellen være i millisekunder. Der blev derfor taget en beslutning om at skifte til Butterworth filtre, da denne type filter har en stejlere dæmpnings hældning og kræver færre komponenter.
 \subsection{Parametre, udregning og Sallen Key}\label{sec::anfilter_sallenpara}
 Butterworth filteret blev valgt som det endelige filter. Frekvensspektrumet af interesse spænder fra 20Hz til 20kHz. Dvs. de hørbare frekvenser.\\
-Det vælges at knækfrekvensen skal ligge ved 17kHz med en dæmpning på -3dB. Denne frekvens vælges da en mindre dæmpning ved den øvre del af frekvensspektrumet kan accepteres, og giver mulighed for en betydelig dæmpning af signalet efter 22.5kHz. Ved hjælp af Matlab (der refereres til bilag \ref{void}) udregnes at amplituden ved 22.5kHz kan dæmpes med -12dB med at 5. ordens butterworth filter.\\
+Det vælges at knækfrekvensen skal ligge ved 17kHz med en dæmpning på -3dB. Denne frekvens vælges da en mindre dæmpning ved den øvre del af frekvensspektrumet kan accepteres, og giver mulighed for en betydelig dæmpning af signalet efter 22.5kHz. Ved hjælp af Matlab udregnes at amplituden ved 22.5kHz kan dæmpes med -12dB med at 5. ordens butterworth filter.\\
 Der ønskes tre overføringsfunktioner på formen som vist i ligning \ref{eq::anfilter_standardeq}.
 \begin{equation}
 	H(s) = \dfrac{1}{s^2+b_1\cdot s + b_0}\label{eq::anfilter_standardeq}
@@ -201,4 +201,4 @@ Dette kan løses ved at lave et højfrekvent lavpas filter, så tæt på udgange
 \FloatBlock
 
 \subsection{Delkonkussion}
-Det kan ses ud fra simuleringer at udregningerne af filtret har været tilfredstillende. De parametre der blev sat i afsnit \ref{sec::anfilter_sallenpara} er blevet overholdt. Efter realisering på pcb board kan der  ydermere konstateres at lydsignalet går igennem uden de nævneværdige tab i øvre og lavere del af frekvensspektrumet. Test af filtrene kan ses i kapitel 6 og stemmer overens med teorien. 
+Det kan ses ud fra simuleringer at udregningerne af filtret har været tilfredstillende. De parametre der blev sat i afsnit \ref{sec::anfilter_sallenpara} er blevet overholdt. Efter realisering på pcb board kan der  ydermere konstateres at lydsignalet går igennem uden nævneværdige tab i øvre og lavere del af frekvensspektrumet. Test af filtrene kan ses i kapitel 6. Her ses det at amplituden passer overens med teori, men at fasedrejningen er omkring $100 \si{\celsius}$ forkert. Denne afvigelse kan endnu ikke forklares.
