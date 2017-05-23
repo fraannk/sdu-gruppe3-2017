@@ -59,6 +59,7 @@ Implementeringen af ADC har en clock-frekvens sat til $16 \si{\mega\hertz}$ som 
 \subsection{PWM - Pulse Width Modulation}\label{subsec:pwm}
 I begyndelsen af udviklingen, var der overvejelser om hvordan lydsignalet skulle genskabes efter den digitale behandling var foregået.
 Ud fra de indbyggede periferienheder, som den valgte MCU stiller til rådighed, faldt valget på et PWM generet lydsignal.
+\husk{Søren}{genereret}
 Det viste sig dog under udviklingen af de analoge filtre ( som blev gennemgået i foregående kapitel ), at en tilfredsstillende lydkvalitet samt at kunne eftervise equalizerens funktionalitet, ikke kunne opnås med et PWM generet lydsignal. \\
 Der vil dog stadig laves en gennemgang af PWM'ens opsætning og funktionalitet i hardware delen, da denne bruges i \texttt{EMP} profilen.\\
 
@@ -96,6 +97,7 @@ Afhængig af den valgte hardware profil, sættes pin konfigurationen ud fra tabe
 
 \subsection{DAC}
 Til at genere udgangssignalet fra MCU'en vælges en ekstern DAC kreds, da MCU'en ikke råder over denne funktionalitet.
+\husk{Søren}{generere}
 Valget blev en \texttt{MCP4922E/P}\footnote{Microchip MCP4922E/P 12-Bit Dual Voltage Output Digital-to-Analog Converter with SPI Interface \cite{mcp4922} } som er en 12bit DAC IC.
 Derved er opløsningen på udgangen den samme som på indgangen (se afsnit om ADC på side \pageref{subsec:adc}).\\
 
@@ -136,8 +138,10 @@ Konfigurationen af SPI findes i \texttt{spi\_init();} i modulet \textit{hardware
 \subsection{Interrupt}\label{subsec:interrupt}
 Som det tidligere er blevet forklaret, er det et kald til \texttt{sample\_handler();} ISR'en der ligger til grund for hele timingen af lydsamplingen.
 Det er dog ikke vigtigt hvilken interrupt vektor der får denne opgave.\\
+\husk{Søren}{som det tidligere er blevet forklaret, der DER et kald?}
 
 I dette system er det valgt at bruge \textbf{zero reload event} på PWM'en, som \textit{interrupt trigger}.
+\husk{Søren}{er DER}
 Således bliver samplingstiden, som PWM'en er sat op efter (se afsnit om PWM på side \pageref{subsec:pwm}), indirekte overført til både ADC'en og DAC'en.\\ 
 
 Konfiguration af \textbf{NVIC}'en kan findes i modulet \textit{tm4c123gh6pm\_startup\_ccs\_gcc.c} og funktionen \texttt{init\_PWM(INT16U cycles);} i hardware modulet \textit{hardware.c}
@@ -177,9 +181,8 @@ LCD displayet bliver initialiseret fra modulet \textit{emp\_lcd1602.c} i  \textt
 
 \subsection{Tiva™ C Series TM4C123G LaunchPad Evaluation Board}
 Som udviklingsplatform anvendes Tiva LaunchPad \cite{spmu296}. 
-Tiva LaunchPad stiller en række funktionaliteter til rådighed som f.eks. On-board ICDI.
+Tiva LaunchPad stiller en række funktionaliteter til rådighed som f.eks. On-board ICDI\footnote{(ICDI) In-Circuit Debug Interface (Eng.)}.
 Derudover er der på printet også monteret 2 trykknapper (\textbf{SW1 / SW2}) og en RGB LED, som er medtaget i pin mapping tabellen i bilag \ref{bilag:pinmap}, således at det ikke påvirker hardwareprofilen til projektet.   
-\husk{Søren}{udvidelse af ICDI så man ved det er en on-board debugger?}
 
 \subsection{FPU}
 For at kunne gøre brug af FPU'en (floating point unit) på den valgte MCU, kræver den en produkt specifik aktivering.

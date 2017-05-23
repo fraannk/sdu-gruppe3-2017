@@ -1,14 +1,12 @@
 \section{FIR - Finite Impulse Response}\label{sec:fir}
 Formålet med FIR filteret er at udregne filter koefficienterne, $b_{i}$, der bruges til at approksimere størrelsen af frekvens responset af FIR filteret, $H(z)$.
-\Kenneth{\cite[Side. 217]{}.}
-Forholdet mellem input og output (også kaldet differensligning) i et kaulsalt FIR filter er givet ved ligning \ref{fir_ligning},
+Forholdet mellem input og output (også kaldet differensligning) i et kaulsalt FIR filter er givet ved ligning \ref{fir_ligning} og er fundet i litteratur \cite[Side. 217]{Tan2013}.
 \begin {equation} 
 y(n)=\sum\limits_{i=0}^{K}b_{i}x(n-i) \label{fir_ligning}
 \end {equation}
-hvor $b_{i}$ repræsenterer filterets koefficienter og $K+1$ er filterets længde. Nuværende og tidligere sampleværdier bliver brugt til at beregne den næste output sample, og det har den fordel, at filtreringen kan ske i real-tid.
+Her repræsenterer $b_{i}$ filterets koefficienter og $K+1$ er filterets længde. Nuværende og tidligere sampleværdier bliver brugt til at beregne den næste output sample, og det har den fordel, at filtreringen kan ske i real-tid.
 \\
-\Kenneth{\cite[Side. 218]{}.}
-Derefter z-transformeres ligning \ref{fir_ligning}. For at opskrive FIR filterets overføringsfunktion, faktoriseres $X(z)$ ud på højre side af den z-transformerede ligning \ref{fir_ligning} og derefter dividere igennem med $X(z)$ fås ligning \ref{fir_transfer}.
+Derefter z-transformeres ligning \ref{fir_ligning}. For at opskrive FIR filterets overføringsfunktion, faktoriseres $X(z)$ ud på højre side af den z-transformerede ligning \ref{fir_ligning} og derefter dividere igennem med $X(z)$ fås ligning \ref{fir_transfer}. Udledningen kan ses i litteratur \cite[Side. 218]{Tan2013}.
 \Kenneth{Overføringsfunktion}
 \begin {equation}
 H(z)=\frac{Y(z)}{X(z)}=b_{0}+b_{1}z^{-1}+...+b_{K}^{-1} \label{fir_transfer}
@@ -29,14 +27,13 @@ H(z)=\sum\limits_{k=0}^{N-1}h(k)z^{-1} \label{FIR_transfer}
 \end {equation}
 
 \section{Design metoder} \label{sec:fir_design}
-Herunder redegøres der for 2 forskellíge design metoder, til beregning af filter koefficienter.
+Herunder redegøres der for 2 forskellíge design metoder, til beregning af filter koefficienter; Frekvenssampling og windowsmetoden.
 \husk{Søren}{skal de lige nævnes?}
 \subsection{Frekvenssampling}
 Ved frekvenssampling approksimeres det ønskede frekvensrespons ved, at sample det $N$ antal gange, med samme interval imellem samplingspunkterne. Der kan derved opnås et interpolateret frekvens respons.
 Pointen med frekvenssampling er at filterkoefficienter kan beregnes udfra specificerede størrelser i forhold det ønskede filter respons uniformt i frekvensdomænet.
 
-Filterkoefficienterne kan beregnes udfra definitionen af den inverse DFT (IDFT):
-\Kenneth{\cite[Side. 262]{}.}
+Filterkoefficienterne kan beregnes udfra definitionen af den inverse DFT (IDFT) fra litteratur \cite[Side. 262]{Tan2013}:
 \begin {equation}
 h(n)=\frac{1}{N}\sum_{k=0}^{N-1}H_{d}(k)W_{N}^{-kn} ,\hspace{1cm}\text{for}\hspace{1cm} n = 0, 1,\text{ ... }, N-1 \label{fir_filterkoefficienter}
 \end {equation}
@@ -45,7 +42,6 @@ hvor
 W_{N}=e^{j\frac{2\pi}{N}} \hspace{1cm}\text{og} \hspace{1cm} H_{d}(k)=h(e^{j\Omega_{k}}) \nonumber
 \end {equation}
 Der antages lineær fase og at antallet af samplingspunkt er $N=2M+1$.
-
 
 
 \begin{figure}[h]
@@ -62,8 +58,7 @@ h(n)=\frac{1}{2M+1}\left[ H_{0}+2\sum_{k=1}^{M} \left( \frac{2\pi k(n-M)}{2M+1} 
 
 hvor $h(k)$ for $k=0,1,\text{ ... },2M$, repræsenterer filterkoefficienternes størrelser, der bruges til at specificere det ønskede filterrespons med samplingslængden $\Omega_{k}=\frac{2\pi k}{(2M+1)}$.
 
-Design proceduren opskrives:\\
-\Kenneth{\cite[Side. 263]{}.}
+Design proceduren kan findes i litteratur \cite[Side. 263]{Tan2013} og opskrives:\\
 \begin{enumerate}[noitemsep,nolistsep]
 \item Ud fra filterlængden $2M+1$, angives størrelsen af frekvensresponset for det normaliserede filter gående fra $0$ til $\pi$.
 \begin{equation}
@@ -81,7 +76,6 @@ b_n = h(n)=\frac{1}{2M+1}\left[ H_{0}+2\sum_{k=1}^{M} \left( \frac{2\pi k(n-M)}{
 
 \subsection{Windowsmetoden}
 Den grundlæggende tilgang til windowsmetoden er baseret på at det ideelle lavpas-, højpas-, båndpas-, og båndstop filter, bestående af den følgende ikke-kausale impulsrespons på $-\infty < n < \infty$. Windowsmetoden bygger på Fourier Transformationen, hvor det gælder om at fjerne de uønskede Gibbs oscilleringer i pas- og stopbåndet, som finder sted under trunkeringen. Anvendes windowsmetoden på filterkoefficienterne fås ligning \ref{window_function},
-\Kenneth{\cite[Side. 230]{}.}
 \begin{equation}
 	h_w(n) = h(n)*w(n) \hspace{1cm}\text{,} \hspace{1cm}n=-M,\text{ ... },0, 1,\text{ ... , }M	
 	\label{window_function}
@@ -106,8 +100,7 @@ Ripplen i henholdsvis pas- og stopbåndet beregnes udfra ligning \ref{ripple_p} 
 \delta_s dB &= -20*log_{10}(\delta_s) \label{ripple_s}
 \end{align}
 
-Filterets knækfrekvens, $f_c$, bestemmes ud fra midten af overgangsbåndet. En tommmelfingerregel til bestemmelse af $f_c$ er givet ved ligning \ref{fir_cutoff}
-\Kenneth{\cite[Side. 241]{}.}
+Filterets knækfrekvens, $f_c$, bestemmes ud fra midten af overgangsbåndet. En tommmelfingerregel til bestemmelse af $f_c$ er givet ved ligning \ref{fir_cutoff},
 \begin{equation}
 	f_c =\frac{f_{pas}-f_{stop}}{2} \label{fir_cutoff}
 \end{equation}
